@@ -9,12 +9,12 @@
  * @date  09.2015
  */
 #include "ge_libs.h"
-#define START DISC_PB4
-#define STOP DISC_PB3
-#define RESET DISC_PB2
-#define MAX_MIN 99;
-#define MAX_SEC 59;
-#define MAX_MIL 999;
+#define START GE_PBTN4
+#define STOP GE_PBTN3
+#define RESET GE_PBTN2
+#define MAX_MIN 99
+#define MAX_SEC 59
+#define MAX_MIL 999
 
 
 
@@ -93,11 +93,12 @@ void stopwatch() {
 
     lcd_clear();
     lcd_goto(0, 0);
-    lcd_put("%i:%i.%i", minutes, seconds, millisec);
+    char disp[9];
+    sprintf(disp, "%i:%i.%i", minutes, seconds, millisec);
+    lcd_puts(disp);
   }
 
   }
-}
 int main(void)
 {  
   //Initialize library
@@ -109,7 +110,7 @@ int main(void)
   setup_led_gpio();
   lcd_clear();
   lcd_goto(0, 0);
-  lcd_put("00:00.000");
+  lcd_puts("00:00.000");
 
   //Initialize the USER button as an input
   gpio_setup_pin(DISC_PBTN, GPIO_INPUT, false, false);

@@ -7,7 +7,7 @@
 PROJ_NAME=main
 
 # location of custom EE155 libraries
-EE155_LIB=../libraries
+EE155_LIB=../../../libraries
 
 # Location of the Libraries folder from the STM32F0xx Standard Peripheral Library
 STD_PERIPH_LIB=Libraries
