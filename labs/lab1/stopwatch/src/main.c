@@ -9,6 +9,13 @@
  * @date  09.2015
  */
 #include "ge_libs.h"
+#define START DISC_PB4
+#define STOP DISC_PB3
+#define RESET DISC_PB2
+#define MAX_MIN 99;
+#define MAX_SEC 59;
+#define MAX_MIL 999;
+
 
 
 void setup_led_gpio() {
@@ -51,6 +58,46 @@ void led_on() {
   * @param  None 
   * @retval None
   */
+bool stopwatchOn = 0;
+int minutes, seconds, millisec;
+
+void stopwatch() {
+  uint8_t start_on = gpio_read_pin(START);
+  uint8_t stop_on = gpio_read_pin(STOP);
+  uint8_t reset_on = gpio_read_pin(RESET);
+  if (start_on == 0) {
+    stopwatchOn = 1;
+
+  } else if (stop_on == 0 && stopwatchOn) {
+    stopwatchOn = 0;
+  } else if (reset_on == 0) {
+    stopwatchOn = 0;
+    minutes = 0;
+    seconds = 0;
+    millisec = 0;
+  } else {
+
+  }
+
+  if (stopwatchOn) {
+    millisec += 1;
+    if (millisec > MAX_MIL) {
+      seconds += 1;
+      millisec = 0;
+    } else if (seconds > MAX_SEC) {
+      minutes += 1;
+      seconds = 0;
+    } else {
+
+    }
+
+    lcd_clear();
+    lcd_goto(0, 0);
+    lcd_put("%i:%i.%i", minutes, seconds, millisec);
+  }
+
+  }
+}
 int main(void)
 {  
   //Initialize library
@@ -60,19 +107,24 @@ int main(void)
   gpio_init();
 
   setup_led_gpio();
+  lcd_clear();
+  lcd_goto(0, 0);
+  lcd_put("00:00.000");
 
   //Initialize the USER button as an input
   gpio_setup_pin(DISC_PBTN, GPIO_INPUT, false, false);
+  gpio_setup_pin(START, GPIO_INPUT, false, false); //start
+  gpio_setup_pin(STOP, GPIO_INPUT, false, false); //stop
+  gpio_setup_pin(RESET, GPIO_INPUT, false, false); //reset
 
   //Initialize LCD
   lcd_init();
 
   // //Print Hello World
-  lcd_clear();
-  lcd_goto(0, 0);
-  lcd_puts("Hello, World!");
 
-  // timer_init();
+  timer_init();
+  timer_id_t watch_timer = timer_register(1, &stopwatch, GE_PERIODIC);
+  timer_start(watch_timer);
 
   //Initialize VCOM
   // vcom_init();
