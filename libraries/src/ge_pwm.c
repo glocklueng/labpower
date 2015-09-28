@@ -100,7 +100,7 @@ void pwm_enable_chan(int chan) {
 //set pwm count (16 bit unsigned)
 void pwm_set(int chan, float duty) {
   int compare_val = (int)(duty*(float)_ge_pwm_period);
-  set_pwm_int(chan,compare_val);
+  pwm_set_int(chan,compare_val);
 }
 
 int pwm_get_max_int()
