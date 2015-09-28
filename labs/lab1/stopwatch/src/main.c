@@ -9,14 +9,14 @@
  * @date  09.2015
  */
 #include "ge_libs.h"
+#include "common.h"
+
 #define START GE_PBTN4
 #define STOP GE_PBTN3
 #define RESET GE_PBTN2
 #define MAX_MIN 99
 #define MAX_SEC 59
 #define MAX_MIL 999
-
-
 
 void setup_led_gpio() {
   //Initialize LED pins and set as outputs
@@ -52,7 +52,6 @@ void led_on() {
   gpio_write_pin(DISC_LD10, GPIO_HIGH);
 }
 
-
 /**
   * @brief  Main program.
   * @param  None 
@@ -61,10 +60,11 @@ void led_on() {
 bool stopwatchOn = 0;
 int minutes, seconds, millisec;
 
-void stopwatch() {
+void stopwatch(void) {
   uint8_t start_on = gpio_read_pin(START);
   uint8_t stop_on = gpio_read_pin(STOP);
   uint8_t reset_on = gpio_read_pin(RESET);
+
   if (start_on == 0) {
     stopwatchOn = 1;
 
@@ -78,7 +78,6 @@ void stopwatch() {
   } else {
 
   }
-
   if (stopwatchOn) {
     millisec += 1;
     if (millisec > MAX_MIL) {
@@ -91,13 +90,7 @@ void stopwatch() {
 
     }
 
-    lcd_clear();
-    lcd_goto(0, 0);
-    char disp[9];
-    sprintf(disp, "%i:%i.%i", minutes, seconds, millisec);
-    lcd_puts(disp);
   }
-
   }
 int main(void)
 {  
@@ -106,11 +99,12 @@ int main(void)
 
   //Initialize GPIO
   gpio_init();
-
+  lcd_init();
   setup_led_gpio();
   lcd_clear();
   lcd_goto(0, 0);
   lcd_puts("00:00.000");
+
 
   //Initialize the USER button as an input
   gpio_setup_pin(DISC_PBTN, GPIO_INPUT, false, false);
@@ -118,11 +112,11 @@ int main(void)
   gpio_setup_pin(STOP, GPIO_INPUT, false, false); //stop
   gpio_setup_pin(RESET, GPIO_INPUT, false, false); //reset
 
-  //Initialize LCD
-  lcd_init();
+
+  //Initialize LC
+
 
   // //Print Hello World
-
   timer_init();
   timer_id_t watch_timer = timer_register(1, &stopwatch, GE_PERIODIC);
   timer_start(watch_timer);
@@ -131,34 +125,14 @@ int main(void)
   // vcom_init();
   // vcom_send("Hello, World!\n");
 
-  /* Infinite loop */
-  /**
-   * Flashes the ring of LEDs. If the user button is
-   * depressed, it will switch to pulsing the buttons with
-   * PWM.
-   */
-  while (1) {   
-    //check if button depressed
-    if (!gpio_read_pin(DISC_PBTN)) {
-      /* LEDs Off */
-      led_off();
-      delay_ms(500); /*500ms - half second*/
-      
-      /* LEDs Off */
-      led_on();
-      delay_ms(500); /*500ms - half second*/
-
-      // vcom_send("Hi\n");
-    } else {
-      /* LEDs Off */
-      led_off();
-      delay_ms(100); /*500ms - half second*/
-      
-      /* LEDs Off */
-      led_on();
-      delay_ms(100); /*500ms - half second*/
-    }
+  while (1) {  
+  lcd_clear();
+  lcd_goto(0, 0);
+  char disp[9];
+  sprintf(disp, "%i:%i.%i", minutes, seconds, millisec);
+  lcd_puts(disp); 
   }
+   
 }
 
 
