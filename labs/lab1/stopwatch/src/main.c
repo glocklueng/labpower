@@ -82,7 +82,7 @@
       }  
 
       //USE ELSE IF HOLDING PLAY WORKS LIKE PAUSE
-      else if (stopwatchOn) {
+      if (stopwatchOn) {
         millisec += 1;
 
         if (millisec > MAX_MIL) {
