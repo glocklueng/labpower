@@ -10,6 +10,8 @@
  */
 #include "ge_libs.h"
 
+#define PWM_FREQUENCY 7200
+
 
 void setup_led_gpio() {
   //Initialize LED pins and set as outputs
@@ -71,6 +73,14 @@ int main(void)
   lcd_clear();
   lcd_goto(0, 0);
   lcd_puts("Hello, World!");
+
+  pwm_init();
+  pwm_enable_chan(1);
+  pwm_freq(PWM_FREQUENCY);
+  pwm_set(1,.5);
+
+  
+
 
   // timer_init();
 
