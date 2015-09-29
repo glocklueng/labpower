@@ -127,6 +127,7 @@ int main(void)
       char disp[9];
       sprintf(disp, "Duty: .%02f", duty);
       lcd_puts(disp); 
+      pwm_set(1, duty);
       }
 
 }
