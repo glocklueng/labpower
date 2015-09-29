@@ -10,7 +10,11 @@
  */
 #include "ge_libs.h"
 
-#define PWM_FREQUENCY 7200
+#define PWM_FREQUENCY 5.0
+#define FREQ_UP GE_PBTN3
+#define FREQ_DN GE_PBTN2
+
+float duty = .5;
 
 
 void setup_led_gpio() {
@@ -47,6 +51,24 @@ void led_on() {
   gpio_write_pin(DISC_LD10, GPIO_HIGH);
 }
 
+void button_logic(void){
+  uint8_t increase_freq = gpio_read_pin(FREQ_UP);
+  uint8_t decrease_freq = gpio_read_pin(FREQ_DN);
+
+  if(increase_freq == 0 && duty <= .95){
+    duty += .05;
+  }
+  else if(decrease_freq == 0 && duty >= .05){
+    duty -= .05;
+  }
+  else{
+
+  }
+
+
+
+}
+
 
 /**
   * @brief  Main program.
@@ -65,6 +87,8 @@ int main(void)
 
   //Initialize the USER button as an input
   gpio_setup_pin(DISC_PBTN, GPIO_INPUT, false, false);
+  gpio_setup_pin(FREQ_UP, GPIO_INPUT, false, false); //start
+  gpio_setup_pin(FREQ_DN, GPIO_INPUT, false, false); //stop
 
   //Initialize LCD
   lcd_init();
@@ -72,13 +96,16 @@ int main(void)
   // //Print Hello World
   lcd_clear();
   lcd_goto(0, 0);
-  lcd_puts("Hello, World!");
+  lcd_puts("PWM");
 
   pwm_init();
   pwm_enable_chan(1);
   pwm_freq(PWM_FREQUENCY);
-  pwm_set(1,.5);
+  pwm_set(1, duty);
 
+  timer_init();
+  timer_id_t button_timer = timer_register(1, &button_logic, GE_PERIODIC);
+  timer_start(button_timer);
   
 
 
@@ -94,28 +121,14 @@ int main(void)
    * depressed, it will switch to pulsing the buttons with
    * PWM.
    */
-  while (1) {   
-    //check if button depressed
-    if (!gpio_read_pin(DISC_PBTN)) {
-      /* LEDs Off */
-      led_off();
-      delay_ms(500); /*500ms - half second*/
-      
-      /* LEDs Off */
-      led_on();
-      delay_ms(500); /*500ms - half second*/
+  while (1) {
+      //lcd_clear();  
+      lcd_goto(0, 0);
+      char disp[9];
+      sprintf(disp, "Duty: .%02f", duty);
+      lcd_puts(disp); 
+      }
 
-      // vcom_send("Hi\n");
-    } else {
-      /* LEDs Off */
-      led_off();
-      delay_ms(100); /*500ms - half second*/
-      
-      /* LEDs Off */
-      led_on();
-      delay_ms(100); /*500ms - half second*/
-    }
-  }
 }
 
 
