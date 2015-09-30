@@ -10,9 +10,9 @@
  */
 #include "ge_libs.h"
 
-#define PWM_FREQUENCY 5.0
-#define FREQ_UP GE_PBTN3
-#define FREQ_DN GE_PBTN2
+#define PWM_FREQUENCY 1000
+#define FREQ_DN GE_PBTN3
+#define FREQ_UP GE_PBTN2
 
 float duty = .5;
 
@@ -55,16 +55,21 @@ void button_logic(void){
   uint8_t increase_freq = gpio_read_pin(FREQ_UP);
   uint8_t decrease_freq = gpio_read_pin(FREQ_DN);
 
-  if(increase_freq == 0 && duty <= .95){
-    duty += .05;
+  if(increase_freq == 0 /*&& duty <= .95*/){
+    duty += .01;
   }
-  else if(decrease_freq == 0 && duty >= .05){
-    duty -= .05;
+  else if(decrease_freq == 0 /*&& duty >= .05*/){
+    duty -= .01;
   }
   else{
-
   }
 
+  if(duty>1){
+    duty = 1;
+  }
+  if(duty<0){
+    duty = 0;
+  }
 
 
 }
@@ -104,7 +109,7 @@ int main(void)
   pwm_set(1, duty);
 
   timer_init();
-  timer_id_t button_timer = timer_register(1, &button_logic, GE_PERIODIC);
+  timer_id_t button_timer = timer_register(100, &button_logic, GE_PERIODIC);
   timer_start(button_timer);
   
 
@@ -125,7 +130,7 @@ int main(void)
       //lcd_clear();  
       lcd_goto(0, 0);
       char disp[9];
-      sprintf(disp, "Duty: .%02f", duty);
+      sprintf(disp, "Duty: %02f", duty);
       lcd_puts(disp); 
       pwm_set(1, duty);
       }
