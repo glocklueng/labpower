@@ -43,8 +43,12 @@ void calibrate_offset() {
  * and stores the result in the EEPROM
  */
 void calibrate_voltage() {
-  //Code to calculate volts_per_div
 
+  //ideally 
+  //Code to calculate volts_per_div
+  //we have the information that 0V maps to some ADC value
+  //we read that 10V (or some known value) maps to some other ADC value
+  //calculate slope
   //Store values in EEPROM
 }
 
@@ -56,7 +60,10 @@ void calibrate_voltage() {
  */
 void calibrate_current() {
   //Code to calculate amps_per_div
-
+  //ideally 
+  //we have the information that 0V maps to some ADC value
+  //we read that 3A (or some known value) maps to some other ADC value
+  //calculate slope
   //Store values in EEPROM
 }
 
@@ -68,6 +75,7 @@ void calibrate_current() {
 void meter_init() {
   //Read in calibration constants from EEPROM
 
+  //This'll be empty until Ned sets this up
   
 }
 
@@ -78,7 +86,11 @@ void meter_init() {
  * your own
  */
 void meter_display() {
-  //Code here
+
+  //do some calculations to calculate current, voltage, and then power
+  //set some global defaults, only if calibrated_bool is set low
+
+  //LCD displays
 }
 
 
@@ -87,6 +99,6 @@ void meter_display() {
  * @details Called at the end of the ADC conversions
  */
 void my_adc_callback(uint32_t data) {
-  voltage_reading = (uint16_t) (data & 0x0000ffff);
-  current_reading = (uint16_t) (data >> 16);
+  voltage_reading = (uint16_t) (data & 0x0000ffff); //some number between 0 and 4095
+  current_reading = (uint16_t) (data >> 16); //some # 0-4095
 }
