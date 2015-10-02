@@ -48,10 +48,10 @@ void setup_buttons() {
 }
 
 void start_conversion() {
-  adc_set_fs(50000);  //adjust this 
-  adc_enable_channel(1);
+  adc_set_fs(5000);  //adjust this 
+  adc_enable_channel(3);
 
-  adc_callback(1, &my_adc_callback);
+  adc_callback(3, &my_adc_callback);
   adc_start();
 }
 

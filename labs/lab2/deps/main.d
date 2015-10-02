@@ -26,12 +26,12 @@ objs/main.o: src/main.c Libraries/stm32f30x_conf.h \
  Libraries/STM32F30x_StdPeriph_Driver/inc/stm32f30x_tim.h \
  Libraries/STM32F30x_StdPeriph_Driver/inc/stm32f30x_usart.h \
  Libraries/STM32F30x_StdPeriph_Driver/inc/stm32f30x_wwdg.h \
- Libraries/STM32F30x_StdPeriph_Driver/inc/stm32f30x_misc.h \
- ../../../libraries/inc/ge_libs.h ../../../libraries/inc/common.h \
+ Libraries/STM32F30x_StdPeriph_Driver/inc/stm32f30x_misc.h inc/lab2.h \
+ ../../libraries/inc/ge_libs.h ../../libraries/inc/common.h \
  inc/stm32f3_discovery.h Libraries/stm32f30x_conf.h \
- ../../../libraries/inc/ge_adc.h ../../../libraries/inc/ge_gpio.h \
- ../../../libraries/inc/ge_pins.h ../../../libraries/inc/ge_lcd.h \
- ../../../libraries/inc/HD44780_F3.h ../../../libraries/inc/ge_vcom.h \
+ ../../libraries/inc/ge_adc.h ../../libraries/inc/ge_gpio.h \
+ ../../libraries/inc/ge_pins.h ../../libraries/inc/ge_lcd.h \
+ ../../libraries/inc/HD44780_F3.h ../../libraries/inc/ge_vcom.h \
  Libraries/STM32_USB-FS-Device_Driver/inc/usb_lib.h inc/hw_config.h \
  Libraries/STM32_USB-FS-Device_Driver/inc/usb_type.h inc/usb_conf.h \
  Libraries/STM32_USB-FS-Device_Driver/inc/usb_type.h \
@@ -42,8 +42,8 @@ objs/main.o: src/main.c Libraries/stm32f30x_conf.h \
  Libraries/STM32_USB-FS-Device_Driver/inc/usb_sil.h \
  Libraries/STM32_USB-FS-Device_Driver/inc/usb_mem.h \
  Libraries/STM32_USB-FS-Device_Driver/inc/usb_int.h \
- ../../../libraries/inc/usb_pwr.h \
+ ../../libraries/inc/usb_pwr.h \
  Libraries/STM32_USB-FS-Device_Driver/inc/usb_core.h \
- ../../../libraries/inc/platform_config.h \
- ../../../libraries/inc/usb_istr.h ../../../libraries/inc/ge_pwm.h \
- ../../../libraries/inc/ge_system.h ../../../libraries/inc/ge_timer.h
+ ../../libraries/inc/platform_config.h ../../libraries/inc/usb_istr.h \
+ ../../libraries/inc/ge_pwm.h ../../libraries/inc/ge_system.h \
+ ../../libraries/inc/ge_timer.h
