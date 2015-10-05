@@ -76,12 +76,13 @@
         minutes = 0;
         seconds = 0;
         millisec = 0;
+        stopwatchOn = 0;
         // lcd_clear();
         // lcd_puts("00:00.000");
       }  
 
       //USE ELSE IF HOLDING PLAY WORKS LIKE PAUSE
-      else if (stopwatchOn) {
+      if (stopwatchOn) {
         millisec += 1;
 
         if (millisec > MAX_MIL) {

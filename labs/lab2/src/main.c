@@ -48,10 +48,10 @@ void setup_buttons() {
 }
 
 void start_conversion() {
-  adc_set_fs(1000);
-  adc_enable_channel(1);
+  adc_set_fs(5000);  //adjust this 
+  adc_enable_channel(3);
 
-  adc_callback(1, &my_adc_callback);
+  adc_callback(3, &my_adc_callback);
   adc_start();
 }
 
@@ -60,7 +60,7 @@ int main() {
   ge_init();
 
   lcd_init();
-  adc_init();
+  adc_init(); //initializing the ADCs
 
   gpio_init();
 
@@ -74,6 +74,11 @@ int main() {
 
   //initialize power meter
   meter_init();
+
+  //Enable ADCs to do work
+  //Might have to move this function
+  start_conversion();
+
 
   //handle display
   uint8_t last_state = 255;

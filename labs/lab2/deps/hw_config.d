@@ -37,7 +37,7 @@ objs/hw_config.o: src/hw_config.c Libraries/stm32f30x_conf.h \
  Libraries/STM32_USB-FS-Device_Driver/inc/usb_sil.h \
  Libraries/STM32_USB-FS-Device_Driver/inc/usb_mem.h \
  Libraries/STM32_USB-FS-Device_Driver/inc/usb_int.h \
- ../../../libraries/inc/usb_desc.h \
+ ../../libraries/inc/usb_desc.h \
  Libraries/STM32_USB-FS-Device_Driver/inc/usb_core.h \
- ../../../libraries/inc/usb_pwr.h inc/stm32f3_discovery.h \
- Libraries/stm32f30x_conf.h ../../../libraries/inc/platform_config.h
+ ../../libraries/inc/usb_pwr.h inc/stm32f3_discovery.h \
+ Libraries/stm32f30x_conf.h ../../libraries/inc/platform_config.h

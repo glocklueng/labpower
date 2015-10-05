@@ -15,6 +15,11 @@
 // calibration parameters
 float volts_per_div;
 float amps_per_div;
+
+bool v_cal_already;
+bool c_cal_already;
+bool reaches_callback = 1;
+
 uint16_t zero_volts;
 uint16_t zero_amps;
 
@@ -33,7 +38,6 @@ void calibrate_offset() {
   zero_amps = current_reading;
 
   //Store values in EEPROM
-
 }
 
 
@@ -43,9 +47,15 @@ void calibrate_offset() {
  * and stores the result in the EEPROM
  */
 void calibrate_voltage() {
-  //Code to calculate volts_per_div
 
+  //ideally 
+  //Code to calculate volts_per_div
+  //we have the information that 0V maps to some ADC value
+  //we read that 10V (or some known value) maps to some other ADC value
+  //calculate slope
   //Store values in EEPROM
+
+  v_cal_already = true;
 }
 
 
@@ -56,8 +66,13 @@ void calibrate_voltage() {
  */
 void calibrate_current() {
   //Code to calculate amps_per_div
-
+  //ideally 
+  //we have the information that 0V maps to some ADC value
+  //we read that 3A (or some known value) maps to some other ADC value
+  //calculate slope
   //Store values in EEPROM
+
+  c_cal_already = true;
 }
 
 
@@ -66,8 +81,11 @@ void calibrate_current() {
  * @details Reads the calibration values from the EEPROM
  */
 void meter_init() {
+  c_cal_already = false;
+  v_cal_already = false;
   //Read in calibration constants from EEPROM
 
+  //This'll be empty until Ned sets this up
   
 }
 
@@ -78,7 +96,50 @@ void meter_init() {
  * your own
  */
 void meter_display() {
-  //Code here
+
+  if(!v_cal_already) {
+    //use defaults
+    volts_per_div = 120/4096;
+
+  }
+
+  if(!c_cal_already) {
+    amps_per_div = 20/4096;
+  }
+
+  float measured_voltage = volts_per_div * voltage_reading;
+  float measured_current = amps_per_div * current_reading;
+  float measured_power = measured_current * measured_voltage;
+
+  //throw on the LCD
+  
+  char v_string[15];
+  char c_string[15];
+  char p_string[15];
+  char test[1];
+
+  if (reaches_callback == 1){
+    test[0] = 'y';
+  }
+  else{
+    test[0] = 'n';
+  }
+
+  sprintf(v_string, "Voltage: %.3f", measured_voltage);
+  sprintf(c_string, "Current: %.3f", measured_current);
+  sprintf(p_string, "Power: %.3f",measured_power);
+
+  lcd_goto(0,0);
+  lcd_puts(v_string);
+
+  lcd_goto(0,1);
+  lcd_puts(c_string);
+
+  lcd_goto(0,2);
+  lcd_puts(p_string);
+
+  lcd_goto(0,3);
+  lcd_puts(test);
 }
 
 
@@ -87,6 +148,7 @@ void meter_display() {
  * @details Called at the end of the ADC conversions
  */
 void my_adc_callback(uint32_t data) {
-  voltage_reading = (uint16_t) (data & 0x0000ffff);
-  current_reading = (uint16_t) (data >> 16);
+  voltage_reading = (uint16_t) (data & 0x0000ffff); //some number between 0 and 4095
+  current_reading = (uint16_t) (data >> 16); //some # 0-4095
+  reaches_callback = !reaches_callback;
 }
