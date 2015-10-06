@@ -15,10 +15,9 @@
 // calibration parameters
 float volts_per_div;
 float amps_per_div;
+float prev_volt;
+float prev_curr;
 
-bool v_cal_already;
-bool c_cal_already;
-bool reaches_callback = 1;
 
 uint16_t zero_volts;
 uint16_t zero_amps;
@@ -54,19 +53,12 @@ void calibrate_voltage() {
   cal_volt_reading = voltage_reading;
   eeprom_write(CAL_VOLT_ADDR, cal_volt_reading);
 
-  float delta_voltage = CAL_VOLTS - 0.0;
+  float delta_voltage = CAL_VOLTS;
   uint16_t divisions = cal_volt_reading - zero_volts;
 
   volts_per_div = delta_voltage/(float) divisions;
 }
 
-uint16_t eeprom_read(uint16_t addr, uint16_t* data);
-uint16_t eeprom_write(uint16_t addr, uint16_t data);
-
-#define ZERO_V_ADDR 2
-#define ZERO_I_ADDR 6
-#define CAL_VOLT_ADDR 10
-#define CAL_CURR_ADDR 14
 /**
  * @brief Updates calibration for the standard current
  * @details Calculates the calibration value read from the ADC
@@ -77,7 +69,7 @@ void calibrate_current() {
   cal_curr_reading = current_reading;
   eeprom_write(CAL_CURR_ADDR, cal_curr_reading);
 
-  float delta_current = CAL_CURR - 0.0;
+  float delta_current = CAL_CURR;
   uint16_t divisions = cal_curr_reading - zero_amps;
 
   amps_per_div = delta_current/ (float) divisions;
@@ -93,6 +85,9 @@ void meter_init() {
   //use defaults initially
   //these bools get set true in the calibrate functions
   eeprom_init();
+
+  prev_volt = 0.0;
+  prev_curr = 0.0;
   
   eeprom_read(ZERO_V_ADDR, &zero_volts);
   eeprom_read(ZERO_I_ADDR, &zero_amps);
@@ -112,9 +107,21 @@ void meter_init() {
  */
 void meter_display() {
 
-  float measured_voltage = volts_per_div * (voltage_reading-zero_volts);
-  float measured_current = (amps_per_div * (current_reading-zero_amps);
+  /*float measured_voltage = volts_per_div * (voltage_reading-zero_volts);
+  float measured_current = amps_per_div * (current_reading-zero_amps);
+  float measured_power = measured_current * measured_voltage;*/
+
+  //filtering (might need to do something with the normalization if it doesnt work)
+  float measured_voltage = (alpha*prev_volt + beta*(volts_per_div*(voltage_reading-zero_volts)))*(.25);
+  float measured_current = (alpha*prev_curr + beta*(amps_per_div*(current_reading-zero_amps)))*(.25);
   float measured_power = measured_current * measured_voltage;
+
+  //produce unity gain
+
+
+  prev_volt = measured_voltage;
+  prev_curr = measured_current;
+  
 
   //throw on the LCD
   

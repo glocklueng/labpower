@@ -23,6 +23,9 @@
 #define CAL_VOLT_ADDR 10
 #define CAL_CURR_ADDR 14
 
+#define alpha .75
+#define beta 1
+
 //Initialize the energy meter
 void meter_init();
 
