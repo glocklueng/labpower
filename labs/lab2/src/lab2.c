@@ -99,12 +99,14 @@ void meter_display() {
 
   if(!v_cal_already) {
     //use defaults
-    volts_per_div = 120.0/4096.0;
+    volts_per_div = DEFAULT_V_RANGE/NUM_DIV;
 
   }
 
   if(!c_cal_already) {
-    amps_per_div = 20.0/4096.0;
+    amps_per_div = DEFAULT_I_RANGE/NUM_DIV;
+    amps_per_div = 20.0/NUM_DIV;
+
   }
 
   float measured_voltage = volts_per_div * voltage_reading;
@@ -113,21 +115,13 @@ void meter_display() {
 
   //throw on the LCD
   
-  char v_string[15];
-  char c_string[15];
-  char p_string[15];
-  char test[1];
+  char v_string[20];
+  char c_string[20];
+  char p_string[20];
 
-  if (reaches_callback == 1){
-    test[0] = 'y';
-  }
-  else{
-    test[0] = 'n';
-  }
-
-  sprintf(v_string, "Voltage: %.3f", measured_voltage);
-  sprintf(c_string, "Current: %.3f", measured_current);
-  sprintf(p_string, "Power: %.3f",measured_power);
+  sprintf(v_string, "Voltage: %.3f V", measured_voltage);
+  sprintf(c_string, "Current: %.3f A", measured_current);
+  sprintf(p_string, "Power: %.3f W",measured_power);
 
   lcd_goto(0,0);
   lcd_puts(v_string);
@@ -137,9 +131,6 @@ void meter_display() {
 
   lcd_goto(0,2);
   lcd_puts(p_string);
-
-  lcd_goto(0,3);
-  lcd_puts(test);
 }
 
 
@@ -150,5 +141,4 @@ void meter_display() {
 void my_adc_callback(uint32_t data) {
   voltage_reading = (uint16_t) (data & 0x0000ffff); //some number between 0 and 4095
   current_reading = (uint16_t) (data >> 16); //some # 0-4095
-  reaches_callback = !reaches_callback;
 }
