@@ -17,6 +17,12 @@
 #define DEFAULT_I_RANGE 20.0
 #define NUM_DIV 4096.0
 
+//Addresses for data - eeprom
+#define ZERO_V_ADDR 2
+#define ZERO_I_ADDR 6
+#define CAL_VOLT_ADDR 10
+#define CAL_CURR_ADDR 14
+
 //Initialize the energy meter
 void meter_init();
 

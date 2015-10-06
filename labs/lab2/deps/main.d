@@ -46,4 +46,5 @@ objs/main.o: src/main.c Libraries/stm32f30x_conf.h \
  Libraries/STM32_USB-FS-Device_Driver/inc/usb_core.h \
  ../../libraries/inc/platform_config.h ../../libraries/inc/usb_istr.h \
  ../../libraries/inc/ge_pwm.h ../../libraries/inc/ge_system.h \
- ../../libraries/inc/ge_timer.h
+ ../../libraries/inc/ge_timer.h ../../libraries/inc/ge_eeprom.h \
+ ../../libraries/inc/eeprom.h

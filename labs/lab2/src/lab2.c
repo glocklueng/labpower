@@ -23,6 +23,8 @@ bool reaches_callback = 1;
 uint16_t zero_volts;
 uint16_t zero_amps;
 
+uint16_t cal_volt_reading;
+uint16_t cal_curr_reading;
 //current readings
 __IO uint16_t voltage_reading;
 __IO uint16_t current_reading;
@@ -37,7 +39,8 @@ void calibrate_offset() {
   zero_volts = voltage_reading;
   zero_amps = current_reading;
 
-  //Store values in EEPROM
+  eeprom_write(ZERO_V_ADDR, zero_volts);
+  eeprom_write(ZERO_I_ADDR, zero_amps);
 }
 
 
@@ -48,31 +51,36 @@ void calibrate_offset() {
  */
 void calibrate_voltage() {
 
-  //ideally 
-  //Code to calculate volts_per_div
-  //we have the information that 0V maps to some ADC value
-  //we read that 10V (or some known value) maps to some other ADC value
-  //calculate slope
-  //Store values in EEPROM
+  cal_volt_reading = voltage_reading;
+  eeprom_write(CAL_VOLT_ADDR, cal_volt_reading);
 
-  v_cal_already = true;
+  float delta_voltage = CAL_VOLTS - 0.0;
+  uint16_t divisions = cal_volt_reading - zero_volts;
+
+  volts_per_div = delta_voltage/(float) divisions;
 }
 
+uint16_t eeprom_read(uint16_t addr, uint16_t* data);
+uint16_t eeprom_write(uint16_t addr, uint16_t data);
 
+#define ZERO_V_ADDR 2
+#define ZERO_I_ADDR 6
+#define CAL_VOLT_ADDR 10
+#define CAL_CURR_ADDR 14
 /**
  * @brief Updates calibration for the standard current
  * @details Calculates the calibration value read from the ADC
  * and stores the result in the EEPROM
  */
 void calibrate_current() {
-  //Code to calculate amps_per_div
-  //ideally 
-  //we have the information that 0V maps to some ADC value
-  //we read that 3A (or some known value) maps to some other ADC value
-  //calculate slope
-  //Store values in EEPROM
 
-  c_cal_already = true;
+  cal_curr_reading = current_reading;
+  eeprom_write(CAL_CURR_ADDR, cal_curr_reading);
+
+  float delta_current = CAL_CURR - 0.0;
+  uint16_t divisions = cal_curr_reading - zero_amps;
+
+  amps_per_div = delta_current/ (float) divisions;
 }
 
 
@@ -81,12 +89,19 @@ void calibrate_current() {
  * @details Reads the calibration values from the EEPROM
  */
 void meter_init() {
-  c_cal_already = false;
-  v_cal_already = false;
-  //Read in calibration constants from EEPROM
 
-  //This'll be empty until Ned sets this up
+  //use defaults initially
+  //these bools get set true in the calibrate functions
+  eeprom_init();
   
+  eeprom_read(ZERO_V_ADDR, &zero_volts);
+  eeprom_read(ZERO_I_ADDR, &zero_amps);
+
+  eeprom_read(CAL_VOLT_ADDR, &cal_volt_reading);
+  eeprom_read(CAL_CURR_ADDR, &cal_curr_reading);
+
+  volts_per_div = CAL_VOLTS/ ( (float) (cal_volt_reading - zero_volts));
+  amps_per_div = CAL_CURR/ ( (float) (cal_curr_reading - zero_amps));
 }
 
 
@@ -97,20 +112,8 @@ void meter_init() {
  */
 void meter_display() {
 
-  if(!v_cal_already) {
-    //use defaults
-    volts_per_div = DEFAULT_V_RANGE/NUM_DIV;
-
-  }
-
-  if(!c_cal_already) {
-    amps_per_div = DEFAULT_I_RANGE/NUM_DIV;
-    amps_per_div = 20.0/NUM_DIV;
-
-  }
-
-  float measured_voltage = volts_per_div * voltage_reading;
-  float measured_current = amps_per_div * current_reading;
+  float measured_voltage = volts_per_div * (voltage_reading-zero_volts);
+  float measured_current = (amps_per_div * (current_reading-zero_amps);
   float measured_power = measured_current * measured_voltage;
 
   //throw on the LCD
@@ -119,9 +122,9 @@ void meter_display() {
   char c_string[20];
   char p_string[20];
 
-  sprintf(v_string, "Voltage: %.3f V", measured_voltage);
-  sprintf(c_string, "Current: %.3f A", measured_current);
-  sprintf(p_string, "Power: %.3f W",measured_power);
+  sprintf(v_string, "Voltage: %.3f V ", measured_voltage);
+  sprintf(c_string, "Current: %.3f A ", measured_current);
+  sprintf(p_string, "Power: %.3f W ",measured_power);
 
   lcd_goto(0,0);
   lcd_puts(v_string);
