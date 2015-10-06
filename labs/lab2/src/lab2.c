@@ -99,12 +99,12 @@ void meter_display() {
 
   if(!v_cal_already) {
     //use defaults
-    volts_per_div = 120/4096;
+    volts_per_div = 120.0/4096.0;
 
   }
 
   if(!c_cal_already) {
-    amps_per_div = 20/4096;
+    amps_per_div = 20.0/4096.0;
   }
 
   float measured_voltage = volts_per_div * voltage_reading;
