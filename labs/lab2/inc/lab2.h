@@ -16,8 +16,8 @@
 #define DEFAULT_V_RANGE 120.0
 #define DEFAULT_I_RANGE 20.0
 #define NUM_DIV 4096.0
-#define FREQ 5000
-#define PRD (1/5000)
+#define FREQ 5000.0
+#define PRD (1/5000.0)
 
 //Addresses for data - eeprom
 #define ZERO_V_ADDR 2
@@ -26,7 +26,7 @@
 #define CAL_CURR_ADDR 14
 
 #define alpha .75
-#define beta 1
+#define beta 1.0
 
 //Initialize the energy meter
 void meter_init();
