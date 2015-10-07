@@ -18,6 +18,9 @@ float amps_per_div;
 float prev_volt;
 float prev_curr;
 
+//enemies, got alotta enemies
+//got alotta people tryna drain me of this energy
+float energy;
 
 uint16_t zero_volts;
 uint16_t zero_amps;
@@ -86,6 +89,8 @@ void meter_init() {
   //these bools get set true in the calibrate functions
   eeprom_init();
 
+  energy = 0;
+
   prev_volt = 0.0;
   prev_curr = 0.0;
   
@@ -115,10 +120,9 @@ void meter_display() {
   float measured_voltage = (alpha*prev_volt + beta*(volts_per_div*(voltage_reading-zero_volts)))*(.25);
   float measured_current = (alpha*prev_curr + beta*(amps_per_div*(current_reading-zero_amps)))*(.25);
   float measured_power = measured_current * measured_voltage;
+  energy += power*PRD;
 
   //produce unity gain
-
-
   prev_volt = measured_voltage;
   prev_curr = measured_current;
   
@@ -128,10 +132,12 @@ void meter_display() {
   char v_string[20];
   char c_string[20];
   char p_string[20];
+  char e_string[20];
 
   sprintf(v_string, "Voltage: %.3f V ", measured_voltage);
   sprintf(c_string, "Current: %.3f A ", measured_current);
-  sprintf(p_string, "Power: %.3f W ",measured_power);
+  sprintf(p_string, "Power: %.3f W ", measured_power);
+  sprintf(e_string, "Energy: %.3f J ", energy);
 
   lcd_goto(0,0);
   lcd_puts(v_string);
@@ -141,6 +147,9 @@ void meter_display() {
 
   lcd_goto(0,2);
   lcd_puts(p_string);
+
+  lcd_goto(0,3);
+  lcd_puts(e_string);
 }
 
 

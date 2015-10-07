@@ -48,7 +48,7 @@ void setup_buttons() {
 }
 
 void start_conversion() {
-  adc_set_fs(5000);  //adjust this 
+  adc_set_fs(FREQ);  //adjust this 
   adc_enable_channel(3);
 
   adc_callback(3, &my_adc_callback);
