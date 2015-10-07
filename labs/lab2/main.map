@@ -295,9 +295,9 @@ Discarded input sections
                 0x00000000       0x10 objs/system_stm32f30x.o
  .data.SystemCoreClock
                 0x00000000        0x4 objs/system_stm32f30x.o
- .text          0x00000000       0x14 /tmp/ccM2Chpf.o
- .data          0x00000000        0x0 /tmp/ccM2Chpf.o
- .bss           0x00000000        0x0 /tmp/ccM2Chpf.o
+ .text          0x00000000       0x14 /tmp/ccFNPbnF.o
+ .data          0x00000000        0x0 /tmp/ccFNPbnF.o
+ .bss           0x00000000        0x0 /tmp/ccFNPbnF.o
  .bss           0x00000000        0x0 ../../libraries/libge.a(ge_adc.o)
  .data          0x00000000        0x0 ../../libraries/libge.a(ge_gpio.o)
  .bss           0x00000000        0x0 ../../libraries/libge.a(ge_gpio.o)
@@ -544,7 +544,7 @@ LOAD objs/main.o
 LOAD objs/newlib_stubs.o
 LOAD objs/stm32f3_discovery.o
 LOAD objs/system_stm32f30x.o
-LOAD /tmp/ccM2Chpf.o
+LOAD /tmp/ccFNPbnF.o
 LOAD ../../libraries/libge.a
 LOAD Libraries/libstm32f3.a
 START GROUP
@@ -562,7 +562,7 @@ LOAD /home/green-electronics/ee155_tools/gcc-arm-none-eabi-4_9-2015q2/bin/../lib
 .isr_vector     0x08000000      0x188
                 0x08000000                . = ALIGN (0x4)
  *(.isr_vector)
- .isr_vector    0x08000000      0x188 /tmp/ccM2Chpf.o
+ .isr_vector    0x08000000      0x188 /tmp/ccFNPbnF.o
                 0x08000000                g_pfnVectors
                 0x08000188                . = ALIGN (0x4)
 
@@ -1155,10 +1155,10 @@ LOAD /home/green-electronics/ee155_tools/gcc-arm-none-eabi-4_9-2015q2/bin/../lib
                 0x08006a44       0xfc objs/system_stm32f30x.o
                 0x08006a44                SystemInit
  .text.Reset_Handler
-                0x08006b40       0x48 /tmp/ccM2Chpf.o
+                0x08006b40       0x48 /tmp/ccFNPbnF.o
                 0x08006b40                Reset_Handler
  .text.Default_Handler
-                0x08006b88        0x2 /tmp/ccM2Chpf.o
+                0x08006b88        0x2 /tmp/ccFNPbnF.o
                 0x08006b88                RTC_Alarm_IRQHandler
                 0x08006b88                TIM8_TRG_COM_IRQHandler
                 0x08006b88                TIM8_CC_IRQHandler
@@ -1637,7 +1637,7 @@ LOAD /home/green-electronics/ee155_tools/gcc-arm-none-eabi-4_9-2015q2/bin/../lib
  .ARM.attributes
                 0x00000173       0x39 objs/system_stm32f30x.o
  .ARM.attributes
-                0x000001ac       0x21 /tmp/ccM2Chpf.o
+                0x000001ac       0x21 /tmp/ccFNPbnF.o
  .ARM.attributes
                 0x000001cd       0x39 ../../libraries/libge.a(ge_adc.o)
  .ARM.attributes
@@ -1775,7 +1775,7 @@ OUTPUT(main.elf elf32-littlearm)
  .debug_info    0x0000154e      0x9b9 objs/main.o
  .debug_info    0x00001f07      0x826 objs/newlib_stubs.o
  .debug_info    0x0000272d      0x4bc objs/system_stm32f30x.o
- .debug_info    0x00002be9       0x79 /tmp/ccM2Chpf.o
+ .debug_info    0x00002be9       0x79 /tmp/ccFNPbnF.o
  .debug_info    0x00002c62     0x1542 ../../libraries/libge.a(ge_adc.o)
  .debug_info    0x000041a4      0x710 ../../libraries/libge.a(ge_gpio.o)
  .debug_info    0x000048b4      0x1db ../../libraries/libge.a(ge_lcd.o)
@@ -1811,7 +1811,7 @@ OUTPUT(main.elf elf32-littlearm)
  .debug_abbrev  0x00000514      0x1da objs/main.o
  .debug_abbrev  0x000006ee      0x233 objs/newlib_stubs.o
  .debug_abbrev  0x00000921      0x145 objs/system_stm32f30x.o
- .debug_abbrev  0x00000a66       0x12 /tmp/ccM2Chpf.o
+ .debug_abbrev  0x00000a66       0x12 /tmp/ccFNPbnF.o
  .debug_abbrev  0x00000a78      0x2bb ../../libraries/libge.a(ge_adc.o)
  .debug_abbrev  0x00000d33      0x1ee ../../libraries/libge.a(ge_gpio.o)
  .debug_abbrev  0x00000f21       0xd4 ../../libraries/libge.a(ge_lcd.o)
@@ -1854,7 +1854,7 @@ OUTPUT(main.elf elf32-littlearm)
  .debug_aranges
                 0x000001b0       0x28 objs/system_stm32f30x.o
  .debug_aranges
-                0x000001d8       0x28 /tmp/ccM2Chpf.o
+                0x000001d8       0x28 /tmp/ccFNPbnF.o
  .debug_aranges
                 0x00000200       0x20 ../../libraries/libge.a(ge_adc.o)
  .debug_aranges
@@ -1917,7 +1917,7 @@ OUTPUT(main.elf elf32-littlearm)
  .debug_ranges  0x000000a8       0x28 objs/main.o
  .debug_ranges  0x000000d0       0x90 objs/newlib_stubs.o
  .debug_ranges  0x00000160       0x30 objs/system_stm32f30x.o
- .debug_ranges  0x00000190       0x20 /tmp/ccM2Chpf.o
+ .debug_ranges  0x00000190       0x20 /tmp/ccFNPbnF.o
  .debug_ranges  0x000001b0       0x28 ../../libraries/libge.a(ge_adc.o)
  .debug_ranges  0x000001d8       0x38 ../../libraries/libge.a(ge_system.o)
  .debug_ranges  0x00000210       0x68 ../../libraries/libge.a(ge_timer.o)
@@ -1929,41 +1929,41 @@ OUTPUT(main.elf elf32-littlearm)
  .debug_ranges  0x000005e8       0x78 ../../libraries/libge.a(eeprom.o)
  .debug_ranges  0x00000660       0x78 Libraries/libstm32f3.a(stm32f30x_tim.o)
 
-.debug_line     0x00000000     0x578d
+.debug_line     0x00000000     0x578b
  .debug_line    0x00000000      0x13b objs/errno.o
  .debug_line    0x0000013b      0x3b3 objs/hw_config.o
- .debug_line    0x000004ee      0x294 objs/lab2.o
- .debug_line    0x00000782      0x227 objs/main.o
- .debug_line    0x000009a9      0x347 objs/newlib_stubs.o
- .debug_line    0x00000cf0      0x1e1 objs/system_stm32f30x.o
- .debug_line    0x00000ed1       0x77 /tmp/ccM2Chpf.o
- .debug_line    0x00000f48      0x38b ../../libraries/libge.a(ge_adc.o)
- .debug_line    0x000012d3      0x270 ../../libraries/libge.a(ge_gpio.o)
- .debug_line    0x00001543      0x181 ../../libraries/libge.a(ge_lcd.o)
- .debug_line    0x000016c4      0x241 ../../libraries/libge.a(ge_system.o)
- .debug_line    0x00001905      0x30d ../../libraries/libge.a(ge_timer.o)
- .debug_line    0x00001c12      0x305 ../../libraries/libge.a(ge_vcom.o)
- .debug_line    0x00001f17      0x307 ../../libraries/libge.a(HD44780_F3.o)
- .debug_line    0x0000221e      0x112 ../../libraries/libge.a(usb_desc.o)
- .debug_line    0x00002330      0x20f ../../libraries/libge.a(usb_istr.o)
- .debug_line    0x0000253f      0x25f ../../libraries/libge.a(usb_prop.o)
- .debug_line    0x0000279e      0x2d7 ../../libraries/libge.a(usb_pwr.o)
- .debug_line    0x00002a75      0x50c ../../libraries/libge.a(usb_core.o)
- .debug_line    0x00002f81      0x1b2 ../../libraries/libge.a(usb_init.o)
- .debug_line    0x00003133      0x240 ../../libraries/libge.a(usb_int.o)
- .debug_line    0x00003373      0x190 ../../libraries/libge.a(usb_mem.o)
- .debug_line    0x00003503      0x366 ../../libraries/libge.a(usb_regs.o)
- .debug_line    0x00003869      0x1d9 ../../libraries/libge.a(usb_sil.o)
- .debug_line    0x00003a42      0x15b ../../libraries/libge.a(ge_eeprom.o)
- .debug_line    0x00003b9d      0x1af ../../libraries/libge.a(usb_endp.o)
- .debug_line    0x00003d4c      0x281 ../../libraries/libge.a(eeprom.o)
- .debug_line    0x00003fcd      0x446 Libraries/libstm32f3.a(stm32f30x_adc.o)
- .debug_line    0x00004413      0x1ba Libraries/libstm32f3.a(stm32f30x_exti.o)
- .debug_line    0x000045cd      0x32a Libraries/libstm32f3.a(stm32f30x_flash.o)
- .debug_line    0x000048f7      0x219 Libraries/libstm32f3.a(stm32f30x_gpio.o)
- .debug_line    0x00004b10      0x17f Libraries/libstm32f3.a(stm32f30x_misc.o)
- .debug_line    0x00004c8f      0x348 Libraries/libstm32f3.a(stm32f30x_rcc.o)
- .debug_line    0x00004fd7      0x7b6 Libraries/libstm32f3.a(stm32f30x_tim.o)
+ .debug_line    0x000004ee      0x292 objs/lab2.o
+ .debug_line    0x00000780      0x227 objs/main.o
+ .debug_line    0x000009a7      0x347 objs/newlib_stubs.o
+ .debug_line    0x00000cee      0x1e1 objs/system_stm32f30x.o
+ .debug_line    0x00000ecf       0x77 /tmp/ccFNPbnF.o
+ .debug_line    0x00000f46      0x38b ../../libraries/libge.a(ge_adc.o)
+ .debug_line    0x000012d1      0x270 ../../libraries/libge.a(ge_gpio.o)
+ .debug_line    0x00001541      0x181 ../../libraries/libge.a(ge_lcd.o)
+ .debug_line    0x000016c2      0x241 ../../libraries/libge.a(ge_system.o)
+ .debug_line    0x00001903      0x30d ../../libraries/libge.a(ge_timer.o)
+ .debug_line    0x00001c10      0x305 ../../libraries/libge.a(ge_vcom.o)
+ .debug_line    0x00001f15      0x307 ../../libraries/libge.a(HD44780_F3.o)
+ .debug_line    0x0000221c      0x112 ../../libraries/libge.a(usb_desc.o)
+ .debug_line    0x0000232e      0x20f ../../libraries/libge.a(usb_istr.o)
+ .debug_line    0x0000253d      0x25f ../../libraries/libge.a(usb_prop.o)
+ .debug_line    0x0000279c      0x2d7 ../../libraries/libge.a(usb_pwr.o)
+ .debug_line    0x00002a73      0x50c ../../libraries/libge.a(usb_core.o)
+ .debug_line    0x00002f7f      0x1b2 ../../libraries/libge.a(usb_init.o)
+ .debug_line    0x00003131      0x240 ../../libraries/libge.a(usb_int.o)
+ .debug_line    0x00003371      0x190 ../../libraries/libge.a(usb_mem.o)
+ .debug_line    0x00003501      0x366 ../../libraries/libge.a(usb_regs.o)
+ .debug_line    0x00003867      0x1d9 ../../libraries/libge.a(usb_sil.o)
+ .debug_line    0x00003a40      0x15b ../../libraries/libge.a(ge_eeprom.o)
+ .debug_line    0x00003b9b      0x1af ../../libraries/libge.a(usb_endp.o)
+ .debug_line    0x00003d4a      0x281 ../../libraries/libge.a(eeprom.o)
+ .debug_line    0x00003fcb      0x446 Libraries/libstm32f3.a(stm32f30x_adc.o)
+ .debug_line    0x00004411      0x1ba Libraries/libstm32f3.a(stm32f30x_exti.o)
+ .debug_line    0x000045cb      0x32a Libraries/libstm32f3.a(stm32f30x_flash.o)
+ .debug_line    0x000048f5      0x219 Libraries/libstm32f3.a(stm32f30x_gpio.o)
+ .debug_line    0x00004b0e      0x17f Libraries/libstm32f3.a(stm32f30x_misc.o)
+ .debug_line    0x00004c8d      0x348 Libraries/libstm32f3.a(stm32f30x_rcc.o)
+ .debug_line    0x00004fd5      0x7b6 Libraries/libstm32f3.a(stm32f30x_tim.o)
 
 .debug_str      0x00000000     0x5054
  .debug_str     0x00000000      0x196 objs/errno.o

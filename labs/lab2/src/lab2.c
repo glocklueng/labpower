@@ -117,8 +117,8 @@ void meter_display() {
   float measured_power = measured_current * measured_voltage;*/
 
   //filtering (might need to do something with the normalization if it doesnt work)
-  float measured_voltage = (alpha*prev_volt + beta*(volts_per_div*(voltage_reading-zero_volts)))*.25;
-  float measured_current = (alpha*prev_curr + beta*(amps_per_div*(current_reading-zero_amps)))*.25;
+  float measured_voltage = (prev_volt*.75 + (.25*volts_per_div*(voltage_reading-zero_volts)));
+  float measured_current = (prev_curr*.75 + (.25*amps_per_div*(current_reading-zero_amps)));
   
   //float measured_voltage = volts_per_div*(voltage_reading-zero_volts);
   //float measured_current = amps_per_div*(current_reading-zero_amps);

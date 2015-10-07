@@ -20,7 +20,7 @@ SYMBOL TABLE:
 00000000 l    d  .comment	00000000 .comment
 00000000 l    d  .debug_frame	00000000 .debug_frame
 00000000 l    d  .debug_loc	00000000 .debug_loc
-00000000 l    df *ABS*	00000000 /tmp/ccM2Chpf.o
+00000000 l    df *ABS*	00000000 /tmp/ccFNPbnF.o
 f1e0f85f l       *ABS*	00000000 BootRAM
 08006b4c l       .text	00000000 LoopCopyDataInit
 08006b44 l       .text	00000000 CopyDataInit
@@ -18535,20 +18535,13 @@ void meter_display() {
   float measured_power = measured_current * measured_voltage;*/
 
   //filtering (might need to do something with the normalization if it doesnt work)
-  float measured_voltage = (alpha*prev_volt + beta*(volts_per_div*(voltage_reading-zero_volts)))*.25;
- 8006600:	4f63      	ldr	r7, [pc, #396]	; (8006790 <meter_display+0x198>)
- 8006602:	4b64      	ldr	r3, [pc, #400]	; (8006794 <meter_display+0x19c>)
- 8006604:	6838      	ldr	r0, [r7, #0]
- 8006606:	881c      	ldrh	r4, [r3, #0]
-  float measured_current = (alpha*prev_curr + beta*(amps_per_div*(current_reading-zero_amps)))*.25;
- 8006608:	4e63      	ldr	r6, [pc, #396]	; (8006798 <meter_display+0x1a0>)
-  
-  //float measured_voltage = volts_per_div*(voltage_reading-zero_volts);
-  //float measured_current = amps_per_div*(current_reading-zero_amps);
-  
-  float measured_power = measured_current * measured_voltage;
-  energy += measured_power*PRD;
- 800660a:	f8df a1bc 	ldr.w	sl, [pc, #444]	; 80067c8 <meter_display+0x1d0>
+  float measured_voltage = (prev_volt*.75 + (.25*volts_per_div*(voltage_reading-zero_volts)));
+ 8006600:	f8df a1c4 	ldr.w	sl, [pc, #452]	; 80067c8 <meter_display+0x1d0>
+ 8006604:	4b62      	ldr	r3, [pc, #392]	; (8006790 <meter_display+0x198>)
+ 8006606:	f8da 0000 	ldr.w	r0, [sl]
+ 800660a:	881c      	ldrh	r4, [r3, #0]
+  float measured_current = (prev_curr*.75 + (.25*amps_per_div*(current_reading-zero_amps)));
+ 800660c:	4d61      	ldr	r5, [pc, #388]	; (8006794 <meter_display+0x19c>)
 /**
  * @brief Displays energy meter data
  * @details Replace with code to update the display with
@@ -18561,151 +18554,152 @@ void meter_display() {
   float measured_power = measured_current * measured_voltage;*/
 
   //filtering (might need to do something with the normalization if it doesnt work)
-  float measured_voltage = (alpha*prev_volt + beta*(volts_per_div*(voltage_reading-zero_volts)))*.25;
+  float measured_voltage = (prev_volt*.75 + (.25*volts_per_div*(voltage_reading-zero_volts)));
  8006610:	f7fe ff3a 	bl	8005488 <__aeabi_f2d>
  8006614:	2200      	movs	r2, #0
- 8006616:	4b61      	ldr	r3, [pc, #388]	; (800679c <meter_display+0x1a4>)
+ 8006616:	4b60      	ldr	r3, [pc, #384]	; (8006798 <meter_display+0x1a0>)
  8006618:	f7fe ff8a 	bl	8005530 <__aeabi_dmul>
- 800661c:	4b60      	ldr	r3, [pc, #384]	; (80067a0 <meter_display+0x1a8>)
- 800661e:	881b      	ldrh	r3, [r3, #0]
- 8006620:	b2a4      	uxth	r4, r4
- 8006622:	1ae4      	subs	r4, r4, r3
- 8006624:	ee07 4a90 	vmov	s15, r4
- 8006628:	4b5e      	ldr	r3, [pc, #376]	; (80067a4 <meter_display+0x1ac>)
- 800662a:	eef8 7ae7 	vcvt.f32.s32	s15, s15
- 800662e:	ed93 7a00 	vldr	s14, [r3]
- 8006632:	ee67 7a87 	vmul.f32	s15, s15, s14
- 8006636:	4680      	mov	r8, r0
- 8006638:	ee17 0a90 	vmov	r0, s15
- 800663c:	4689      	mov	r9, r1
- 800663e:	f7fe ff23 	bl	8005488 <__aeabi_f2d>
- 8006642:	4602      	mov	r2, r0
- 8006644:	460b      	mov	r3, r1
- 8006646:	4640      	mov	r0, r8
- 8006648:	4649      	mov	r1, r9
- 800664a:	f7fe fdbf 	bl	80051cc <__adddf3>
- 800664e:	2200      	movs	r2, #0
- 8006650:	4b55      	ldr	r3, [pc, #340]	; (80067a8 <meter_display+0x1b0>)
- 8006652:	f7fe ff6d 	bl	8005530 <__aeabi_dmul>
- 8006656:	f7ff f99d 	bl	8005994 <__aeabi_d2f>
-  float measured_current = (alpha*prev_curr + beta*(amps_per_div*(current_reading-zero_amps)))*.25;
- 800665a:	4b54      	ldr	r3, [pc, #336]	; (80067ac <meter_display+0x1b4>)
+ 800661c:	4b5f      	ldr	r3, [pc, #380]	; (800679c <meter_display+0x1a4>)
+ 800661e:	4606      	mov	r6, r0
+ 8006620:	6818      	ldr	r0, [r3, #0]
+ 8006622:	460f      	mov	r7, r1
+ 8006624:	f7fe ff30 	bl	8005488 <__aeabi_f2d>
+ 8006628:	2200      	movs	r2, #0
+ 800662a:	4b5d      	ldr	r3, [pc, #372]	; (80067a0 <meter_display+0x1a8>)
+ 800662c:	f7fe ff80 	bl	8005530 <__aeabi_dmul>
+ 8006630:	4b5c      	ldr	r3, [pc, #368]	; (80067a4 <meter_display+0x1ac>)
+ 8006632:	4680      	mov	r8, r0
+ 8006634:	8818      	ldrh	r0, [r3, #0]
+ 8006636:	b2a4      	uxth	r4, r4
+ 8006638:	1a20      	subs	r0, r4, r0
+ 800663a:	4689      	mov	r9, r1
+ 800663c:	f7fe ff12 	bl	8005464 <__aeabi_i2d>
+ 8006640:	4602      	mov	r2, r0
+ 8006642:	460b      	mov	r3, r1
+ 8006644:	4640      	mov	r0, r8
+ 8006646:	4649      	mov	r1, r9
+ 8006648:	f7fe ff72 	bl	8005530 <__aeabi_dmul>
+ 800664c:	4602      	mov	r2, r0
+ 800664e:	460b      	mov	r3, r1
+ 8006650:	4630      	mov	r0, r6
+ 8006652:	4639      	mov	r1, r7
+ 8006654:	f7fe fdba 	bl	80051cc <__adddf3>
+ 8006658:	f7ff f99c 	bl	8005994 <__aeabi_d2f>
+  float measured_current = (prev_curr*.75 + (.25*amps_per_div*(current_reading-zero_amps)));
+ 800665c:	4b52      	ldr	r3, [pc, #328]	; (80067a8 <meter_display+0x1b0>)
   /*float measured_voltage = volts_per_div * (voltage_reading-zero_volts);
   float measured_current = amps_per_div * (current_reading-zero_amps);
   float measured_power = measured_current * measured_voltage;*/
 
   //filtering (might need to do something with the normalization if it doesnt work)
-  float measured_voltage = (alpha*prev_volt + beta*(volts_per_div*(voltage_reading-zero_volts)))*.25;
- 800665c:	ee08 0a90 	vmov	s17, r0
-  float measured_current = (alpha*prev_curr + beta*(amps_per_div*(current_reading-zero_amps)))*.25;
- 8006660:	6830      	ldr	r0, [r6, #0]
- 8006662:	881c      	ldrh	r4, [r3, #0]
- 8006664:	f7fe ff10 	bl	8005488 <__aeabi_f2d>
- 8006668:	2200      	movs	r2, #0
- 800666a:	4b4c      	ldr	r3, [pc, #304]	; (800679c <meter_display+0x1a4>)
- 800666c:	f7fe ff60 	bl	8005530 <__aeabi_dmul>
- 8006670:	4b4f      	ldr	r3, [pc, #316]	; (80067b0 <meter_display+0x1b8>)
- 8006672:	881b      	ldrh	r3, [r3, #0]
- 8006674:	b2a4      	uxth	r4, r4
- 8006676:	1ae4      	subs	r4, r4, r3
- 8006678:	ee07 4a90 	vmov	s15, r4
- 800667c:	4b4d      	ldr	r3, [pc, #308]	; (80067b4 <meter_display+0x1bc>)
- 800667e:	eef8 7ae7 	vcvt.f32.s32	s15, s15
- 8006682:	ed93 7a00 	vldr	s14, [r3]
- 8006686:	ee67 7a87 	vmul.f32	s15, s15, s14
- 800668a:	4680      	mov	r8, r0
- 800668c:	ee17 0a90 	vmov	r0, s15
+  float measured_voltage = (prev_volt*.75 + (.25*volts_per_div*(voltage_reading-zero_volts)));
+ 800665e:	ee08 0a90 	vmov	s17, r0
+  float measured_current = (prev_curr*.75 + (.25*amps_per_div*(current_reading-zero_amps)));
+ 8006662:	6828      	ldr	r0, [r5, #0]
+ 8006664:	881c      	ldrh	r4, [r3, #0]
+ 8006666:	f7fe ff0f 	bl	8005488 <__aeabi_f2d>
+ 800666a:	2200      	movs	r2, #0
+ 800666c:	4b4a      	ldr	r3, [pc, #296]	; (8006798 <meter_display+0x1a0>)
+ 800666e:	f7fe ff5f 	bl	8005530 <__aeabi_dmul>
+ 8006672:	4b4e      	ldr	r3, [pc, #312]	; (80067ac <meter_display+0x1b4>)
+ 8006674:	4606      	mov	r6, r0
+ 8006676:	6818      	ldr	r0, [r3, #0]
+ 8006678:	460f      	mov	r7, r1
+ 800667a:	f7fe ff05 	bl	8005488 <__aeabi_f2d>
+ 800667e:	2200      	movs	r2, #0
+ 8006680:	4b47      	ldr	r3, [pc, #284]	; (80067a0 <meter_display+0x1a8>)
+ 8006682:	f7fe ff55 	bl	8005530 <__aeabi_dmul>
+ 8006686:	4b4a      	ldr	r3, [pc, #296]	; (80067b0 <meter_display+0x1b8>)
+ 8006688:	4680      	mov	r8, r0
+ 800668a:	8818      	ldrh	r0, [r3, #0]
+ 800668c:	b2a4      	uxth	r4, r4
+ 800668e:	1a20      	subs	r0, r4, r0
  8006690:	4689      	mov	r9, r1
- 8006692:	f7fe fef9 	bl	8005488 <__aeabi_f2d>
+ 8006692:	f7fe fee7 	bl	8005464 <__aeabi_i2d>
  8006696:	4602      	mov	r2, r0
  8006698:	460b      	mov	r3, r1
  800669a:	4640      	mov	r0, r8
  800669c:	4649      	mov	r1, r9
- 800669e:	f7fe fd95 	bl	80051cc <__adddf3>
- 80066a2:	2200      	movs	r2, #0
- 80066a4:	4b40      	ldr	r3, [pc, #256]	; (80067a8 <meter_display+0x1b0>)
- 80066a6:	f7fe ff43 	bl	8005530 <__aeabi_dmul>
- 80066aa:	f7ff f973 	bl	8005994 <__aeabi_d2f>
- 80066ae:	ee08 0a10 	vmov	s16, r0
+ 800669e:	f7fe ff47 	bl	8005530 <__aeabi_dmul>
+ 80066a2:	4602      	mov	r2, r0
+ 80066a4:	460b      	mov	r3, r1
+ 80066a6:	4630      	mov	r0, r6
+ 80066a8:	4639      	mov	r1, r7
+ 80066aa:	f7fe fd8f 	bl	80051cc <__adddf3>
+ 80066ae:	f7ff f971 	bl	8005994 <__aeabi_d2f>
+ 80066b2:	ee08 0a10 	vmov	s16, r0
   
   //float measured_voltage = volts_per_div*(voltage_reading-zero_volts);
   //float measured_current = amps_per_div*(current_reading-zero_amps);
   
   float measured_power = measured_current * measured_voltage;
   energy += measured_power*PRD;
- 80066b2:	ee68 7a28 	vmul.f32	s15, s16, s17
- 80066b6:	ee17 0a90 	vmov	r0, s15
- 80066ba:	f7fe fee5 	bl	8005488 <__aeabi_f2d>
- 80066be:	4604      	mov	r4, r0
- 80066c0:	f8da 0000 	ldr.w	r0, [sl]
- 80066c4:	460d      	mov	r5, r1
- 80066c6:	f7fe fedf 	bl	8005488 <__aeabi_f2d>
- 80066ca:	a32f      	add	r3, pc, #188	; (adr r3, 8006788 <meter_display+0x190>)
- 80066cc:	e9d3 2300 	ldrd	r2, r3, [r3]
- 80066d0:	4680      	mov	r8, r0
- 80066d2:	4689      	mov	r9, r1
- 80066d4:	4620      	mov	r0, r4
- 80066d6:	4629      	mov	r1, r5
- 80066d8:	f7fe ff2a 	bl	8005530 <__aeabi_dmul>
- 80066dc:	4602      	mov	r2, r0
- 80066de:	460b      	mov	r3, r1
- 80066e0:	4640      	mov	r0, r8
- 80066e2:	4649      	mov	r1, r9
- 80066e4:	f7fe fd72 	bl	80051cc <__adddf3>
- 80066e8:	f7ff f954 	bl	8005994 <__aeabi_d2f>
-
-  //produce unity gain
-  prev_volt = measured_voltage;
- 80066ec:	edc7 8a00 	vstr	s17, [r7]
-  
-  //float measured_voltage = volts_per_div*(voltage_reading-zero_volts);
-  //float measured_current = amps_per_div*(current_reading-zero_amps);
-  
-  float measured_power = measured_current * measured_voltage;
-  energy += measured_power*PRD;
- 80066f0:	f8ca 0000 	str.w	r0, [sl]
+ 80066b6:	ee68 7a28 	vmul.f32	s15, s16, s17
+ 80066ba:	4c3e      	ldr	r4, [pc, #248]	; (80067b4 <meter_display+0x1bc>)
+ 80066bc:	ee17 0a90 	vmov	r0, s15
+ 80066c0:	f7fe fee2 	bl	8005488 <__aeabi_f2d>
+ 80066c4:	4606      	mov	r6, r0
+ 80066c6:	6820      	ldr	r0, [r4, #0]
+ 80066c8:	460f      	mov	r7, r1
+ 80066ca:	f7fe fedd 	bl	8005488 <__aeabi_f2d>
+ 80066ce:	a32e      	add	r3, pc, #184	; (adr r3, 8006788 <meter_display+0x190>)
+ 80066d0:	e9d3 2300 	ldrd	r2, r3, [r3]
+ 80066d4:	4680      	mov	r8, r0
+ 80066d6:	4689      	mov	r9, r1
+ 80066d8:	4630      	mov	r0, r6
+ 80066da:	4639      	mov	r1, r7
+ 80066dc:	f7fe ff28 	bl	8005530 <__aeabi_dmul>
+ 80066e0:	4602      	mov	r2, r0
+ 80066e2:	460b      	mov	r3, r1
+ 80066e4:	4640      	mov	r0, r8
+ 80066e6:	4649      	mov	r1, r9
+ 80066e8:	f7fe fd70 	bl	80051cc <__adddf3>
+ 80066ec:	f7ff f952 	bl	8005994 <__aeabi_d2f>
+ 80066f0:	6020      	str	r0, [r4, #0]
   char v_string[20];
   char c_string[20];
   char p_string[20];
   char e_string[20];
 
   sprintf(v_string, "Voltage: %.3f V ", measured_voltage);
- 80066f4:	ee18 0a90 	vmov	r0, s17
+ 80066f2:	ee18 0a90 	vmov	r0, s17
+  
   float measured_power = measured_current * measured_voltage;
   energy += measured_power*PRD;
 
   //produce unity gain
   prev_volt = measured_voltage;
+ 80066f6:	edca 8a00 	vstr	s17, [sl]
   prev_curr = measured_current;
- 80066f8:	ed86 8a00 	vstr	s16, [r6]
+ 80066fa:	ed85 8a00 	vstr	s16, [r5]
   char v_string[20];
   char c_string[20];
   char p_string[20];
   char e_string[20];
 
   sprintf(v_string, "Voltage: %.3f V ", measured_voltage);
- 80066fc:	f7fe fec4 	bl	8005488 <__aeabi_f2d>
- 8006700:	4602      	mov	r2, r0
- 8006702:	460b      	mov	r3, r1
- 8006704:	4668      	mov	r0, sp
- 8006706:	492c      	ldr	r1, [pc, #176]	; (80067b8 <meter_display+0x1c0>)
- 8006708:	f000 fab6 	bl	8006c78 <sprintf>
+ 80066fe:	f7fe fec3 	bl	8005488 <__aeabi_f2d>
+ 8006702:	4602      	mov	r2, r0
+ 8006704:	460b      	mov	r3, r1
+ 8006706:	4668      	mov	r0, sp
+ 8006708:	492b      	ldr	r1, [pc, #172]	; (80067b8 <meter_display+0x1c0>)
+ 800670a:	f000 fab5 	bl	8006c78 <sprintf>
   sprintf(c_string, "Current: %.3f A ", measured_current);
- 800670c:	ee18 0a10 	vmov	r0, s16
- 8006710:	f7fe feba 	bl	8005488 <__aeabi_f2d>
- 8006714:	4602      	mov	r2, r0
- 8006716:	460b      	mov	r3, r1
- 8006718:	a805      	add	r0, sp, #20
- 800671a:	4928      	ldr	r1, [pc, #160]	; (80067bc <meter_display+0x1c4>)
- 800671c:	f000 faac 	bl	8006c78 <sprintf>
+ 800670e:	ee18 0a10 	vmov	r0, s16
+ 8006712:	f7fe feb9 	bl	8005488 <__aeabi_f2d>
+ 8006716:	4602      	mov	r2, r0
+ 8006718:	460b      	mov	r3, r1
+ 800671a:	a805      	add	r0, sp, #20
+ 800671c:	4927      	ldr	r1, [pc, #156]	; (80067bc <meter_display+0x1c4>)
+ 800671e:	f000 faab 	bl	8006c78 <sprintf>
   sprintf(p_string, "Power: %.3f W ", measured_power);
- 8006720:	4622      	mov	r2, r4
- 8006722:	462b      	mov	r3, r5
- 8006724:	a80a      	add	r0, sp, #40	; 0x28
- 8006726:	4926      	ldr	r1, [pc, #152]	; (80067c0 <meter_display+0x1c8>)
- 8006728:	f000 faa6 	bl	8006c78 <sprintf>
+ 8006722:	4632      	mov	r2, r6
+ 8006724:	463b      	mov	r3, r7
+ 8006726:	a80a      	add	r0, sp, #40	; 0x28
+ 8006728:	4925      	ldr	r1, [pc, #148]	; (80067c0 <meter_display+0x1c8>)
+ 800672a:	f000 faa5 	bl	8006c78 <sprintf>
   sprintf(e_string, "Energy: %.3f J ", energy);
- 800672c:	f8da 0000 	ldr.w	r0, [sl]
+ 800672e:	6820      	ldr	r0, [r4, #0]
  8006730:	f7fe feaa 	bl	8005488 <__aeabi_f2d>
  8006734:	4602      	mov	r2, r0
  8006736:	460b      	mov	r3, r1
@@ -18752,21 +18746,21 @@ void meter_display() {
  8006784:	f3af 8000 	nop.w
  8006788:	eb1c432d 	.word	0xeb1c432d
  800678c:	3f2a36e2 	.word	0x3f2a36e2
- 8006790:	20000db8 	.word	0x20000db8
- 8006794:	20000d14 	.word	0x20000d14
- 8006798:	20000dc4 	.word	0x20000dc4
- 800679c:	3fe80000 	.word	0x3fe80000
- 80067a0:	20000dc8 	.word	0x20000dc8
- 80067a4:	20000db4 	.word	0x20000db4
- 80067a8:	3fd00000 	.word	0x3fd00000
- 80067ac:	20000db0 	.word	0x20000db0
+ 8006790:	20000d14 	.word	0x20000d14
+ 8006794:	20000dc4 	.word	0x20000dc4
+ 8006798:	3fe80000 	.word	0x3fe80000
+ 800679c:	20000db4 	.word	0x20000db4
+ 80067a0:	3fd00000 	.word	0x3fd00000
+ 80067a4:	20000dc8 	.word	0x20000dc8
+ 80067a8:	20000db0 	.word	0x20000db0
+ 80067ac:	20000dbc 	.word	0x20000dbc
  80067b0:	20000d16 	.word	0x20000d16
- 80067b4:	20000dbc 	.word	0x20000dbc
+ 80067b4:	20000dc0 	.word	0x20000dc0
  80067b8:	0800aa0a 	.word	0x0800aa0a
  80067bc:	0800aa1b 	.word	0x0800aa1b
  80067c0:	0800aa2c 	.word	0x0800aa2c
  80067c4:	0800aa3b 	.word	0x0800aa3b
- 80067c8:	20000dc0 	.word	0x20000dc0
+ 80067c8:	20000db8 	.word	0x20000db8
 
 080067cc <my_adc_callback>:
 /**
