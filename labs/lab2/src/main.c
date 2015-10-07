@@ -48,7 +48,7 @@ void setup_buttons() {
 }
 
 void start_conversion() {
-  adc_set_fs(5000);  //adjust this 
+  adc_set_fs(FREQ);  //adjust this 
   adc_enable_channel(3);
 
   adc_callback(3, &my_adc_callback);
@@ -101,7 +101,7 @@ int main() {
         lcd_goto(0, 3);
         lcd_puts("2 - OK");
 
-        if (gpio_read_pin(GE_PBTN2)) {
+        if (!gpio_read_pin(GE_PBTN2)) {
           calibrate_offset();
           lcd_goto(0, 2);
           lcd_puts("Stored");
@@ -115,7 +115,7 @@ int main() {
         lcd_goto(0, 3);
         lcd_puts("2 - OK");
 
-        if (gpio_read_pin(GE_PBTN2)) {
+        if (!gpio_read_pin(GE_PBTN2)) {
           calibrate_voltage();
           lcd_goto(0, 2);
           lcd_puts("Stored");
@@ -129,7 +129,7 @@ int main() {
         lcd_goto(0, 3);
         lcd_puts("2 - OK");
 
-        if (gpio_read_pin(GE_PBTN2)) {
+        if (!gpio_read_pin(GE_PBTN2)) {
           calibrate_current();
           lcd_goto(0, 2);
           lcd_puts("Stored");

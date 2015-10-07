@@ -15,14 +15,18 @@
 // calibration parameters
 float volts_per_div;
 float amps_per_div;
+float prev_volt;
+float prev_curr;
 
-bool v_cal_already;
-bool c_cal_already;
-bool reaches_callback = 1;
+//enemies, got alotta enemies
+//got alotta people tryna drain me of this energy
+float energy;
 
 uint16_t zero_volts;
 uint16_t zero_amps;
 
+uint16_t cal_volt_reading;
+uint16_t cal_curr_reading;
 //current readings
 __IO uint16_t voltage_reading;
 __IO uint16_t current_reading;
@@ -37,7 +41,8 @@ void calibrate_offset() {
   zero_volts = voltage_reading;
   zero_amps = current_reading;
 
-  //Store values in EEPROM
+  eeprom_write(ZERO_V_ADDR, zero_volts);
+  eeprom_write(ZERO_I_ADDR, zero_amps);
 }
 
 
@@ -48,16 +53,14 @@ void calibrate_offset() {
  */
 void calibrate_voltage() {
 
-  //ideally 
-  //Code to calculate volts_per_div
-  //we have the information that 0V maps to some ADC value
-  //we read that 10V (or some known value) maps to some other ADC value
-  //calculate slope
-  //Store values in EEPROM
+  cal_volt_reading = voltage_reading;
+  eeprom_write(CAL_VOLT_ADDR, cal_volt_reading);
 
-  v_cal_already = true;
+  float delta_voltage = CAL_VOLTS;
+  uint16_t divisions = cal_volt_reading - zero_volts;
+
+  volts_per_div = delta_voltage/(float) divisions;
 }
-
 
 /**
  * @brief Updates calibration for the standard current
@@ -65,14 +68,14 @@ void calibrate_voltage() {
  * and stores the result in the EEPROM
  */
 void calibrate_current() {
-  //Code to calculate amps_per_div
-  //ideally 
-  //we have the information that 0V maps to some ADC value
-  //we read that 3A (or some known value) maps to some other ADC value
-  //calculate slope
-  //Store values in EEPROM
 
-  c_cal_already = true;
+  cal_curr_reading = current_reading;
+  eeprom_write(CAL_CURR_ADDR, cal_curr_reading);
+
+  float delta_current = CAL_CURR;
+  uint16_t divisions = cal_curr_reading - zero_amps;
+
+  amps_per_div = delta_current/ (float) divisions;
 }
 
 
@@ -81,12 +84,24 @@ void calibrate_current() {
  * @details Reads the calibration values from the EEPROM
  */
 void meter_init() {
-  c_cal_already = false;
-  v_cal_already = false;
-  //Read in calibration constants from EEPROM
 
-  //This'll be empty until Ned sets this up
+  //use defaults initially
+  //these bools get set true in the calibrate functions
+  eeprom_init();
+
+  energy = 0;
+
+  prev_volt = 0.0;
+  prev_curr = 0.0;
   
+  eeprom_read(ZERO_V_ADDR, &zero_volts);
+  eeprom_read(ZERO_I_ADDR, &zero_amps);
+
+  eeprom_read(CAL_VOLT_ADDR, &cal_volt_reading);
+  eeprom_read(CAL_CURR_ADDR, &cal_curr_reading);
+
+  volts_per_div = CAL_VOLTS/ ( (float) (cal_volt_reading - zero_volts));
+  amps_per_div = CAL_CURR/ ( (float) (cal_curr_reading - zero_amps));
 }
 
 
@@ -97,37 +112,36 @@ void meter_init() {
  */
 void meter_display() {
 
-  if(!v_cal_already) {
-    //use defaults
-    volts_per_div = 120/4096;
+  /*float measured_voltage = volts_per_div * (voltage_reading-zero_volts);
+  float measured_current = amps_per_div * (current_reading-zero_amps);
+  float measured_power = measured_current * measured_voltage;*/
 
-  }
-
-  if(!c_cal_already) {
-    amps_per_div = 20/4096;
-  }
-
-  float measured_voltage = volts_per_div * voltage_reading;
-  float measured_current = amps_per_div * current_reading;
+  //filtering (might need to do something with the normalization if it doesnt work)
+  float measured_voltage = (prev_volt*.75 + (.25*volts_per_div*(voltage_reading-zero_volts)));
+  float measured_current = (prev_curr*.75 + (.25*amps_per_div*(current_reading-zero_amps)));
+  
+  //float measured_voltage = volts_per_div*(voltage_reading-zero_volts);
+  //float measured_current = amps_per_div*(current_reading-zero_amps);
+  
   float measured_power = measured_current * measured_voltage;
+  energy += measured_power*PRD;
+
+  //produce unity gain
+  prev_volt = measured_voltage;
+  prev_curr = measured_current;
+  
 
   //throw on the LCD
   
-  char v_string[15];
-  char c_string[15];
-  char p_string[15];
-  char test[1];
+  char v_string[20];
+  char c_string[20];
+  char p_string[20];
+  char e_string[20];
 
-  if (reaches_callback == 1){
-    test[0] = 'y';
-  }
-  else{
-    test[0] = 'n';
-  }
-
-  sprintf(v_string, "Voltage: %.3f", measured_voltage);
-  sprintf(c_string, "Current: %.3f", measured_current);
-  sprintf(p_string, "Power: %.3f",measured_power);
+  sprintf(v_string, "Voltage: %.3f V ", measured_voltage);
+  sprintf(c_string, "Current: %.3f A ", measured_current);
+  sprintf(p_string, "Power: %.3f W ", measured_power);
+  sprintf(e_string, "Energy: %.3f J ", energy);
 
   lcd_goto(0,0);
   lcd_puts(v_string);
@@ -139,7 +153,7 @@ void meter_display() {
   lcd_puts(p_string);
 
   lcd_goto(0,3);
-  lcd_puts(test);
+  lcd_puts(e_string);
 }
 
 
@@ -150,5 +164,4 @@ void meter_display() {
 void my_adc_callback(uint32_t data) {
   voltage_reading = (uint16_t) (data & 0x0000ffff); //some number between 0 and 4095
   current_reading = (uint16_t) (data >> 16); //some # 0-4095
-  reaches_callback = !reaches_callback;
 }

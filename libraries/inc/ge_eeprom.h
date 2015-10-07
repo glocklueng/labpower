@@ -6,7 +6,7 @@
  * provided by STMicro and found in eeprom.h/c.
  * http://www.st.com/web/en/catalog/tools/PF258148
  * 
- * @author Ned Danyliw
+ * @author Ned Danyliw (beast)
  * @date  09.2015
  */
 
