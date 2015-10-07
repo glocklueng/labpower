@@ -17,7 +17,7 @@
 #define DEFAULT_I_RANGE 20.0
 #define NUM_DIV 4096.0
 #define FREQ 5000.0
-#define PRD (1/5000.0)
+#define PRD (1.0/5000.0)
 
 //Addresses for data - eeprom
 #define ZERO_V_ADDR 2
