@@ -45,6 +45,7 @@ void change_state() {
 void setup_buttons() {
   gpio_setup_pin(GE_PBTN1, GPIO_INPUT, false, false);
   gpio_setup_pin(GE_PBTN2, GPIO_INPUT, false, false);
+  gpio_setup_pin(PC12, GPIO_OUTPUT, false, false);
 }
 
 void start_conversion() {

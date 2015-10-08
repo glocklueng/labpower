@@ -10,6 +10,7 @@
  */
 
 #include "lab2.h"
+#include "ge_libs.h"
 
 
 // calibration parameters
@@ -111,7 +112,7 @@ void meter_init() {
  * your own
  */
 void meter_display() {
-
+  gpio_write_pin(PC12, GPIO_HIGH);
   /*float measured_voltage = volts_per_div * (voltage_reading-zero_volts);
   float measured_current = amps_per_div * (current_reading-zero_amps);
   float measured_power = measured_current * measured_voltage;*/
@@ -124,7 +125,7 @@ void meter_display() {
   //float measured_current = amps_per_div*(current_reading-zero_amps);
   
   float measured_power = measured_current * measured_voltage;
-  energy += measured_power*PRD;
+  energy += measured_power*(.333333333333);
 
   //produce unity gain
   prev_volt = measured_voltage;
@@ -154,6 +155,7 @@ void meter_display() {
 
   lcd_goto(0,3);
   lcd_puts(e_string);
+  gpio_write_pin(PC12, GPIO_LOW);
 }
 
 

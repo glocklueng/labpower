@@ -281,7 +281,7 @@ Discarded input sections
                 0x00000000       0x48 objs/stm32f3_discovery.o
  .debug_ranges  0x00000000       0x38 objs/stm32f3_discovery.o
  .debug_line    0x00000000      0x2aa objs/stm32f3_discovery.o
- .debug_str     0x00000000      0xb5d objs/stm32f3_discovery.o
+ .debug_str     0x00000000      0xb57 objs/stm32f3_discovery.o
  .comment       0x00000000       0x71 objs/stm32f3_discovery.o
  .debug_frame   0x00000000       0x98 objs/stm32f3_discovery.o
  .ARM.attributes
@@ -295,9 +295,9 @@ Discarded input sections
                 0x00000000       0x10 objs/system_stm32f30x.o
  .data.SystemCoreClock
                 0x00000000        0x4 objs/system_stm32f30x.o
- .text          0x00000000       0x14 /tmp/ccFNPbnF.o
- .data          0x00000000        0x0 /tmp/ccFNPbnF.o
- .bss           0x00000000        0x0 /tmp/ccFNPbnF.o
+ .text          0x00000000       0x14 /tmp/cchWT47j.o
+ .data          0x00000000        0x0 /tmp/cchWT47j.o
+ .bss           0x00000000        0x0 /tmp/cchWT47j.o
  .bss           0x00000000        0x0 ../../libraries/libge.a(ge_adc.o)
  .data          0x00000000        0x0 ../../libraries/libge.a(ge_gpio.o)
  .bss           0x00000000        0x0 ../../libraries/libge.a(ge_gpio.o)
@@ -544,7 +544,7 @@ LOAD objs/main.o
 LOAD objs/newlib_stubs.o
 LOAD objs/stm32f3_discovery.o
 LOAD objs/system_stm32f30x.o
-LOAD /tmp/ccFNPbnF.o
+LOAD /tmp/cchWT47j.o
 LOAD ../../libraries/libge.a
 LOAD Libraries/libstm32f3.a
 START GROUP
@@ -562,14 +562,14 @@ LOAD /home/green-electronics/ee155_tools/gcc-arm-none-eabi-4_9-2015q2/bin/../lib
 .isr_vector     0x08000000      0x188
                 0x08000000                . = ALIGN (0x4)
  *(.isr_vector)
- .isr_vector    0x08000000      0x188 /tmp/ccFNPbnF.o
+ .isr_vector    0x08000000      0x188 /tmp/cchWT47j.o
                 0x08000000                g_pfnVectors
                 0x08000188                . = ALIGN (0x4)
 
 .eh_frame       0x08000188        0x0
  .eh_frame      0x08000188        0x0 /home/green-electronics/ee155_tools/gcc-arm-none-eabi-4_9-2015q2/bin/../lib/gcc/arm-none-eabi/4.9.3/armv7e-m/fpu/crtbegin.o
 
-.text           0x08000188     0xaaf8
+.text           0x08000188     0xab18
                 0x08000188                . = ALIGN (0x4)
  *(.text)
  .text          0x08000188       0x5c /home/green-electronics/ee155_tools/gcc-arm-none-eabi-4_9-2015q2/bin/../lib/gcc/arm-none-eabi/4.9.3/armv7e-m/fpu/crtbegin.o
@@ -1129,304 +1129,305 @@ LOAD /home/green-electronics/ee155_tools/gcc-arm-none-eabi-4_9-2015q2/bin/../lib
                 0x0800655c       0x9c objs/lab2.o
                 0x0800655c                meter_init
  .text.meter_display
-                0x080065f8      0x1d4 objs/lab2.o
+                0x080065f8      0x1e4 objs/lab2.o
                 0x080065f8                meter_display
  .text.my_adc_callback
-                0x080067cc       0x18 objs/lab2.o
-                0x080067cc                my_adc_callback
+                0x080067dc       0x18 objs/lab2.o
+                0x080067dc                my_adc_callback
  .text.change_state
-                0x080067e4       0x34 objs/main.o
-                0x080067e4                change_state
+                0x080067f4       0x34 objs/main.o
+                0x080067f4                change_state
  .text.setup_buttons
-                0x08006818       0x1e objs/main.o
-                0x08006818                setup_buttons
- *fill*         0x08006836        0x2 
+                0x08006828       0x2a objs/main.o
+                0x08006828                setup_buttons
+ *fill*         0x08006852        0x2 
  .text.start_conversion
-                0x08006838       0x28 objs/main.o
-                0x08006838                start_conversion
+                0x08006854       0x28 objs/main.o
+                0x08006854                start_conversion
  .text.startup.main
-                0x08006860      0x148 objs/main.o
-                0x08006860                main
- .text._write   0x080069a8       0x54 objs/newlib_stubs.o
-                0x080069a8                _write
- .text._sbrk    0x080069fc       0x48 objs/newlib_stubs.o
-                0x080069fc                _sbrk
+                0x0800687c      0x148 objs/main.o
+                0x0800687c                main
+ .text._write   0x080069c4       0x54 objs/newlib_stubs.o
+                0x080069c4                _write
+ .text._sbrk    0x08006a18       0x48 objs/newlib_stubs.o
+                0x08006a18                _sbrk
  .text.SystemInit
-                0x08006a44       0xfc objs/system_stm32f30x.o
-                0x08006a44                SystemInit
+                0x08006a60       0xfc objs/system_stm32f30x.o
+                0x08006a60                SystemInit
  .text.Reset_Handler
-                0x08006b40       0x48 /tmp/ccFNPbnF.o
-                0x08006b40                Reset_Handler
+                0x08006b5c       0x48 /tmp/cchWT47j.o
+                0x08006b5c                Reset_Handler
  .text.Default_Handler
-                0x08006b88        0x2 /tmp/ccFNPbnF.o
-                0x08006b88                RTC_Alarm_IRQHandler
-                0x08006b88                TIM8_TRG_COM_IRQHandler
-                0x08006b88                TIM8_CC_IRQHandler
-                0x08006b88                DebugMon_Handler
-                0x08006b88                TIM1_CC_IRQHandler
-                0x08006b88                HardFault_Handler
-                0x08006b88                USB_HP_IRQHandler
-                0x08006b88                PVD_IRQHandler
-                0x08006b88                PendSV_Handler
-                0x08006b88                NMI_Handler
-                0x08006b88                EXTI3_IRQHandler
-                0x08006b88                EXTI0_IRQHandler
-                0x08006b88                I2C2_EV_IRQHandler
-                0x08006b88                FPU_IRQHandler
-                0x08006b88                EXTI2_TS_IRQHandler
-                0x08006b88                TIM1_UP_TIM16_IRQHandler
-                0x08006b88                UsageFault_Handler
-                0x08006b88                SPI1_IRQHandler
-                0x08006b88                TIM6_DAC_IRQHandler
-                0x08006b88                TIM8_UP_IRQHandler
-                0x08006b88                DMA2_Channel2_IRQHandler
-                0x08006b88                DMA1_Channel4_IRQHandler
-                0x08006b88                USART3_IRQHandler
-                0x08006b88                DMA1_Channel7_IRQHandler
-                0x08006b88                CAN1_RX1_IRQHandler
-                0x08006b88                UART5_IRQHandler
-                0x08006b88                ADC3_IRQHandler
-                0x08006b88                TIM4_IRQHandler
-                0x08006b88                DMA2_Channel1_IRQHandler
-                0x08006b88                I2C1_EV_IRQHandler
-                0x08006b88                DMA1_Channel6_IRQHandler
-                0x08006b88                UART4_IRQHandler
-                0x08006b88                DMA2_Channel4_IRQHandler
-                0x08006b88                RCC_IRQHandler
-                0x08006b88                DMA1_Channel1_IRQHandler
-                0x08006b88                Default_Handler
-                0x08006b88                USBWakeUp_RMP_IRQHandler
-                0x08006b88                EXTI15_10_IRQHandler
-                0x08006b88                TIM7_IRQHandler
-                0x08006b88                EXTI9_5_IRQHandler
-                0x08006b88                TAMPER_STAMP_IRQHandler
-                0x08006b88                RTC_WKUP_IRQHandler
-                0x08006b88                SPI2_IRQHandler
-                0x08006b88                MemManage_Handler
-                0x08006b88                SVC_Handler
-                0x08006b88                DMA2_Channel5_IRQHandler
-                0x08006b88                DMA1_Channel5_IRQHandler
-                0x08006b88                USB_LP_IRQHandler
-                0x08006b88                EXTI4_IRQHandler
-                0x08006b88                TIM1_TRG_COM_TIM17_IRQHandler
-                0x08006b88                USB_HP_CAN1_TX_IRQHandler
-                0x08006b88                DMA1_Channel3_IRQHandler
-                0x08006b88                ADC4_IRQHandler
-                0x08006b88                WWDG_IRQHandler
-                0x08006b88                TIM2_IRQHandler
-                0x08006b88                COMP7_IRQHandler
-                0x08006b88                COMP1_2_3_IRQHandler
-                0x08006b88                EXTI1_IRQHandler
-                0x08006b88                USART2_IRQHandler
-                0x08006b88                COMP4_5_6_IRQHandler
-                0x08006b88                I2C2_ER_IRQHandler
-                0x08006b88                DMA1_Channel2_IRQHandler
-                0x08006b88                TIM8_BRK_IRQHandler
-                0x08006b88                CAN1_SCE_IRQHandler
-                0x08006b88                FLASH_IRQHandler
-                0x08006b88                BusFault_Handler
-                0x08006b88                USART1_IRQHandler
-                0x08006b88                SPI3_IRQHandler
-                0x08006b88                I2C1_ER_IRQHandler
-                0x08006b88                DMA2_Channel3_IRQHandler
-                0x08006b88                TIM1_BRK_TIM15_IRQHandler
- *fill*         0x08006b8a        0x2 
+                0x08006ba4        0x2 /tmp/cchWT47j.o
+                0x08006ba4                RTC_Alarm_IRQHandler
+                0x08006ba4                TIM8_TRG_COM_IRQHandler
+                0x08006ba4                TIM8_CC_IRQHandler
+                0x08006ba4                DebugMon_Handler
+                0x08006ba4                TIM1_CC_IRQHandler
+                0x08006ba4                HardFault_Handler
+                0x08006ba4                USB_HP_IRQHandler
+                0x08006ba4                PVD_IRQHandler
+                0x08006ba4                PendSV_Handler
+                0x08006ba4                NMI_Handler
+                0x08006ba4                EXTI3_IRQHandler
+                0x08006ba4                EXTI0_IRQHandler
+                0x08006ba4                I2C2_EV_IRQHandler
+                0x08006ba4                FPU_IRQHandler
+                0x08006ba4                EXTI2_TS_IRQHandler
+                0x08006ba4                TIM1_UP_TIM16_IRQHandler
+                0x08006ba4                UsageFault_Handler
+                0x08006ba4                SPI1_IRQHandler
+                0x08006ba4                TIM6_DAC_IRQHandler
+                0x08006ba4                TIM8_UP_IRQHandler
+                0x08006ba4                DMA2_Channel2_IRQHandler
+                0x08006ba4                DMA1_Channel4_IRQHandler
+                0x08006ba4                USART3_IRQHandler
+                0x08006ba4                DMA1_Channel7_IRQHandler
+                0x08006ba4                CAN1_RX1_IRQHandler
+                0x08006ba4                UART5_IRQHandler
+                0x08006ba4                ADC3_IRQHandler
+                0x08006ba4                TIM4_IRQHandler
+                0x08006ba4                DMA2_Channel1_IRQHandler
+                0x08006ba4                I2C1_EV_IRQHandler
+                0x08006ba4                DMA1_Channel6_IRQHandler
+                0x08006ba4                UART4_IRQHandler
+                0x08006ba4                DMA2_Channel4_IRQHandler
+                0x08006ba4                RCC_IRQHandler
+                0x08006ba4                DMA1_Channel1_IRQHandler
+                0x08006ba4                Default_Handler
+                0x08006ba4                USBWakeUp_RMP_IRQHandler
+                0x08006ba4                EXTI15_10_IRQHandler
+                0x08006ba4                TIM7_IRQHandler
+                0x08006ba4                EXTI9_5_IRQHandler
+                0x08006ba4                TAMPER_STAMP_IRQHandler
+                0x08006ba4                RTC_WKUP_IRQHandler
+                0x08006ba4                SPI2_IRQHandler
+                0x08006ba4                MemManage_Handler
+                0x08006ba4                SVC_Handler
+                0x08006ba4                DMA2_Channel5_IRQHandler
+                0x08006ba4                DMA1_Channel5_IRQHandler
+                0x08006ba4                USB_LP_IRQHandler
+                0x08006ba4                EXTI4_IRQHandler
+                0x08006ba4                TIM1_TRG_COM_TIM17_IRQHandler
+                0x08006ba4                USB_HP_CAN1_TX_IRQHandler
+                0x08006ba4                DMA1_Channel3_IRQHandler
+                0x08006ba4                ADC4_IRQHandler
+                0x08006ba4                WWDG_IRQHandler
+                0x08006ba4                TIM2_IRQHandler
+                0x08006ba4                COMP7_IRQHandler
+                0x08006ba4                COMP1_2_3_IRQHandler
+                0x08006ba4                EXTI1_IRQHandler
+                0x08006ba4                USART2_IRQHandler
+                0x08006ba4                COMP4_5_6_IRQHandler
+                0x08006ba4                I2C2_ER_IRQHandler
+                0x08006ba4                DMA1_Channel2_IRQHandler
+                0x08006ba4                TIM8_BRK_IRQHandler
+                0x08006ba4                CAN1_SCE_IRQHandler
+                0x08006ba4                FLASH_IRQHandler
+                0x08006ba4                BusFault_Handler
+                0x08006ba4                USART1_IRQHandler
+                0x08006ba4                SPI3_IRQHandler
+                0x08006ba4                I2C1_ER_IRQHandler
+                0x08006ba4                DMA2_Channel3_IRQHandler
+                0x08006ba4                TIM1_BRK_TIM15_IRQHandler
+ *fill*         0x08006ba6        0x2 
  .text.__libc_init_array
-                0x08006b8c       0x50 /home/green-electronics/ee155_tools/gcc-arm-none-eabi-4_9-2015q2/bin/../lib/gcc/arm-none-eabi/4.9.3/../../../../arm-none-eabi/lib/armv7e-m/fpu/libg.a(lib_a-init.o)
-                0x08006b8c                __libc_init_array
- .text.memset   0x08006bdc       0x9c /home/green-electronics/ee155_tools/gcc-arm-none-eabi-4_9-2015q2/bin/../lib/gcc/arm-none-eabi/4.9.3/../../../../arm-none-eabi/lib/armv7e-m/fpu/libg.a(lib_a-memset.o)
-                0x08006bdc                memset
- .text.sprintf  0x08006c78       0x4c /home/green-electronics/ee155_tools/gcc-arm-none-eabi-4_9-2015q2/bin/../lib/gcc/arm-none-eabi/4.9.3/../../../../arm-none-eabi/lib/armv7e-m/fpu/libg.a(lib_a-sprintf.o)
-                0x08006c78                sprintf
- .text.strlen   0x08006cc4       0x5c /home/green-electronics/ee155_tools/gcc-arm-none-eabi-4_9-2015q2/bin/../lib/gcc/arm-none-eabi/4.9.3/../../../../arm-none-eabi/lib/armv7e-m/fpu/libg.a(lib_a-strlen.o)
-                0x08006cc4                strlen
+                0x08006ba8       0x50 /home/green-electronics/ee155_tools/gcc-arm-none-eabi-4_9-2015q2/bin/../lib/gcc/arm-none-eabi/4.9.3/../../../../arm-none-eabi/lib/armv7e-m/fpu/libg.a(lib_a-init.o)
+                0x08006ba8                __libc_init_array
+ .text.memset   0x08006bf8       0x9c /home/green-electronics/ee155_tools/gcc-arm-none-eabi-4_9-2015q2/bin/../lib/gcc/arm-none-eabi/4.9.3/../../../../arm-none-eabi/lib/armv7e-m/fpu/libg.a(lib_a-memset.o)
+                0x08006bf8                memset
+ .text.sprintf  0x08006c94       0x4c /home/green-electronics/ee155_tools/gcc-arm-none-eabi-4_9-2015q2/bin/../lib/gcc/arm-none-eabi/4.9.3/../../../../arm-none-eabi/lib/armv7e-m/fpu/libg.a(lib_a-sprintf.o)
+                0x08006c94                sprintf
+ .text.strlen   0x08006ce0       0x5c /home/green-electronics/ee155_tools/gcc-arm-none-eabi-4_9-2015q2/bin/../lib/gcc/arm-none-eabi/4.9.3/../../../../arm-none-eabi/lib/armv7e-m/fpu/libg.a(lib_a-strlen.o)
+                0x08006ce0                strlen
+ *fill*         0x08006d3c        0x4 
  .text._svfprintf_r
-                0x08006d20     0x14cc /home/green-electronics/ee155_tools/gcc-arm-none-eabi-4_9-2015q2/bin/../lib/gcc/arm-none-eabi/4.9.3/../../../../arm-none-eabi/lib/armv7e-m/fpu/libg.a(lib_a-svfprintf.o)
-                0x08006d20                _svfprintf_r
+                0x08006d40     0x14cc /home/green-electronics/ee155_tools/gcc-arm-none-eabi-4_9-2015q2/bin/../lib/gcc/arm-none-eabi/4.9.3/../../../../arm-none-eabi/lib/armv7e-m/fpu/libg.a(lib_a-svfprintf.o)
+                0x08006d40                _svfprintf_r
  .text.startup.register_fini
-                0x080081ec       0x14 /home/green-electronics/ee155_tools/gcc-arm-none-eabi-4_9-2015q2/bin/../lib/gcc/arm-none-eabi/4.9.3/../../../../arm-none-eabi/lib/armv7e-m/fpu/libg.a(lib_a-__call_atexit.o)
- .text.atexit   0x08008200        0xc /home/green-electronics/ee155_tools/gcc-arm-none-eabi-4_9-2015q2/bin/../lib/gcc/arm-none-eabi/4.9.3/../../../../arm-none-eabi/lib/armv7e-m/fpu/libg.a(lib_a-atexit.o)
-                0x08008200                atexit
- .text.quorem   0x0800820c      0x12c /home/green-electronics/ee155_tools/gcc-arm-none-eabi-4_9-2015q2/bin/../lib/gcc/arm-none-eabi/4.9.3/../../../../arm-none-eabi/lib/armv7e-m/fpu/libg.a(lib_a-dtoa.o)
- .text._dtoa_r  0x08008338      0xea4 /home/green-electronics/ee155_tools/gcc-arm-none-eabi-4_9-2015q2/bin/../lib/gcc/arm-none-eabi/4.9.3/../../../../arm-none-eabi/lib/armv7e-m/fpu/libg.a(lib_a-dtoa.o)
-                0x08008338                _dtoa_r
+                0x0800820c       0x14 /home/green-electronics/ee155_tools/gcc-arm-none-eabi-4_9-2015q2/bin/../lib/gcc/arm-none-eabi/4.9.3/../../../../arm-none-eabi/lib/armv7e-m/fpu/libg.a(lib_a-__call_atexit.o)
+ .text.atexit   0x08008220        0xc /home/green-electronics/ee155_tools/gcc-arm-none-eabi-4_9-2015q2/bin/../lib/gcc/arm-none-eabi/4.9.3/../../../../arm-none-eabi/lib/armv7e-m/fpu/libg.a(lib_a-atexit.o)
+                0x08008220                atexit
+ .text.quorem   0x0800822c      0x12c /home/green-electronics/ee155_tools/gcc-arm-none-eabi-4_9-2015q2/bin/../lib/gcc/arm-none-eabi/4.9.3/../../../../arm-none-eabi/lib/armv7e-m/fpu/libg.a(lib_a-dtoa.o)
+ .text._dtoa_r  0x08008358      0xea4 /home/green-electronics/ee155_tools/gcc-arm-none-eabi-4_9-2015q2/bin/../lib/gcc/arm-none-eabi/4.9.3/../../../../arm-none-eabi/lib/armv7e-m/fpu/libg.a(lib_a-dtoa.o)
+                0x08008358                _dtoa_r
  .text.__libc_fini_array
-                0x080091dc       0x2c /home/green-electronics/ee155_tools/gcc-arm-none-eabi-4_9-2015q2/bin/../lib/gcc/arm-none-eabi/4.9.3/../../../../arm-none-eabi/lib/armv7e-m/fpu/libg.a(lib_a-fini.o)
-                0x080091dc                __libc_fini_array
+                0x080091fc       0x2c /home/green-electronics/ee155_tools/gcc-arm-none-eabi-4_9-2015q2/bin/../lib/gcc/arm-none-eabi/4.9.3/../../../../arm-none-eabi/lib/armv7e-m/fpu/libg.a(lib_a-fini.o)
+                0x080091fc                __libc_fini_array
  .text._localeconv_r
-                0x08009208        0x8 /home/green-electronics/ee155_tools/gcc-arm-none-eabi-4_9-2015q2/bin/../lib/gcc/arm-none-eabi/4.9.3/../../../../arm-none-eabi/lib/armv7e-m/fpu/libg.a(lib_a-locale.o)
-                0x08009208                _localeconv_r
+                0x08009228        0x8 /home/green-electronics/ee155_tools/gcc-arm-none-eabi-4_9-2015q2/bin/../lib/gcc/arm-none-eabi/4.9.3/../../../../arm-none-eabi/lib/armv7e-m/fpu/libg.a(lib_a-locale.o)
+                0x08009228                _localeconv_r
  .text._malloc_r
-                0x08009210      0x524 /home/green-electronics/ee155_tools/gcc-arm-none-eabi-4_9-2015q2/bin/../lib/gcc/arm-none-eabi/4.9.3/../../../../arm-none-eabi/lib/armv7e-m/fpu/libg.a(lib_a-mallocr.o)
-                0x08009210                _malloc_r
- .text.memchr   0x08009734       0x94 /home/green-electronics/ee155_tools/gcc-arm-none-eabi-4_9-2015q2/bin/../lib/gcc/arm-none-eabi/4.9.3/../../../../arm-none-eabi/lib/armv7e-m/fpu/libg.a(lib_a-memchr.o)
-                0x08009734                memchr
+                0x08009230      0x524 /home/green-electronics/ee155_tools/gcc-arm-none-eabi-4_9-2015q2/bin/../lib/gcc/arm-none-eabi/4.9.3/../../../../arm-none-eabi/lib/armv7e-m/fpu/libg.a(lib_a-mallocr.o)
+                0x08009230                _malloc_r
+ .text.memchr   0x08009754       0x94 /home/green-electronics/ee155_tools/gcc-arm-none-eabi-4_9-2015q2/bin/../lib/gcc/arm-none-eabi/4.9.3/../../../../arm-none-eabi/lib/armv7e-m/fpu/libg.a(lib_a-memchr.o)
+                0x08009754                memchr
  .text.__malloc_lock
-                0x080097c8        0x4 /home/green-electronics/ee155_tools/gcc-arm-none-eabi-4_9-2015q2/bin/../lib/gcc/arm-none-eabi/4.9.3/../../../../arm-none-eabi/lib/armv7e-m/fpu/libg.a(lib_a-mlock.o)
-                0x080097c8                __malloc_lock
+                0x080097e8        0x4 /home/green-electronics/ee155_tools/gcc-arm-none-eabi-4_9-2015q2/bin/../lib/gcc/arm-none-eabi/4.9.3/../../../../arm-none-eabi/lib/armv7e-m/fpu/libg.a(lib_a-mlock.o)
+                0x080097e8                __malloc_lock
  .text.__malloc_unlock
-                0x080097cc        0x4 /home/green-electronics/ee155_tools/gcc-arm-none-eabi-4_9-2015q2/bin/../lib/gcc/arm-none-eabi/4.9.3/../../../../arm-none-eabi/lib/armv7e-m/fpu/libg.a(lib_a-mlock.o)
-                0x080097cc                __malloc_unlock
- .text._Balloc  0x080097d0       0x4c /home/green-electronics/ee155_tools/gcc-arm-none-eabi-4_9-2015q2/bin/../lib/gcc/arm-none-eabi/4.9.3/../../../../arm-none-eabi/lib/armv7e-m/fpu/libg.a(lib_a-mprec.o)
-                0x080097d0                _Balloc
- .text._Bfree   0x0800981c       0x14 /home/green-electronics/ee155_tools/gcc-arm-none-eabi-4_9-2015q2/bin/../lib/gcc/arm-none-eabi/4.9.3/../../../../arm-none-eabi/lib/armv7e-m/fpu/libg.a(lib_a-mprec.o)
-                0x0800981c                _Bfree
+                0x080097ec        0x4 /home/green-electronics/ee155_tools/gcc-arm-none-eabi-4_9-2015q2/bin/../lib/gcc/arm-none-eabi/4.9.3/../../../../arm-none-eabi/lib/armv7e-m/fpu/libg.a(lib_a-mlock.o)
+                0x080097ec                __malloc_unlock
+ .text._Balloc  0x080097f0       0x4c /home/green-electronics/ee155_tools/gcc-arm-none-eabi-4_9-2015q2/bin/../lib/gcc/arm-none-eabi/4.9.3/../../../../arm-none-eabi/lib/armv7e-m/fpu/libg.a(lib_a-mprec.o)
+                0x080097f0                _Balloc
+ .text._Bfree   0x0800983c       0x14 /home/green-electronics/ee155_tools/gcc-arm-none-eabi-4_9-2015q2/bin/../lib/gcc/arm-none-eabi/4.9.3/../../../../arm-none-eabi/lib/armv7e-m/fpu/libg.a(lib_a-mprec.o)
+                0x0800983c                _Bfree
  .text.__multadd
-                0x08009830       0x84 /home/green-electronics/ee155_tools/gcc-arm-none-eabi-4_9-2015q2/bin/../lib/gcc/arm-none-eabi/4.9.3/../../../../arm-none-eabi/lib/armv7e-m/fpu/libg.a(lib_a-mprec.o)
-                0x08009830                __multadd
+                0x08009850       0x84 /home/green-electronics/ee155_tools/gcc-arm-none-eabi-4_9-2015q2/bin/../lib/gcc/arm-none-eabi/4.9.3/../../../../arm-none-eabi/lib/armv7e-m/fpu/libg.a(lib_a-mprec.o)
+                0x08009850                __multadd
  .text.__hi0bits
-                0x080098b4       0x40 /home/green-electronics/ee155_tools/gcc-arm-none-eabi-4_9-2015q2/bin/../lib/gcc/arm-none-eabi/4.9.3/../../../../arm-none-eabi/lib/armv7e-m/fpu/libg.a(lib_a-mprec.o)
-                0x080098b4                __hi0bits
+                0x080098d4       0x40 /home/green-electronics/ee155_tools/gcc-arm-none-eabi-4_9-2015q2/bin/../lib/gcc/arm-none-eabi/4.9.3/../../../../arm-none-eabi/lib/armv7e-m/fpu/libg.a(lib_a-mprec.o)
+                0x080098d4                __hi0bits
  .text.__lo0bits
-                0x080098f4       0x5c /home/green-electronics/ee155_tools/gcc-arm-none-eabi-4_9-2015q2/bin/../lib/gcc/arm-none-eabi/4.9.3/../../../../arm-none-eabi/lib/armv7e-m/fpu/libg.a(lib_a-mprec.o)
-                0x080098f4                __lo0bits
- .text.__i2b    0x08009950       0x14 /home/green-electronics/ee155_tools/gcc-arm-none-eabi-4_9-2015q2/bin/../lib/gcc/arm-none-eabi/4.9.3/../../../../arm-none-eabi/lib/armv7e-m/fpu/libg.a(lib_a-mprec.o)
-                0x08009950                __i2b
+                0x08009914       0x5c /home/green-electronics/ee155_tools/gcc-arm-none-eabi-4_9-2015q2/bin/../lib/gcc/arm-none-eabi/4.9.3/../../../../arm-none-eabi/lib/armv7e-m/fpu/libg.a(lib_a-mprec.o)
+                0x08009914                __lo0bits
+ .text.__i2b    0x08009970       0x14 /home/green-electronics/ee155_tools/gcc-arm-none-eabi-4_9-2015q2/bin/../lib/gcc/arm-none-eabi/4.9.3/../../../../arm-none-eabi/lib/armv7e-m/fpu/libg.a(lib_a-mprec.o)
+                0x08009970                __i2b
  .text.__multiply
-                0x08009964      0x134 /home/green-electronics/ee155_tools/gcc-arm-none-eabi-4_9-2015q2/bin/../lib/gcc/arm-none-eabi/4.9.3/../../../../arm-none-eabi/lib/armv7e-m/fpu/libg.a(lib_a-mprec.o)
-                0x08009964                __multiply
+                0x08009984      0x134 /home/green-electronics/ee155_tools/gcc-arm-none-eabi-4_9-2015q2/bin/../lib/gcc/arm-none-eabi/4.9.3/../../../../arm-none-eabi/lib/armv7e-m/fpu/libg.a(lib_a-mprec.o)
+                0x08009984                __multiply
  .text.__pow5mult
-                0x08009a98       0xa0 /home/green-electronics/ee155_tools/gcc-arm-none-eabi-4_9-2015q2/bin/../lib/gcc/arm-none-eabi/4.9.3/../../../../arm-none-eabi/lib/armv7e-m/fpu/libg.a(lib_a-mprec.o)
-                0x08009a98                __pow5mult
+                0x08009ab8       0xa0 /home/green-electronics/ee155_tools/gcc-arm-none-eabi-4_9-2015q2/bin/../lib/gcc/arm-none-eabi/4.9.3/../../../../arm-none-eabi/lib/armv7e-m/fpu/libg.a(lib_a-mprec.o)
+                0x08009ab8                __pow5mult
  .text.__lshift
-                0x08009b38       0xac /home/green-electronics/ee155_tools/gcc-arm-none-eabi-4_9-2015q2/bin/../lib/gcc/arm-none-eabi/4.9.3/../../../../arm-none-eabi/lib/armv7e-m/fpu/libg.a(lib_a-mprec.o)
-                0x08009b38                __lshift
- .text.__mcmp   0x08009be4       0x48 /home/green-electronics/ee155_tools/gcc-arm-none-eabi-4_9-2015q2/bin/../lib/gcc/arm-none-eabi/4.9.3/../../../../arm-none-eabi/lib/armv7e-m/fpu/libg.a(lib_a-mprec.o)
-                0x08009be4                __mcmp
- .text.__mdiff  0x08009c2c       0xd4 /home/green-electronics/ee155_tools/gcc-arm-none-eabi-4_9-2015q2/bin/../lib/gcc/arm-none-eabi/4.9.3/../../../../arm-none-eabi/lib/armv7e-m/fpu/libg.a(lib_a-mprec.o)
-                0x08009c2c                __mdiff
- .text.__d2b    0x08009d00       0xbc /home/green-electronics/ee155_tools/gcc-arm-none-eabi-4_9-2015q2/bin/../lib/gcc/arm-none-eabi/4.9.3/../../../../arm-none-eabi/lib/armv7e-m/fpu/libg.a(lib_a-mprec.o)
-                0x08009d00                __d2b
+                0x08009b58       0xac /home/green-electronics/ee155_tools/gcc-arm-none-eabi-4_9-2015q2/bin/../lib/gcc/arm-none-eabi/4.9.3/../../../../arm-none-eabi/lib/armv7e-m/fpu/libg.a(lib_a-mprec.o)
+                0x08009b58                __lshift
+ .text.__mcmp   0x08009c04       0x48 /home/green-electronics/ee155_tools/gcc-arm-none-eabi-4_9-2015q2/bin/../lib/gcc/arm-none-eabi/4.9.3/../../../../arm-none-eabi/lib/armv7e-m/fpu/libg.a(lib_a-mprec.o)
+                0x08009c04                __mcmp
+ .text.__mdiff  0x08009c4c       0xd4 /home/green-electronics/ee155_tools/gcc-arm-none-eabi-4_9-2015q2/bin/../lib/gcc/arm-none-eabi/4.9.3/../../../../arm-none-eabi/lib/armv7e-m/fpu/libg.a(lib_a-mprec.o)
+                0x08009c4c                __mdiff
+ .text.__d2b    0x08009d20       0xbc /home/green-electronics/ee155_tools/gcc-arm-none-eabi-4_9-2015q2/bin/../lib/gcc/arm-none-eabi/4.9.3/../../../../arm-none-eabi/lib/armv7e-m/fpu/libg.a(lib_a-mprec.o)
+                0x08009d20                __d2b
  .text.__fpclassifyd
-                0x08009dbc       0x5c /home/green-electronics/ee155_tools/gcc-arm-none-eabi-4_9-2015q2/bin/../lib/gcc/arm-none-eabi/4.9.3/../../../../arm-none-eabi/lib/armv7e-m/fpu/libg.a(lib_a-s_fpclassify.o)
-                0x08009dbc                __fpclassifyd
- .text._sbrk_r  0x08009e18       0x24 /home/green-electronics/ee155_tools/gcc-arm-none-eabi-4_9-2015q2/bin/../lib/gcc/arm-none-eabi/4.9.3/../../../../arm-none-eabi/lib/armv7e-m/fpu/libg.a(lib_a-sbrkr.o)
-                0x08009e18                _sbrk_r
+                0x08009ddc       0x5c /home/green-electronics/ee155_tools/gcc-arm-none-eabi-4_9-2015q2/bin/../lib/gcc/arm-none-eabi/4.9.3/../../../../arm-none-eabi/lib/armv7e-m/fpu/libg.a(lib_a-s_fpclassify.o)
+                0x08009ddc                __fpclassifyd
+ .text._sbrk_r  0x08009e38       0x24 /home/green-electronics/ee155_tools/gcc-arm-none-eabi-4_9-2015q2/bin/../lib/gcc/arm-none-eabi/4.9.3/../../../../arm-none-eabi/lib/armv7e-m/fpu/libg.a(lib_a-sbrkr.o)
+                0x08009e38                _sbrk_r
  .text.__ssprint_r
-                0x08009e3c      0x104 /home/green-electronics/ee155_tools/gcc-arm-none-eabi-4_9-2015q2/bin/../lib/gcc/arm-none-eabi/4.9.3/../../../../arm-none-eabi/lib/armv7e-m/fpu/libg.a(lib_a-svfiprintf.o)
-                0x08009e3c                __ssprint_r
+                0x08009e5c      0x104 /home/green-electronics/ee155_tools/gcc-arm-none-eabi-4_9-2015q2/bin/../lib/gcc/arm-none-eabi/4.9.3/../../../../arm-none-eabi/lib/armv7e-m/fpu/libg.a(lib_a-svfiprintf.o)
+                0x08009e5c                __ssprint_r
  .text.__register_exitproc
-                0x08009f40       0xa4 /home/green-electronics/ee155_tools/gcc-arm-none-eabi-4_9-2015q2/bin/../lib/gcc/arm-none-eabi/4.9.3/../../../../arm-none-eabi/lib/armv7e-m/fpu/libg.a(lib_a-__atexit.o)
-                0x08009f40                __register_exitproc
+                0x08009f60       0xa4 /home/green-electronics/ee155_tools/gcc-arm-none-eabi-4_9-2015q2/bin/../lib/gcc/arm-none-eabi/4.9.3/../../../../arm-none-eabi/lib/armv7e-m/fpu/libg.a(lib_a-__atexit.o)
+                0x08009f60                __register_exitproc
  .text._calloc_r
-                0x08009fe4       0x60 /home/green-electronics/ee155_tools/gcc-arm-none-eabi-4_9-2015q2/bin/../lib/gcc/arm-none-eabi/4.9.3/../../../../arm-none-eabi/lib/armv7e-m/fpu/libg.a(lib_a-callocr.o)
-                0x08009fe4                _calloc_r
+                0x0800a004       0x60 /home/green-electronics/ee155_tools/gcc-arm-none-eabi-4_9-2015q2/bin/../lib/gcc/arm-none-eabi/4.9.3/../../../../arm-none-eabi/lib/armv7e-m/fpu/libg.a(lib_a-callocr.o)
+                0x0800a004                _calloc_r
  .text._malloc_trim_r
-                0x0800a044       0x9c /home/green-electronics/ee155_tools/gcc-arm-none-eabi-4_9-2015q2/bin/../lib/gcc/arm-none-eabi/4.9.3/../../../../arm-none-eabi/lib/armv7e-m/fpu/libg.a(lib_a-freer.o)
-                0x0800a044                _malloc_trim_r
- .text._free_r  0x0800a0e0      0x1b0 /home/green-electronics/ee155_tools/gcc-arm-none-eabi-4_9-2015q2/bin/../lib/gcc/arm-none-eabi/4.9.3/../../../../arm-none-eabi/lib/armv7e-m/fpu/libg.a(lib_a-freer.o)
-                0x0800a0e0                _free_r
- .text.memmove  0x0800a290       0xc8 /home/green-electronics/ee155_tools/gcc-arm-none-eabi-4_9-2015q2/bin/../lib/gcc/arm-none-eabi/4.9.3/../../../../arm-none-eabi/lib/armv7e-m/fpu/libg.a(lib_a-memmove.o)
-                0x0800a290                memmove
+                0x0800a064       0x9c /home/green-electronics/ee155_tools/gcc-arm-none-eabi-4_9-2015q2/bin/../lib/gcc/arm-none-eabi/4.9.3/../../../../arm-none-eabi/lib/armv7e-m/fpu/libg.a(lib_a-freer.o)
+                0x0800a064                _malloc_trim_r
+ .text._free_r  0x0800a100      0x1b0 /home/green-electronics/ee155_tools/gcc-arm-none-eabi-4_9-2015q2/bin/../lib/gcc/arm-none-eabi/4.9.3/../../../../arm-none-eabi/lib/armv7e-m/fpu/libg.a(lib_a-freer.o)
+                0x0800a100                _free_r
+ .text.memmove  0x0800a2b0       0xc8 /home/green-electronics/ee155_tools/gcc-arm-none-eabi-4_9-2015q2/bin/../lib/gcc/arm-none-eabi/4.9.3/../../../../arm-none-eabi/lib/armv7e-m/fpu/libg.a(lib_a-memmove.o)
+                0x0800a2b0                memmove
  .text._realloc_r
-                0x0800a358      0x3ec /home/green-electronics/ee155_tools/gcc-arm-none-eabi-4_9-2015q2/bin/../lib/gcc/arm-none-eabi/4.9.3/../../../../arm-none-eabi/lib/armv7e-m/fpu/libg.a(lib_a-reallocr.o)
-                0x0800a358                _realloc_r
+                0x0800a378      0x3ec /home/green-electronics/ee155_tools/gcc-arm-none-eabi-4_9-2015q2/bin/../lib/gcc/arm-none-eabi/4.9.3/../../../../arm-none-eabi/lib/armv7e-m/fpu/libg.a(lib_a-reallocr.o)
+                0x0800a378                _realloc_r
  *(.rodata)
- .rodata        0x0800a744      0x20c ../../libraries/libge.a(ge_gpio.o)
- .rodata        0x0800a950        0x4 ../../libraries/libge.a(HD44780_F3.o)
- .rodata        0x0800a954       0xb6 ../../libraries/libge.a(usb_desc.o)
-                0x0800a954                Virtual_Com_Port_StringProduct
-                0x0800a988                Virtual_Com_Port_StringVendor
-                0x0800a9b0                Virtual_Com_Port_StringLangID
-                0x0800a9b4                Virtual_Com_Port_ConfigDescriptor
-                0x0800a9f8                Virtual_Com_Port_DeviceDescriptor
+ .rodata        0x0800a764      0x20c ../../libraries/libge.a(ge_gpio.o)
+ .rodata        0x0800a970        0x4 ../../libraries/libge.a(HD44780_F3.o)
+ .rodata        0x0800a974       0xb6 ../../libraries/libge.a(usb_desc.o)
+                0x0800a974                Virtual_Com_Port_StringProduct
+                0x0800a9a8                Virtual_Com_Port_StringVendor
+                0x0800a9d0                Virtual_Com_Port_StringLangID
+                0x0800a9d4                Virtual_Com_Port_ConfigDescriptor
+                0x0800aa18                Virtual_Com_Port_DeviceDescriptor
  *(.rodata*)
  .rodata.str1.1
-                0x0800aa0a       0x41 objs/lab2.o
+                0x0800aa2a       0x41 objs/lab2.o
  .rodata.str1.1
-                0x0800aa4b       0x74 objs/main.o
+                0x0800aa6b       0x74 objs/main.o
  .rodata.str1.1
-                0x0800aabf       0x1f objs/newlib_stubs.o
- *fill*         0x0800aade        0x2 
+                0x0800aadf       0x1f objs/newlib_stubs.o
+ *fill*         0x0800aafe        0x2 
  .rodata.str1.4
-                0x0800aae0        0x2 /home/green-electronics/ee155_tools/gcc-arm-none-eabi-4_9-2015q2/bin/../lib/gcc/arm-none-eabi/4.9.3/../../../../arm-none-eabi/lib/armv7e-m/fpu/libg.a(lib_a-impure.o)
- *fill*         0x0800aae2        0x2 
+                0x0800ab00        0x2 /home/green-electronics/ee155_tools/gcc-arm-none-eabi-4_9-2015q2/bin/../lib/gcc/arm-none-eabi/4.9.3/../../../../arm-none-eabi/lib/armv7e-m/fpu/libg.a(lib_a-impure.o)
+ *fill*         0x0800ab02        0x2 
  .rodata._global_impure_ptr
-                0x0800aae4        0x4 /home/green-electronics/ee155_tools/gcc-arm-none-eabi-4_9-2015q2/bin/../lib/gcc/arm-none-eabi/4.9.3/../../../../arm-none-eabi/lib/armv7e-m/fpu/libg.a(lib_a-impure.o)
-                0x0800aae4                _global_impure_ptr
+                0x0800ab04        0x4 /home/green-electronics/ee155_tools/gcc-arm-none-eabi-4_9-2015q2/bin/../lib/gcc/arm-none-eabi/4.9.3/../../../../arm-none-eabi/lib/armv7e-m/fpu/libg.a(lib_a-impure.o)
+                0x0800ab04                _global_impure_ptr
  .rodata.zeroes.6911
-                0x0800aae8       0x10 /home/green-electronics/ee155_tools/gcc-arm-none-eabi-4_9-2015q2/bin/../lib/gcc/arm-none-eabi/4.9.3/../../../../arm-none-eabi/lib/armv7e-m/fpu/libg.a(lib_a-svfprintf.o)
+                0x0800ab08       0x10 /home/green-electronics/ee155_tools/gcc-arm-none-eabi-4_9-2015q2/bin/../lib/gcc/arm-none-eabi/4.9.3/../../../../arm-none-eabi/lib/armv7e-m/fpu/libg.a(lib_a-svfprintf.o)
  .rodata.blanks.6910
-                0x0800aaf8       0x10 /home/green-electronics/ee155_tools/gcc-arm-none-eabi-4_9-2015q2/bin/../lib/gcc/arm-none-eabi/4.9.3/../../../../arm-none-eabi/lib/armv7e-m/fpu/libg.a(lib_a-svfprintf.o)
+                0x0800ab18       0x10 /home/green-electronics/ee155_tools/gcc-arm-none-eabi-4_9-2015q2/bin/../lib/gcc/arm-none-eabi/4.9.3/../../../../arm-none-eabi/lib/armv7e-m/fpu/libg.a(lib_a-svfprintf.o)
  .rodata.str1.4
-                0x0800ab08       0x42 /home/green-electronics/ee155_tools/gcc-arm-none-eabi-4_9-2015q2/bin/../lib/gcc/arm-none-eabi/4.9.3/../../../../arm-none-eabi/lib/armv7e-m/fpu/libg.a(lib_a-svfprintf.o)
- *fill*         0x0800ab4a        0x2 
+                0x0800ab28       0x42 /home/green-electronics/ee155_tools/gcc-arm-none-eabi-4_9-2015q2/bin/../lib/gcc/arm-none-eabi/4.9.3/../../../../arm-none-eabi/lib/armv7e-m/fpu/libg.a(lib_a-svfprintf.o)
+ *fill*         0x0800ab6a        0x2 
  .rodata.str1.4
-                0x0800ab4c       0x10 /home/green-electronics/ee155_tools/gcc-arm-none-eabi-4_9-2015q2/bin/../lib/gcc/arm-none-eabi/4.9.3/../../../../arm-none-eabi/lib/armv7e-m/fpu/libg.a(lib_a-dtoa.o)
+                0x0800ab6c       0x10 /home/green-electronics/ee155_tools/gcc-arm-none-eabi-4_9-2015q2/bin/../lib/gcc/arm-none-eabi/4.9.3/../../../../arm-none-eabi/lib/armv7e-m/fpu/libg.a(lib_a-dtoa.o)
                                  0x12 (size before relaxing)
  .rodata.str1.4
-                0x0800ab5c        0xc /home/green-electronics/ee155_tools/gcc-arm-none-eabi-4_9-2015q2/bin/../lib/gcc/arm-none-eabi/4.9.3/../../../../arm-none-eabi/lib/armv7e-m/fpu/libg.a(lib_a-locale.o)
+                0x0800ab7c        0xc /home/green-electronics/ee155_tools/gcc-arm-none-eabi-4_9-2015q2/bin/../lib/gcc/arm-none-eabi/4.9.3/../../../../arm-none-eabi/lib/armv7e-m/fpu/libg.a(lib_a-locale.o)
                                  0x12 (size before relaxing)
  .rodata.__mprec_tens
-                0x0800ab68       0xc8 /home/green-electronics/ee155_tools/gcc-arm-none-eabi-4_9-2015q2/bin/../lib/gcc/arm-none-eabi/4.9.3/../../../../arm-none-eabi/lib/armv7e-m/fpu/libg.a(lib_a-mprec.o)
-                0x0800ab68                __mprec_tens
+                0x0800ab88       0xc8 /home/green-electronics/ee155_tools/gcc-arm-none-eabi-4_9-2015q2/bin/../lib/gcc/arm-none-eabi/4.9.3/../../../../arm-none-eabi/lib/armv7e-m/fpu/libg.a(lib_a-mprec.o)
+                0x0800ab88                __mprec_tens
  .rodata.p05.5302
-                0x0800ac30        0xc /home/green-electronics/ee155_tools/gcc-arm-none-eabi-4_9-2015q2/bin/../lib/gcc/arm-none-eabi/4.9.3/../../../../arm-none-eabi/lib/armv7e-m/fpu/libg.a(lib_a-mprec.o)
- *fill*         0x0800ac3c        0x4 
+                0x0800ac50        0xc /home/green-electronics/ee155_tools/gcc-arm-none-eabi-4_9-2015q2/bin/../lib/gcc/arm-none-eabi/4.9.3/../../../../arm-none-eabi/lib/armv7e-m/fpu/libg.a(lib_a-mprec.o)
+ *fill*         0x0800ac5c        0x4 
  .rodata.__mprec_bigtens
-                0x0800ac40       0x28 /home/green-electronics/ee155_tools/gcc-arm-none-eabi-4_9-2015q2/bin/../lib/gcc/arm-none-eabi/4.9.3/../../../../arm-none-eabi/lib/armv7e-m/fpu/libg.a(lib_a-mprec.o)
-                0x0800ac40                __mprec_bigtens
+                0x0800ac60       0x28 /home/green-electronics/ee155_tools/gcc-arm-none-eabi-4_9-2015q2/bin/../lib/gcc/arm-none-eabi/4.9.3/../../../../arm-none-eabi/lib/armv7e-m/fpu/libg.a(lib_a-mprec.o)
+                0x0800ac60                __mprec_bigtens
  *(.glue_7)
  .glue_7        0x00000000        0x0 linker stubs
  *(.glue_7t)
  .glue_7t       0x00000000        0x0 linker stubs
  *(.init)
- .init          0x0800ac68        0x4 /home/green-electronics/ee155_tools/gcc-arm-none-eabi-4_9-2015q2/bin/../lib/gcc/arm-none-eabi/4.9.3/armv7e-m/fpu/crti.o
-                0x0800ac68                _init
- .init          0x0800ac6c        0x8 /home/green-electronics/ee155_tools/gcc-arm-none-eabi-4_9-2015q2/bin/../lib/gcc/arm-none-eabi/4.9.3/armv7e-m/fpu/crtn.o
+ .init          0x0800ac88        0x4 /home/green-electronics/ee155_tools/gcc-arm-none-eabi-4_9-2015q2/bin/../lib/gcc/arm-none-eabi/4.9.3/armv7e-m/fpu/crti.o
+                0x0800ac88                _init
+ .init          0x0800ac8c        0x8 /home/green-electronics/ee155_tools/gcc-arm-none-eabi-4_9-2015q2/bin/../lib/gcc/arm-none-eabi/4.9.3/armv7e-m/fpu/crtn.o
  *(.fini)
- .fini          0x0800ac74        0x4 /home/green-electronics/ee155_tools/gcc-arm-none-eabi-4_9-2015q2/bin/../lib/gcc/arm-none-eabi/4.9.3/armv7e-m/fpu/crti.o
-                0x0800ac74                _fini
- .fini          0x0800ac78        0x8 /home/green-electronics/ee155_tools/gcc-arm-none-eabi-4_9-2015q2/bin/../lib/gcc/arm-none-eabi/4.9.3/armv7e-m/fpu/crtn.o
-                0x0800ac80                . = ALIGN (0x4)
-                0x0800ac80                _etext = .
+ .fini          0x0800ac94        0x4 /home/green-electronics/ee155_tools/gcc-arm-none-eabi-4_9-2015q2/bin/../lib/gcc/arm-none-eabi/4.9.3/armv7e-m/fpu/crti.o
+                0x0800ac94                _fini
+ .fini          0x0800ac98        0x8 /home/green-electronics/ee155_tools/gcc-arm-none-eabi-4_9-2015q2/bin/../lib/gcc/arm-none-eabi/4.9.3/armv7e-m/fpu/crtn.o
+                0x0800aca0                . = ALIGN (0x4)
+                0x0800aca0                _etext = .
 
-.vfp11_veneer   0x0800ac80        0x0
+.vfp11_veneer   0x0800aca0        0x0
  .vfp11_veneer  0x00000000        0x0 linker stubs
 
-.v4_bx          0x0800ac80        0x0
+.v4_bx          0x0800aca0        0x0
  .v4_bx         0x00000000        0x0 linker stubs
 
-.iplt           0x0800ac80        0x0
+.iplt           0x0800aca0        0x0
  .iplt          0x00000000        0x0 /home/green-electronics/ee155_tools/gcc-arm-none-eabi-4_9-2015q2/bin/../lib/gcc/arm-none-eabi/4.9.3/armv7e-m/fpu/crtbegin.o
 
 .ARM.extab
  *(.ARM.extab* .gnu.linkonce.armextab.*)
 
-.ARM            0x0800ac80        0x8
-                0x0800ac80                __exidx_start = .
+.ARM            0x0800aca0        0x8
+                0x0800aca0                __exidx_start = .
  *(.ARM.exidx*)
- .ARM.exidx     0x0800ac80        0x8 /home/green-electronics/ee155_tools/gcc-arm-none-eabi-4_9-2015q2/bin/../lib/gcc/arm-none-eabi/4.9.3/armv7e-m/fpu/libgcc.a(_divdi3.o)
- .ARM.exidx     0x0800ac88        0x0 /home/green-electronics/ee155_tools/gcc-arm-none-eabi-4_9-2015q2/bin/../lib/gcc/arm-none-eabi/4.9.3/armv7e-m/fpu/libgcc.a(_udivdi3.o)
+ .ARM.exidx     0x0800aca0        0x8 /home/green-electronics/ee155_tools/gcc-arm-none-eabi-4_9-2015q2/bin/../lib/gcc/arm-none-eabi/4.9.3/armv7e-m/fpu/libgcc.a(_divdi3.o)
+ .ARM.exidx     0x0800aca8        0x0 /home/green-electronics/ee155_tools/gcc-arm-none-eabi-4_9-2015q2/bin/../lib/gcc/arm-none-eabi/4.9.3/armv7e-m/fpu/libgcc.a(_udivdi3.o)
                                   0x8 (size before relaxing)
-                0x0800ac88                __exidx_end = .
+                0x0800aca8                __exidx_end = .
 
-.rel.dyn        0x0800ac88        0x0
+.rel.dyn        0x0800aca8        0x0
  .rel.iplt      0x00000000        0x0 /home/green-electronics/ee155_tools/gcc-arm-none-eabi-4_9-2015q2/bin/../lib/gcc/arm-none-eabi/4.9.3/armv7e-m/fpu/crtbegin.o
 
-.preinit_array  0x0800ac88        0x0
-                0x0800ac88                PROVIDE (__preinit_array_start, .)
+.preinit_array  0x0800aca8        0x0
+                0x0800aca8                PROVIDE (__preinit_array_start, .)
  *(.preinit_array*)
-                0x0800ac88                PROVIDE (__preinit_array_end, .)
+                0x0800aca8                PROVIDE (__preinit_array_end, .)
 
-.init_array     0x0800ac88        0x8
-                0x0800ac88                PROVIDE (__init_array_start, .)
+.init_array     0x0800aca8        0x8
+                0x0800aca8                PROVIDE (__init_array_start, .)
  *(SORT(.init_array.*))
  .init_array.00000
-                0x0800ac88        0x4 /home/green-electronics/ee155_tools/gcc-arm-none-eabi-4_9-2015q2/bin/../lib/gcc/arm-none-eabi/4.9.3/../../../../arm-none-eabi/lib/armv7e-m/fpu/libg.a(lib_a-__call_atexit.o)
+                0x0800aca8        0x4 /home/green-electronics/ee155_tools/gcc-arm-none-eabi-4_9-2015q2/bin/../lib/gcc/arm-none-eabi/4.9.3/../../../../arm-none-eabi/lib/armv7e-m/fpu/libg.a(lib_a-__call_atexit.o)
  *(.init_array*)
- .init_array    0x0800ac8c        0x4 /home/green-electronics/ee155_tools/gcc-arm-none-eabi-4_9-2015q2/bin/../lib/gcc/arm-none-eabi/4.9.3/armv7e-m/fpu/crtbegin.o
-                0x0800ac90                PROVIDE (__init_array_end, .)
+ .init_array    0x0800acac        0x4 /home/green-electronics/ee155_tools/gcc-arm-none-eabi-4_9-2015q2/bin/../lib/gcc/arm-none-eabi/4.9.3/armv7e-m/fpu/crtbegin.o
+                0x0800acb0                PROVIDE (__init_array_end, .)
 
-.fini_array     0x0800ac90        0x4
-                0x0800ac90                PROVIDE (__fini_array_start, .)
+.fini_array     0x0800acb0        0x4
+                0x0800acb0                PROVIDE (__fini_array_start, .)
  *(.fini_array*)
- .fini_array    0x0800ac90        0x4 /home/green-electronics/ee155_tools/gcc-arm-none-eabi-4_9-2015q2/bin/../lib/gcc/arm-none-eabi/4.9.3/armv7e-m/fpu/crtbegin.o
+ .fini_array    0x0800acb0        0x4 /home/green-electronics/ee155_tools/gcc-arm-none-eabi-4_9-2015q2/bin/../lib/gcc/arm-none-eabi/4.9.3/armv7e-m/fpu/crtbegin.o
  *(SORT(.fini_array.*))
-                0x0800ac94                PROVIDE (__fini_array_end, .)
-                0x0800ac94                _sidata = .
+                0x0800acb4                PROVIDE (__fini_array_end, .)
+                0x0800acb4                _sidata = .
 
-.data           0x20000000      0xa44 load address 0x0800ac94
+.data           0x20000000      0xa44 load address 0x0800acb4
                 0x20000000                . = ALIGN (0x4)
                 0x20000000                _sdata = .
  *(.data)
@@ -1473,14 +1474,14 @@ LOAD /home/green-electronics/ee155_tools/gcc-arm-none-eabi-4_9-2015q2/bin/../lib
                 0x20000a44                . = ALIGN (0x4)
                 0x20000a44                _edata = .
 
-.jcr            0x20000a44        0x0 load address 0x0800b6d8
+.jcr            0x20000a44        0x0 load address 0x0800b6f8
  .jcr           0x20000a44        0x0 /home/green-electronics/ee155_tools/gcc-arm-none-eabi-4_9-2015q2/bin/../lib/gcc/arm-none-eabi/4.9.3/armv7e-m/fpu/crtbegin.o
 
-.igot.plt       0x20000a44        0x0 load address 0x0800b6d8
+.igot.plt       0x20000a44        0x0 load address 0x0800b6f8
  .igot.plt      0x00000000        0x0 /home/green-electronics/ee155_tools/gcc-arm-none-eabi-4_9-2015q2/bin/../lib/gcc/arm-none-eabi/4.9.3/armv7e-m/fpu/crtbegin.o
                 0x20000a44                . = ALIGN (0x4)
 
-.bss            0x20000a44      0x61c load address 0x0800b6d8
+.bss            0x20000a44      0x61c load address 0x0800b6f8
                 0x20000a44                _sbss = .
                 0x20000a44                __bss_start__ = _sbss
  *(.bss)
@@ -1598,7 +1599,7 @@ LOAD /home/green-electronics/ee155_tools/gcc-arm-none-eabi-4_9-2015q2/bin/../lib
                 0x20001060                PROVIDE (_end, _ebss)
 
 ._user_heap_stack
-                0x20001060      0x600 load address 0x0800bcf4
+                0x20001060      0x600 load address 0x0800bd14
                 0x20001060                . = ALIGN (0x4)
                 0x20001260                . = (. + _Min_Heap_Size)
  *fill*         0x20001060      0x200 
@@ -1637,7 +1638,7 @@ LOAD /home/green-electronics/ee155_tools/gcc-arm-none-eabi-4_9-2015q2/bin/../lib
  .ARM.attributes
                 0x00000173       0x39 objs/system_stm32f30x.o
  .ARM.attributes
-                0x000001ac       0x21 /tmp/ccFNPbnF.o
+                0x000001ac       0x21 /tmp/cchWT47j.o
  .ARM.attributes
                 0x000001cd       0x39 ../../libraries/libge.a(ge_adc.o)
  .ARM.attributes
@@ -1768,77 +1769,77 @@ LOAD /home/green-electronics/ee155_tools/gcc-arm-none-eabi-4_9-2015q2/bin/../lib
                 0x00000e6a       0x22 /home/green-electronics/ee155_tools/gcc-arm-none-eabi-4_9-2015q2/bin/../lib/gcc/arm-none-eabi/4.9.3/armv7e-m/fpu/crtn.o
 OUTPUT(main.elf elf32-littlearm)
 
-.debug_info     0x00000000    0x115b7
+.debug_info     0x00000000    0x1186e
  .debug_info    0x00000000       0xc6 objs/errno.o
  .debug_info    0x000000c6      0xe79 objs/hw_config.o
- .debug_info    0x00000f3f      0x60f objs/lab2.o
- .debug_info    0x0000154e      0x9b9 objs/main.o
- .debug_info    0x00001f07      0x826 objs/newlib_stubs.o
- .debug_info    0x0000272d      0x4bc objs/system_stm32f30x.o
- .debug_info    0x00002be9       0x79 /tmp/ccFNPbnF.o
- .debug_info    0x00002c62     0x1542 ../../libraries/libge.a(ge_adc.o)
- .debug_info    0x000041a4      0x710 ../../libraries/libge.a(ge_gpio.o)
- .debug_info    0x000048b4      0x1db ../../libraries/libge.a(ge_lcd.o)
- .debug_info    0x00004a8f      0x7aa ../../libraries/libge.a(ge_system.o)
- .debug_info    0x00005239      0xae6 ../../libraries/libge.a(ge_timer.o)
- .debug_info    0x00005d1f      0x40e ../../libraries/libge.a(ge_vcom.o)
- .debug_info    0x0000612d      0x968 ../../libraries/libge.a(HD44780_F3.o)
- .debug_info    0x00006a95      0x1b3 ../../libraries/libge.a(usb_desc.o)
- .debug_info    0x00006c48      0x381 ../../libraries/libge.a(usb_istr.o)
- .debug_info    0x00006fc9      0xbbe ../../libraries/libge.a(usb_prop.o)
- .debug_info    0x00007b87      0x5c9 ../../libraries/libge.a(usb_pwr.o)
- .debug_info    0x00008150      0xebd ../../libraries/libge.a(usb_core.o)
- .debug_info    0x0000900d      0x475 ../../libraries/libge.a(usb_init.o)
- .debug_info    0x00009482      0x20d ../../libraries/libge.a(usb_int.o)
- .debug_info    0x0000968f      0x1ef ../../libraries/libge.a(usb_mem.o)
- .debug_info    0x0000987e      0xd05 ../../libraries/libge.a(usb_regs.o)
- .debug_info    0x0000a583      0x2a8 ../../libraries/libge.a(usb_sil.o)
- .debug_info    0x0000a82b      0x195 ../../libraries/libge.a(ge_eeprom.o)
- .debug_info    0x0000a9c0      0x221 ../../libraries/libge.a(usb_endp.o)
- .debug_info    0x0000abe1      0x79b ../../libraries/libge.a(eeprom.o)
- .debug_info    0x0000b37c     0x1406 Libraries/libstm32f3.a(stm32f30x_adc.o)
- .debug_info    0x0000c782      0x3ab Libraries/libstm32f3.a(stm32f30x_exti.o)
- .debug_info    0x0000cb2d      0xa70 Libraries/libstm32f3.a(stm32f30x_flash.o)
- .debug_info    0x0000d59d      0x725 Libraries/libstm32f3.a(stm32f30x_gpio.o)
- .debug_info    0x0000dcc2      0x526 Libraries/libstm32f3.a(stm32f30x_misc.o)
- .debug_info    0x0000e1e8      0xac3 Libraries/libstm32f3.a(stm32f30x_rcc.o)
- .debug_info    0x0000ecab     0x290c Libraries/libstm32f3.a(stm32f30x_tim.o)
+ .debug_info    0x00000f3f      0x8a9 objs/lab2.o
+ .debug_info    0x000017e8      0x9dc objs/main.o
+ .debug_info    0x000021c4      0x826 objs/newlib_stubs.o
+ .debug_info    0x000029ea      0x4bc objs/system_stm32f30x.o
+ .debug_info    0x00002ea6       0x73 /tmp/cchWT47j.o
+ .debug_info    0x00002f19     0x1542 ../../libraries/libge.a(ge_adc.o)
+ .debug_info    0x0000445b      0x710 ../../libraries/libge.a(ge_gpio.o)
+ .debug_info    0x00004b6b      0x1db ../../libraries/libge.a(ge_lcd.o)
+ .debug_info    0x00004d46      0x7aa ../../libraries/libge.a(ge_system.o)
+ .debug_info    0x000054f0      0xae6 ../../libraries/libge.a(ge_timer.o)
+ .debug_info    0x00005fd6      0x40e ../../libraries/libge.a(ge_vcom.o)
+ .debug_info    0x000063e4      0x968 ../../libraries/libge.a(HD44780_F3.o)
+ .debug_info    0x00006d4c      0x1b3 ../../libraries/libge.a(usb_desc.o)
+ .debug_info    0x00006eff      0x381 ../../libraries/libge.a(usb_istr.o)
+ .debug_info    0x00007280      0xbbe ../../libraries/libge.a(usb_prop.o)
+ .debug_info    0x00007e3e      0x5c9 ../../libraries/libge.a(usb_pwr.o)
+ .debug_info    0x00008407      0xebd ../../libraries/libge.a(usb_core.o)
+ .debug_info    0x000092c4      0x475 ../../libraries/libge.a(usb_init.o)
+ .debug_info    0x00009739      0x20d ../../libraries/libge.a(usb_int.o)
+ .debug_info    0x00009946      0x1ef ../../libraries/libge.a(usb_mem.o)
+ .debug_info    0x00009b35      0xd05 ../../libraries/libge.a(usb_regs.o)
+ .debug_info    0x0000a83a      0x2a8 ../../libraries/libge.a(usb_sil.o)
+ .debug_info    0x0000aae2      0x195 ../../libraries/libge.a(ge_eeprom.o)
+ .debug_info    0x0000ac77      0x221 ../../libraries/libge.a(usb_endp.o)
+ .debug_info    0x0000ae98      0x79b ../../libraries/libge.a(eeprom.o)
+ .debug_info    0x0000b633     0x1406 Libraries/libstm32f3.a(stm32f30x_adc.o)
+ .debug_info    0x0000ca39      0x3ab Libraries/libstm32f3.a(stm32f30x_exti.o)
+ .debug_info    0x0000cde4      0xa70 Libraries/libstm32f3.a(stm32f30x_flash.o)
+ .debug_info    0x0000d854      0x725 Libraries/libstm32f3.a(stm32f30x_gpio.o)
+ .debug_info    0x0000df79      0x526 Libraries/libstm32f3.a(stm32f30x_misc.o)
+ .debug_info    0x0000e49f      0xac3 Libraries/libstm32f3.a(stm32f30x_rcc.o)
+ .debug_info    0x0000ef62     0x290c Libraries/libstm32f3.a(stm32f30x_tim.o)
 
-.debug_abbrev   0x00000000     0x3cbf
+.debug_abbrev   0x00000000     0x3ce0
  .debug_abbrev  0x00000000       0x81 objs/errno.o
  .debug_abbrev  0x00000081      0x2ef objs/hw_config.o
- .debug_abbrev  0x00000370      0x1a4 objs/lab2.o
- .debug_abbrev  0x00000514      0x1da objs/main.o
- .debug_abbrev  0x000006ee      0x233 objs/newlib_stubs.o
- .debug_abbrev  0x00000921      0x145 objs/system_stm32f30x.o
- .debug_abbrev  0x00000a66       0x12 /tmp/ccFNPbnF.o
- .debug_abbrev  0x00000a78      0x2bb ../../libraries/libge.a(ge_adc.o)
- .debug_abbrev  0x00000d33      0x1ee ../../libraries/libge.a(ge_gpio.o)
- .debug_abbrev  0x00000f21       0xd4 ../../libraries/libge.a(ge_lcd.o)
- .debug_abbrev  0x00000ff5      0x227 ../../libraries/libge.a(ge_system.o)
- .debug_abbrev  0x0000121c      0x29e ../../libraries/libge.a(ge_timer.o)
- .debug_abbrev  0x000014ba      0x1cd ../../libraries/libge.a(ge_vcom.o)
- .debug_abbrev  0x00001687      0x290 ../../libraries/libge.a(HD44780_F3.o)
- .debug_abbrev  0x00001917       0x75 ../../libraries/libge.a(usb_desc.o)
- .debug_abbrev  0x0000198c      0x162 ../../libraries/libge.a(usb_istr.o)
- .debug_abbrev  0x00001aee      0x292 ../../libraries/libge.a(usb_prop.o)
- .debug_abbrev  0x00001d80      0x28b ../../libraries/libge.a(usb_pwr.o)
- .debug_abbrev  0x0000200b      0x3f1 ../../libraries/libge.a(usb_core.o)
- .debug_abbrev  0x000023fc      0x12f ../../libraries/libge.a(usb_init.o)
- .debug_abbrev  0x0000252b       0xfd ../../libraries/libge.a(usb_int.o)
- .debug_abbrev  0x00002628       0xc2 ../../libraries/libge.a(usb_mem.o)
- .debug_abbrev  0x000026ea      0x212 ../../libraries/libge.a(usb_regs.o)
- .debug_abbrev  0x000028fc      0x157 ../../libraries/libge.a(usb_sil.o)
- .debug_abbrev  0x00002a53      0x121 ../../libraries/libge.a(ge_eeprom.o)
- .debug_abbrev  0x00002b74      0x13f ../../libraries/libge.a(usb_endp.o)
- .debug_abbrev  0x00002cb3      0x266 ../../libraries/libge.a(eeprom.o)
- .debug_abbrev  0x00002f19      0x1f4 Libraries/libstm32f3.a(stm32f30x_adc.o)
- .debug_abbrev  0x0000310d      0x18b Libraries/libstm32f3.a(stm32f30x_exti.o)
- .debug_abbrev  0x00003298      0x24c Libraries/libstm32f3.a(stm32f30x_flash.o)
- .debug_abbrev  0x000034e4      0x1e9 Libraries/libstm32f3.a(stm32f30x_gpio.o)
- .debug_abbrev  0x000036cd      0x156 Libraries/libstm32f3.a(stm32f30x_misc.o)
- .debug_abbrev  0x00003823      0x20b Libraries/libstm32f3.a(stm32f30x_rcc.o)
- .debug_abbrev  0x00003a2e      0x291 Libraries/libstm32f3.a(stm32f30x_tim.o)
+ .debug_abbrev  0x00000370      0x1c5 objs/lab2.o
+ .debug_abbrev  0x00000535      0x1da objs/main.o
+ .debug_abbrev  0x0000070f      0x233 objs/newlib_stubs.o
+ .debug_abbrev  0x00000942      0x145 objs/system_stm32f30x.o
+ .debug_abbrev  0x00000a87       0x12 /tmp/cchWT47j.o
+ .debug_abbrev  0x00000a99      0x2bb ../../libraries/libge.a(ge_adc.o)
+ .debug_abbrev  0x00000d54      0x1ee ../../libraries/libge.a(ge_gpio.o)
+ .debug_abbrev  0x00000f42       0xd4 ../../libraries/libge.a(ge_lcd.o)
+ .debug_abbrev  0x00001016      0x227 ../../libraries/libge.a(ge_system.o)
+ .debug_abbrev  0x0000123d      0x29e ../../libraries/libge.a(ge_timer.o)
+ .debug_abbrev  0x000014db      0x1cd ../../libraries/libge.a(ge_vcom.o)
+ .debug_abbrev  0x000016a8      0x290 ../../libraries/libge.a(HD44780_F3.o)
+ .debug_abbrev  0x00001938       0x75 ../../libraries/libge.a(usb_desc.o)
+ .debug_abbrev  0x000019ad      0x162 ../../libraries/libge.a(usb_istr.o)
+ .debug_abbrev  0x00001b0f      0x292 ../../libraries/libge.a(usb_prop.o)
+ .debug_abbrev  0x00001da1      0x28b ../../libraries/libge.a(usb_pwr.o)
+ .debug_abbrev  0x0000202c      0x3f1 ../../libraries/libge.a(usb_core.o)
+ .debug_abbrev  0x0000241d      0x12f ../../libraries/libge.a(usb_init.o)
+ .debug_abbrev  0x0000254c       0xfd ../../libraries/libge.a(usb_int.o)
+ .debug_abbrev  0x00002649       0xc2 ../../libraries/libge.a(usb_mem.o)
+ .debug_abbrev  0x0000270b      0x212 ../../libraries/libge.a(usb_regs.o)
+ .debug_abbrev  0x0000291d      0x157 ../../libraries/libge.a(usb_sil.o)
+ .debug_abbrev  0x00002a74      0x121 ../../libraries/libge.a(ge_eeprom.o)
+ .debug_abbrev  0x00002b95      0x13f ../../libraries/libge.a(usb_endp.o)
+ .debug_abbrev  0x00002cd4      0x266 ../../libraries/libge.a(eeprom.o)
+ .debug_abbrev  0x00002f3a      0x1f4 Libraries/libstm32f3.a(stm32f30x_adc.o)
+ .debug_abbrev  0x0000312e      0x18b Libraries/libstm32f3.a(stm32f30x_exti.o)
+ .debug_abbrev  0x000032b9      0x24c Libraries/libstm32f3.a(stm32f30x_flash.o)
+ .debug_abbrev  0x00003505      0x1e9 Libraries/libstm32f3.a(stm32f30x_gpio.o)
+ .debug_abbrev  0x000036ee      0x156 Libraries/libstm32f3.a(stm32f30x_misc.o)
+ .debug_abbrev  0x00003844      0x20b Libraries/libstm32f3.a(stm32f30x_rcc.o)
+ .debug_abbrev  0x00003a4f      0x291 Libraries/libstm32f3.a(stm32f30x_tim.o)
 
 .debug_aranges  0x00000000      0x558
  .debug_aranges
@@ -1854,7 +1855,7 @@ OUTPUT(main.elf elf32-littlearm)
  .debug_aranges
                 0x000001b0       0x28 objs/system_stm32f30x.o
  .debug_aranges
-                0x000001d8       0x28 /tmp/ccFNPbnF.o
+                0x000001d8       0x28 /tmp/cchWT47j.o
  .debug_aranges
                 0x00000200       0x20 ../../libraries/libge.a(ge_adc.o)
  .debug_aranges
@@ -1917,7 +1918,7 @@ OUTPUT(main.elf elf32-littlearm)
  .debug_ranges  0x000000a8       0x28 objs/main.o
  .debug_ranges  0x000000d0       0x90 objs/newlib_stubs.o
  .debug_ranges  0x00000160       0x30 objs/system_stm32f30x.o
- .debug_ranges  0x00000190       0x20 /tmp/ccFNPbnF.o
+ .debug_ranges  0x00000190       0x20 /tmp/cchWT47j.o
  .debug_ranges  0x000001b0       0x28 ../../libraries/libge.a(ge_adc.o)
  .debug_ranges  0x000001d8       0x38 ../../libraries/libge.a(ge_system.o)
  .debug_ranges  0x00000210       0x68 ../../libraries/libge.a(ge_timer.o)
@@ -1929,108 +1930,108 @@ OUTPUT(main.elf elf32-littlearm)
  .debug_ranges  0x000005e8       0x78 ../../libraries/libge.a(eeprom.o)
  .debug_ranges  0x00000660       0x78 Libraries/libstm32f3.a(stm32f30x_tim.o)
 
-.debug_line     0x00000000     0x578b
+.debug_line     0x00000000     0x57aa
  .debug_line    0x00000000      0x13b objs/errno.o
  .debug_line    0x0000013b      0x3b3 objs/hw_config.o
- .debug_line    0x000004ee      0x292 objs/lab2.o
- .debug_line    0x00000780      0x227 objs/main.o
- .debug_line    0x000009a7      0x347 objs/newlib_stubs.o
- .debug_line    0x00000cee      0x1e1 objs/system_stm32f30x.o
- .debug_line    0x00000ecf       0x77 /tmp/ccFNPbnF.o
- .debug_line    0x00000f46      0x38b ../../libraries/libge.a(ge_adc.o)
- .debug_line    0x000012d1      0x270 ../../libraries/libge.a(ge_gpio.o)
- .debug_line    0x00001541      0x181 ../../libraries/libge.a(ge_lcd.o)
- .debug_line    0x000016c2      0x241 ../../libraries/libge.a(ge_system.o)
- .debug_line    0x00001903      0x30d ../../libraries/libge.a(ge_timer.o)
- .debug_line    0x00001c10      0x305 ../../libraries/libge.a(ge_vcom.o)
- .debug_line    0x00001f15      0x307 ../../libraries/libge.a(HD44780_F3.o)
- .debug_line    0x0000221c      0x112 ../../libraries/libge.a(usb_desc.o)
- .debug_line    0x0000232e      0x20f ../../libraries/libge.a(usb_istr.o)
- .debug_line    0x0000253d      0x25f ../../libraries/libge.a(usb_prop.o)
- .debug_line    0x0000279c      0x2d7 ../../libraries/libge.a(usb_pwr.o)
- .debug_line    0x00002a73      0x50c ../../libraries/libge.a(usb_core.o)
- .debug_line    0x00002f7f      0x1b2 ../../libraries/libge.a(usb_init.o)
- .debug_line    0x00003131      0x240 ../../libraries/libge.a(usb_int.o)
- .debug_line    0x00003371      0x190 ../../libraries/libge.a(usb_mem.o)
- .debug_line    0x00003501      0x366 ../../libraries/libge.a(usb_regs.o)
- .debug_line    0x00003867      0x1d9 ../../libraries/libge.a(usb_sil.o)
- .debug_line    0x00003a40      0x15b ../../libraries/libge.a(ge_eeprom.o)
- .debug_line    0x00003b9b      0x1af ../../libraries/libge.a(usb_endp.o)
- .debug_line    0x00003d4a      0x281 ../../libraries/libge.a(eeprom.o)
- .debug_line    0x00003fcb      0x446 Libraries/libstm32f3.a(stm32f30x_adc.o)
- .debug_line    0x00004411      0x1ba Libraries/libstm32f3.a(stm32f30x_exti.o)
- .debug_line    0x000045cb      0x32a Libraries/libstm32f3.a(stm32f30x_flash.o)
- .debug_line    0x000048f5      0x219 Libraries/libstm32f3.a(stm32f30x_gpio.o)
- .debug_line    0x00004b0e      0x17f Libraries/libstm32f3.a(stm32f30x_misc.o)
- .debug_line    0x00004c8d      0x348 Libraries/libstm32f3.a(stm32f30x_rcc.o)
- .debug_line    0x00004fd5      0x7b6 Libraries/libstm32f3.a(stm32f30x_tim.o)
+ .debug_line    0x000004ee      0x2ae objs/lab2.o
+ .debug_line    0x0000079c      0x22a objs/main.o
+ .debug_line    0x000009c6      0x347 objs/newlib_stubs.o
+ .debug_line    0x00000d0d      0x1e1 objs/system_stm32f30x.o
+ .debug_line    0x00000eee       0x77 /tmp/cchWT47j.o
+ .debug_line    0x00000f65      0x38b ../../libraries/libge.a(ge_adc.o)
+ .debug_line    0x000012f0      0x270 ../../libraries/libge.a(ge_gpio.o)
+ .debug_line    0x00001560      0x181 ../../libraries/libge.a(ge_lcd.o)
+ .debug_line    0x000016e1      0x241 ../../libraries/libge.a(ge_system.o)
+ .debug_line    0x00001922      0x30d ../../libraries/libge.a(ge_timer.o)
+ .debug_line    0x00001c2f      0x305 ../../libraries/libge.a(ge_vcom.o)
+ .debug_line    0x00001f34      0x307 ../../libraries/libge.a(HD44780_F3.o)
+ .debug_line    0x0000223b      0x112 ../../libraries/libge.a(usb_desc.o)
+ .debug_line    0x0000234d      0x20f ../../libraries/libge.a(usb_istr.o)
+ .debug_line    0x0000255c      0x25f ../../libraries/libge.a(usb_prop.o)
+ .debug_line    0x000027bb      0x2d7 ../../libraries/libge.a(usb_pwr.o)
+ .debug_line    0x00002a92      0x50c ../../libraries/libge.a(usb_core.o)
+ .debug_line    0x00002f9e      0x1b2 ../../libraries/libge.a(usb_init.o)
+ .debug_line    0x00003150      0x240 ../../libraries/libge.a(usb_int.o)
+ .debug_line    0x00003390      0x190 ../../libraries/libge.a(usb_mem.o)
+ .debug_line    0x00003520      0x366 ../../libraries/libge.a(usb_regs.o)
+ .debug_line    0x00003886      0x1d9 ../../libraries/libge.a(usb_sil.o)
+ .debug_line    0x00003a5f      0x15b ../../libraries/libge.a(ge_eeprom.o)
+ .debug_line    0x00003bba      0x1af ../../libraries/libge.a(usb_endp.o)
+ .debug_line    0x00003d69      0x281 ../../libraries/libge.a(eeprom.o)
+ .debug_line    0x00003fea      0x446 Libraries/libstm32f3.a(stm32f30x_adc.o)
+ .debug_line    0x00004430      0x1ba Libraries/libstm32f3.a(stm32f30x_exti.o)
+ .debug_line    0x000045ea      0x32a Libraries/libstm32f3.a(stm32f30x_flash.o)
+ .debug_line    0x00004914      0x219 Libraries/libstm32f3.a(stm32f30x_gpio.o)
+ .debug_line    0x00004b2d      0x17f Libraries/libstm32f3.a(stm32f30x_misc.o)
+ .debug_line    0x00004cac      0x348 Libraries/libstm32f3.a(stm32f30x_rcc.o)
+ .debug_line    0x00004ff4      0x7b6 Libraries/libstm32f3.a(stm32f30x_tim.o)
 
-.debug_str      0x00000000     0x5054
- .debug_str     0x00000000      0x196 objs/errno.o
-                                0x1d8 (size before relaxing)
- .debug_str     0x00000196      0xba6 objs/hw_config.o
-                                0xdcd (size before relaxing)
- .debug_str     0x00000d3c      0x1e8 objs/lab2.o
-                                0x40c (size before relaxing)
- .debug_str     0x00000f24      0x230 objs/main.o
-                                0x4fa (size before relaxing)
- .debug_str     0x00001154      0x205 objs/newlib_stubs.o
-                                0x454 (size before relaxing)
- .debug_str     0x00001359      0x158 objs/system_stm32f30x.o
-                                0x373 (size before relaxing)
- .debug_str     0x000014b1      0x729 ../../libraries/libge.a(ge_adc.o)
-                                0xfa7 (size before relaxing)
- .debug_str     0x00001bda       0xbe ../../libraries/libge.a(ge_gpio.o)
-                                0x4e3 (size before relaxing)
- .debug_str     0x00001c98       0x60 ../../libraries/libge.a(ge_lcd.o)
-                                0x24c (size before relaxing)
- .debug_str     0x00001cf8      0x1f6 ../../libraries/libge.a(ge_system.o)
-                                0x8a2 (size before relaxing)
- .debug_str     0x00001eee      0x130 ../../libraries/libge.a(ge_timer.o)
-                                0x9f9 (size before relaxing)
- .debug_str     0x0000201e      0x175 ../../libraries/libge.a(ge_vcom.o)
-                                0x465 (size before relaxing)
- .debug_str     0x00002193       0x7d ../../libraries/libge.a(HD44780_F3.o)
-                                0x4e6 (size before relaxing)
- .debug_str     0x00002210       0xae ../../libraries/libge.a(usb_desc.o)
-                                0x297 (size before relaxing)
- .debug_str     0x000022be      0x128 ../../libraries/libge.a(usb_istr.o)
-                                0x3f6 (size before relaxing)
- .debug_str     0x000023e6      0x481 ../../libraries/libge.a(usb_prop.o)
-                                0xa6a (size before relaxing)
- .debug_str     0x00002867       0x8d ../../libraries/libge.a(usb_pwr.o)
-                                0x456 (size before relaxing)
- .debug_str     0x000028f4      0x478 ../../libraries/libge.a(usb_core.o)
-                                0xb60 (size before relaxing)
- .debug_str     0x00002d6c       0x5a ../../libraries/libge.a(usb_init.o)
-                                0x5c7 (size before relaxing)
- .debug_str     0x00002dc6       0x55 ../../libraries/libge.a(usb_int.o)
-                                0x29a (size before relaxing)
- .debug_str     0x00002e1b       0x77 ../../libraries/libge.a(usb_mem.o)
-                                0x273 (size before relaxing)
- .debug_str     0x00002e92      0x343 ../../libraries/libge.a(usb_regs.o)
-                                0x5fb (size before relaxing)
- .debug_str     0x000031d5       0x90 ../../libraries/libge.a(usb_sil.o)
-                                0x2db (size before relaxing)
- .debug_str     0x00003265       0x4b ../../libraries/libge.a(ge_eeprom.o)
-                                0x21d (size before relaxing)
- .debug_str     0x000032b0       0x3f ../../libraries/libge.a(usb_endp.o)
+.debug_str      0x00000000     0x5066
+ .debug_str     0x00000000      0x190 objs/errno.o
+                                0x1d2 (size before relaxing)
+ .debug_str     0x00000190      0xba6 objs/hw_config.o
+                                0xdc7 (size before relaxing)
+ .debug_str     0x00000d36      0x2bf objs/lab2.o
+                                0x4dd (size before relaxing)
+ .debug_str     0x00000ff5      0x186 objs/main.o
+                                0x4f4 (size before relaxing)
+ .debug_str     0x0000117b      0x205 objs/newlib_stubs.o
+                                0x44e (size before relaxing)
+ .debug_str     0x00001380      0x158 objs/system_stm32f30x.o
+                                0x36d (size before relaxing)
+ .debug_str     0x000014d8      0x723 ../../libraries/libge.a(ge_adc.o)
+                                0xfa1 (size before relaxing)
+ .debug_str     0x00001bfb       0xaf ../../libraries/libge.a(ge_gpio.o)
+                                0x4dd (size before relaxing)
+ .debug_str     0x00001caa       0x60 ../../libraries/libge.a(ge_lcd.o)
+                                0x246 (size before relaxing)
+ .debug_str     0x00001d0a      0x1f6 ../../libraries/libge.a(ge_system.o)
+                                0x89c (size before relaxing)
+ .debug_str     0x00001f00      0x130 ../../libraries/libge.a(ge_timer.o)
+                                0x9f3 (size before relaxing)
+ .debug_str     0x00002030      0x175 ../../libraries/libge.a(ge_vcom.o)
+                                0x45f (size before relaxing)
+ .debug_str     0x000021a5       0x7d ../../libraries/libge.a(HD44780_F3.o)
+                                0x4e0 (size before relaxing)
+ .debug_str     0x00002222       0xae ../../libraries/libge.a(usb_desc.o)
                                 0x291 (size before relaxing)
- .debug_str     0x000032ef      0x186 ../../libraries/libge.a(eeprom.o)
-                                0x398 (size before relaxing)
- .debug_str     0x00003475      0x792 Libraries/libstm32f3.a(stm32f30x_adc.o)
+ .debug_str     0x000022d0      0x128 ../../libraries/libge.a(usb_istr.o)
+                                0x3f0 (size before relaxing)
+ .debug_str     0x000023f8      0x481 ../../libraries/libge.a(usb_prop.o)
+                                0xa64 (size before relaxing)
+ .debug_str     0x00002879       0x8d ../../libraries/libge.a(usb_pwr.o)
+                                0x450 (size before relaxing)
+ .debug_str     0x00002906      0x478 ../../libraries/libge.a(usb_core.o)
+                                0xb5a (size before relaxing)
+ .debug_str     0x00002d7e       0x5a ../../libraries/libge.a(usb_init.o)
+                                0x5c1 (size before relaxing)
+ .debug_str     0x00002dd8       0x55 ../../libraries/libge.a(usb_int.o)
+                                0x294 (size before relaxing)
+ .debug_str     0x00002e2d       0x77 ../../libraries/libge.a(usb_mem.o)
+                                0x26d (size before relaxing)
+ .debug_str     0x00002ea4      0x343 ../../libraries/libge.a(usb_regs.o)
+                                0x5f5 (size before relaxing)
+ .debug_str     0x000031e7       0x90 ../../libraries/libge.a(usb_sil.o)
+                                0x2d5 (size before relaxing)
+ .debug_str     0x00003277       0x4b ../../libraries/libge.a(ge_eeprom.o)
+                                0x217 (size before relaxing)
+ .debug_str     0x000032c2       0x3f ../../libraries/libge.a(usb_endp.o)
+                                0x28b (size before relaxing)
+ .debug_str     0x00003301      0x186 ../../libraries/libge.a(eeprom.o)
+                                0x392 (size before relaxing)
+ .debug_str     0x00003487      0x792 Libraries/libstm32f3.a(stm32f30x_adc.o)
                                 0xc15 (size before relaxing)
- .debug_str     0x00003c07       0xef Libraries/libstm32f3.a(stm32f30x_exti.o)
+ .debug_str     0x00003c19       0xef Libraries/libstm32f3.a(stm32f30x_exti.o)
                                 0x3df (size before relaxing)
- .debug_str     0x00003cf6      0x2f9 Libraries/libstm32f3.a(stm32f30x_flash.o)
+ .debug_str     0x00003d08      0x2f9 Libraries/libstm32f3.a(stm32f30x_flash.o)
                                 0x5e1 (size before relaxing)
- .debug_str     0x00003fef       0xf2 Libraries/libstm32f3.a(stm32f30x_gpio.o)
+ .debug_str     0x00004001       0xf2 Libraries/libstm32f3.a(stm32f30x_gpio.o)
                                 0x508 (size before relaxing)
- .debug_str     0x000040e1       0xcc Libraries/libstm32f3.a(stm32f30x_misc.o)
+ .debug_str     0x000040f3       0xcc Libraries/libstm32f3.a(stm32f30x_misc.o)
                                 0x423 (size before relaxing)
- .debug_str     0x000041ad      0x352 Libraries/libstm32f3.a(stm32f30x_rcc.o)
+ .debug_str     0x000041bf      0x352 Libraries/libstm32f3.a(stm32f30x_rcc.o)
                                 0x83e (size before relaxing)
- .debug_str     0x000044ff      0xb55 Libraries/libstm32f3.a(stm32f30x_tim.o)
+ .debug_str     0x00004511      0xb55 Libraries/libstm32f3.a(stm32f30x_tim.o)
                                 0xfef (size before relaxing)
 
 .comment        0x00000000       0x70
