@@ -1,15 +1,15 @@
 /**
- * @file  lab2.c
- * @brief Starter code for lab 2.
+ * @file  lab3.c
+ * @brief Starter code for lab 3.
  * 
  * @details Modify this file to implement the power meter
- * for lab 2
+ * for lab 3
  * 
  * @author Ned Danyliw
  * @date  09.2015
  */
 
-#include "lab2.h"
+#include "lab3.h"
 #include "ge_libs.h"
 
 
@@ -167,3 +167,24 @@ void my_adc_callback(uint32_t data) {
   voltage_reading = (uint16_t) (data & 0x0000ffff); //some number between 0 and 4095
   current_reading = (uint16_t) (data >> 16); //some # 0-4095
 }
+
+/**
+ * @brief Calculates gate drive for max power point
+ * @details From the current power point, searches for a new max power point
+ * by changing the duty cycle
+ */
+ void max_ppt() {
+  // Optimization algorithm
+  // for hill-climbing, compare current power to previous power
+  // take a step in the same direction if current power is better or vice versa
+  // if you reverse direction, take smaller steps
+  // if you go the same direction a couple times, take a bigger step
+  // every once in a while, seed another random location
+  // if you settle into another maximum that's worse than the previous max, revert
+
+  // or do simulated annealing, idk
+  
+  // Calculate new duty cycle
+
+  // set PWM for driver pins
+ }

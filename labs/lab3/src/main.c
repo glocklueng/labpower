@@ -1,110 +1,150 @@
 /**
  * @file  main.c
- * @brief Hello World demo for the Green Electronics libraries.
- * 
- * @details Prints "Hello World" on the LCD and blinks the onboard
- * LEDs
+ * @brief Main program loop for Lab 2
  * 
  * @author Ned Danyliw
  * @date  09.2015
  */
-#include "ge_libs.h"
 
+#include "lab3.h"
 
-void setup_led_gpio() {
-  //Initialize LED pins and set as outputs
-  gpio_setup_pin(DISC_LD3, GPIO_OUTPUT, false, false);
-  gpio_setup_pin(DISC_LD4, GPIO_OUTPUT, false, false);
-  gpio_setup_pin(DISC_LD5, GPIO_OUTPUT, false, false);
-  gpio_setup_pin(DISC_LD6, GPIO_OUTPUT, false, false);
-  gpio_setup_pin(DISC_LD7, GPIO_OUTPUT, false, false);
-  gpio_setup_pin(DISC_LD8, GPIO_OUTPUT, false, false);
-  gpio_setup_pin(DISC_LD9, GPIO_OUTPUT, false, false);
-  gpio_setup_pin(DISC_LD10, GPIO_OUTPUT, false, false);
-}
+// Preprocessor trick:
+// This converts a number to a string at compile-time so that a #define'd number
+// can be pasted into a string.
+// The two macros are required to keep the preprocessor from using the name
+// passed to STR(x) instead of its value.
+//
+// Thanks to http://stackoverflow.com/questions/1595544/c-macro-turn-a-number-into-a-string
+#define VAL(x) #x
+#define STR(x) VAL(x)
 
-void led_off() {
-  gpio_write_pin(DISC_LD3, GPIO_LOW);
-  gpio_write_pin(DISC_LD4, GPIO_LOW);
-  gpio_write_pin(DISC_LD5, GPIO_LOW);
-  gpio_write_pin(DISC_LD6, GPIO_LOW);
-  gpio_write_pin(DISC_LD7, GPIO_LOW);
-  gpio_write_pin(DISC_LD8, GPIO_LOW);
-  gpio_write_pin(DISC_LD9, GPIO_LOW);
-  gpio_write_pin(DISC_LD10, GPIO_LOW);
-}
+//Define operating states
+enum DISP_STATES {DISP_MAIN, DISP_OFF, DISP_CALV, DISP_CALI};
 
-void led_on() {
-  gpio_write_pin(DISC_LD3, GPIO_HIGH);
-  gpio_write_pin(DISC_LD4, GPIO_HIGH);
-  gpio_write_pin(DISC_LD5, GPIO_HIGH);
-  gpio_write_pin(DISC_LD6, GPIO_HIGH);
-  gpio_write_pin(DISC_LD7, GPIO_HIGH);
-  gpio_write_pin(DISC_LD8, GPIO_HIGH);
-  gpio_write_pin(DISC_LD9, GPIO_HIGH);
-  gpio_write_pin(DISC_LD10, GPIO_HIGH);
+uint8_t state = DISP_MAIN;
+bool btn_pressed = false;
+
+void change_state() {
+  if (gpio_read_pin(GE_PBTN1)) {
+    if (!btn_pressed) {
+      state++;
+      if (state > DISP_CALI) state = DISP_MAIN;
+    }
+    btn_pressed = true;
+  } else {
+    btn_pressed = false;
+  }
 }
 
 
 /**
-  * @brief  Main program.
-  * @param  None 
-  * @retval None
-  */
-int main(void)
-{  
-  //Initialize library
+ * @brief Initializes buttons
+ * @details Sets PB1 to go to the next menu screen.
+ * PB2 to trigger calibration.
+ */
+void setup_buttons() {
+  gpio_setup_pin(GE_PBTN1, GPIO_INPUT, false, false);
+  gpio_setup_pin(GE_PBTN2, GPIO_INPUT, false, false);
+  //gpio_setup_pin(PC12, GPIO_OUTPUT, false, false);
+
+
+  // we need to set up two pins to run the gate drivers for M1 and M2
+}
+
+void start_conversion() {
+  adc_set_fs(FREQ);  //adjust this 
+  adc_enable_channel(3);
+
+  adc_callback(3, &my_adc_callback);
+  adc_start();
+}
+
+int main() {
+  //Initialize systems
   ge_init();
 
-  //Initialize GPIO
+  lcd_init();
+  adc_init(); //initializing the ADCs
+
   gpio_init();
 
-  setup_led_gpio();
+  setup_buttons();
 
-  //Initialize the USER button as an input
-  gpio_setup_pin(DISC_PBTN, GPIO_INPUT, false, false);
+  timer_init();
 
-  //Initialize LCD
-  lcd_init();
+  timer_id_t state_tim = timer_register(50, &change_state, GE_PERIODIC);
 
-  // //Print Hello World
-  lcd_clear();
-  lcd_goto(0, 0);
-  lcd_puts("Hello, World!");
+  timer_start(state_tim);
 
-  // timer_init();
+  //initialize power meter
+  meter_init();
 
-  //Initialize VCOM
-  // vcom_init();
-  // vcom_send("Hello, World!\n");
+  //Enable ADCs to do work
+  //Might have to move this function
+  start_conversion();
 
-  /* Infinite loop */
-  /**
-   * Flashes the ring of LEDs. If the user button is
-   * depressed, it will switch to pulsing the buttons with
-   * PWM.
-   */
-  while (1) {   
-    //check if button depressed
-    if (!gpio_read_pin(DISC_PBTN)) {
-      /* LEDs Off */
-      led_off();
-      delay_ms(500); /*500ms - half second*/
-      
-      /* LEDs Off */
-      led_on();
-      delay_ms(500); /*500ms - half second*/
 
-      // vcom_send("Hi\n");
-    } else {
-      /* LEDs Off */
-      led_off();
-      delay_ms(100); /*500ms - half second*/
-      
-      /* LEDs Off */
-      led_on();
-      delay_ms(100); /*500ms - half second*/
+  //handle display
+  uint8_t last_state = 255;
+  while (1) {
+
+    if (state != last_state) {
+      lcd_clear();
+      last_state = state;
     }
+
+    switch(state) {
+      case DISP_MAIN:
+        meter_display();
+        break;
+      case DISP_OFF:
+        lcd_goto(0, 0);
+        lcd_puts("Calibration: offsets");
+        lcd_goto(0, 1);
+        lcd_puts("Apply 0V and 0A");
+        lcd_goto(0, 3);
+        lcd_puts("2 - OK");
+
+        if (!gpio_read_pin(GE_PBTN2)) {
+          calibrate_offset();
+          lcd_goto(0, 2);
+          lcd_puts("Stored");
+        }
+        break;
+      case DISP_CALV:
+        lcd_goto(0, 0);
+        lcd_puts("Calibration: voltage");
+        lcd_goto(0, 1);
+        lcd_puts("Apply " STR(CAL_VOLTS) "V");
+        lcd_goto(0, 3);
+        lcd_puts("2 - OK");
+
+        if (!gpio_read_pin(GE_PBTN2)) {
+          calibrate_voltage();
+          lcd_goto(0, 2);
+          lcd_puts("Stored");
+        }
+        break;
+      case DISP_CALI:
+        lcd_goto(0, 0);
+        lcd_puts("Calibration: current");
+        lcd_goto(0, 1);
+        lcd_puts("Apply " STR(CAL_CURR) "A");
+        lcd_goto(0, 3);
+        lcd_puts("2 - OK");
+
+        if (!gpio_read_pin(GE_PBTN2)) {
+          calibrate_current();
+          lcd_goto(0, 2);
+          lcd_puts("Stored");
+        }
+        break;
+      default:
+        state = DISP_MAIN;
+        break;
+    }
+
+    delay_ms(50);
   }
 }
 
