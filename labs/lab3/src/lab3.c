@@ -125,7 +125,7 @@ void meter_display() {
   //float measured_current = amps_per_div*(current_reading-zero_amps);
   
   float measured_power = measured_current * measured_voltage;
-  energy += measured_power*(.333333333333);
+  energy += measured_power*(.333333333333); 
 
   //produce unity gain
   prev_volt = measured_voltage;
