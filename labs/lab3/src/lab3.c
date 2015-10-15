@@ -19,6 +19,16 @@ float amps_per_div;
 float prev_volt;
 float prev_curr;
 
+//values that we need for maxppt
+float init_df = 0.3;
+float old_df;
+float df = 0.0;
+float ddf = 0.05;
+float switch_period = .00001; //100 kHz switch freq for adc
+float measured_power;
+float samp_power;
+float old_power2;
+
 //enemies, got alotta enemies
 //got alotta people tryna drain me of this energy
 float energy;
@@ -112,24 +122,24 @@ void meter_init() {
  * your own
  */
 void meter_display() {
-  gpio_write_pin(PC12, GPIO_HIGH);
+  //gpio_write_pin(PC12, GPIO_HIGH);
   /*float measured_voltage = volts_per_div * (voltage_reading-zero_volts);
   float measured_current = amps_per_div * (current_reading-zero_amps);
   float measured_power = measured_current * measured_voltage;*/
 
   //filtering (might need to do something with the normalization if it doesnt work)
-  float measured_voltage = (prev_volt*.75 + (.25*volts_per_div*(voltage_reading-zero_volts)));
-  float measured_current = (prev_curr*.75 + (.25*amps_per_div*(current_reading-zero_amps)));
+  //float measured_voltage = (prev_volt*.75 + (.25*volts_per_div*(voltage_reading-zero_volts)));
+  //float measured_current = (prev_curr*.75 + (.25*amps_per_div*(current_reading-zero_amps)));
   
   //float measured_voltage = volts_per_div*(voltage_reading-zero_volts);
   //float measured_current = amps_per_div*(current_reading-zero_amps);
   
-  float measured_power = measured_current * measured_voltage;
-  energy += measured_power*(.333333333333); 
+  //measured_power = measured_current * measured_voltage;
+  //energy += measured_power*(.333333333333); 
 
   //produce unity gain
-  prev_volt = measured_voltage;
-  prev_curr = measured_current;
+  //prev_volt = measured_voltage;
+  //prev_curr = measured_current;
   
 
   //throw on the LCD
@@ -166,6 +176,15 @@ void meter_display() {
 void my_adc_callback(uint32_t data) {
   voltage_reading = (uint16_t) (data & 0x0000ffff); //some number between 0 and 4095
   current_reading = (uint16_t) (data >> 16); //some # 0-4095
+  float measured_voltage = (prev_volt*.75 + (.25*volts_per_div*(voltage_reading-zero_volts)));
+  float measured_current = (prev_curr*.75 + (.25*amps_per_div*(current_reading-zero_amps)));
+
+  measured_power = measured_current * measured_voltage;
+  energy += measured_power*(.0002); 
+
+  //produce unity gain
+  prev_volt = measured_voltage;
+  prev_curr = measured_current;
 }
 
 /**
@@ -187,4 +206,18 @@ void my_adc_callback(uint32_t data) {
   // Calculate new duty cycle
 
   // set PWM for driver pins
- }
+
+  //run_until_stable, so we can say after like 8 milliseconds, taken care of by timer
+  samp_power = measured_power;
+
+  if (samp_power > old_power2) {
+    old_power2 = samp_power;
+    old_df = df;
+  } else {
+    df = old_df;
+    ddf = -ddf;
+  }
+
+  df = df + ddf;
+  pwm_set(1, df);
+}

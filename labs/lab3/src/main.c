@@ -45,14 +45,15 @@ void change_state() {
 void setup_buttons() {
   gpio_setup_pin(GE_PBTN1, GPIO_INPUT, false, false);
   gpio_setup_pin(GE_PBTN2, GPIO_INPUT, false, false);
+
+  //using this for the gate driving (hi side)
   //gpio_setup_pin(PC12, GPIO_OUTPUT, false, false);
 
 
-  // we need to set up two pins to run the gate drivers for M1 and M2
 }
 
 void start_conversion() {
-  adc_set_fs(FREQ);  //adjust this 
+  adc_set_fs(FREQ);  //adjust this //currently at 5000 hz, have another timer whos callback is max ppt
   adc_enable_channel(3);
 
   adc_callback(3, &my_adc_callback);
@@ -76,12 +77,25 @@ int main() {
 
   timer_start(state_tim);
 
+  //PWM CHANNEL PA8 on the board
+  pwm_init();
+  pwm_enable_chan(1);
+  pwm_freq(100000);
+  pwm_set(1, df);
+
   //initialize power meter
   meter_init();
 
   //Enable ADCs to do work
   //Might have to move this function
   start_conversion();
+
+  //timer for the max ppt tracking
+  timer_init();
+  timer_id_t maxppt_tim = timer_register(8, &max_ptt, GE_PERIODIC);
+  timer_start();
+
+
 
 
   //handle display
