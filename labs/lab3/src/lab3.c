@@ -22,14 +22,18 @@ float prev_curr;
 //values that we need for maxppt
 float init_df = 0.3;
 float old_df;
-float df = 0.0;
+float df = 0.3;
 float ddf = 0.05;
+float pre_random_df;
 float switch_period = .00001; //100 kHz switch freq for adc
 float measured_power;
+float measured_voltage;
+float measured_current;
 float samp_power;
 float old_power2;
 int randomizer = 0; //used so that we
 int indexer = 0;
+int osc_count = 0;
 float pre_duty[8] = {0.65, 0.1, 0.3, 0.45, 0.25, 0.5, 0.15, 0.35};
 
 //enemies, got alotta enemies
@@ -179,8 +183,8 @@ void meter_display() {
 void my_adc_callback(uint32_t data) {
   voltage_reading = (uint16_t) (data & 0x0000ffff); //some number between 0 and 4095
   current_reading = (uint16_t) (data >> 16); //some # 0-4095
-  float measured_voltage = (prev_volt*.75 + (.25*volts_per_div*(voltage_reading-zero_volts)));
-  float measured_current = (prev_curr*.75 + (.25*amps_per_div*(current_reading-zero_amps)));
+  measured_voltage = (prev_volt*.75 + (.25*volts_per_div*(voltage_reading-zero_volts)));
+  measured_current = (prev_curr*.75 + (.25*amps_per_div*(current_reading-zero_amps)));
 
   measured_power = measured_current * measured_voltage;
   energy += measured_power*(.0002); 
@@ -211,7 +215,11 @@ void my_adc_callback(uint32_t data) {
   // set PWM for driver pins
 
   //run_until_stable, so we can say after like 8 milliseconds, taken care of by timer
+
+  //need to make step size bigger if on a run, and cut step size in half if oscillating
+
   samp_power = measured_power;
+
 
   if (samp_power > old_power2) {
     old_power2 = samp_power;
@@ -219,10 +227,34 @@ void my_adc_callback(uint32_t data) {
   } else {
     df = old_df;
     ddf = -ddf;
+    osc_count = osc_count + 1;
   }
 
   df = df + ddf;
+
+/*
+  if (osc_count == 50) {
+    osc_power = samp_power;
+
+    pre_random_df = df;
+    df = pre_duty[indexer];
+    indexer = indexer+1;
+
+    if (indexer > 8) {
+      indexer = 0;
+    }
+    osc_count = 0;
+  }
+
+*/
+
+
+
+
+
+/*
   if (randomizer == 1250) {
+    pre_random_df = df;
 
     //every 2 seconds the duty factor jumps to a random point to make sure not in local max
     df = pre_duty[indexer];
@@ -237,6 +269,7 @@ void my_adc_callback(uint32_t data) {
   if (randomizer > 1250) {
     randomizer = 0;
   }
+` */
 
   pwm_set(1, df);                  
 }

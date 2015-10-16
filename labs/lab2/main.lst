@@ -20,7 +20,7 @@ SYMBOL TABLE:
 00000000 l    d  .comment	00000000 .comment
 00000000 l    d  .debug_frame	00000000 .debug_frame
 00000000 l    d  .debug_loc	00000000 .debug_loc
-00000000 l    df *ABS*	00000000 /tmp/cchWT47j.o
+00000000 l    df *ABS*	00000000 /tmp/ccuy52IM.o
 f1e0f85f l       *ABS*	00000000 BootRAM
 08006b68 l       .text	00000000 LoopCopyDataInit
 08006b60 l       .text	00000000 CopyDataInit

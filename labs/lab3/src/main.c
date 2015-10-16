@@ -81,7 +81,7 @@ int main() {
   pwm_init();
   pwm_enable_chan(1);
   pwm_freq(100000);
-  pwm_set(1, df);
+  pwm_set(1, 0.3); // initial value for duty factor
 
   //initialize power meter
   meter_init();
@@ -91,9 +91,9 @@ int main() {
   start_conversion();
 
   //timer for the max ppt tracking
-  timer_init();
-  timer_id_t maxppt_tim = timer_register(8, &max_ptt, GE_PERIODIC);
-  timer_start();
+//  timer_init();
+  timer_id_t maxppt_tim = timer_register(8, &max_ppt, GE_PERIODIC);
+  timer_start(maxppt_tim);
 
 
 

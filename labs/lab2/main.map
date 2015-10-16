@@ -295,9 +295,9 @@ Discarded input sections
                 0x00000000       0x10 objs/system_stm32f30x.o
  .data.SystemCoreClock
                 0x00000000        0x4 objs/system_stm32f30x.o
- .text          0x00000000       0x14 /tmp/cchWT47j.o
- .data          0x00000000        0x0 /tmp/cchWT47j.o
- .bss           0x00000000        0x0 /tmp/cchWT47j.o
+ .text          0x00000000       0x14 /tmp/ccuy52IM.o
+ .data          0x00000000        0x0 /tmp/ccuy52IM.o
+ .bss           0x00000000        0x0 /tmp/ccuy52IM.o
  .bss           0x00000000        0x0 ../../libraries/libge.a(ge_adc.o)
  .data          0x00000000        0x0 ../../libraries/libge.a(ge_gpio.o)
  .bss           0x00000000        0x0 ../../libraries/libge.a(ge_gpio.o)
@@ -544,7 +544,7 @@ LOAD objs/main.o
 LOAD objs/newlib_stubs.o
 LOAD objs/stm32f3_discovery.o
 LOAD objs/system_stm32f30x.o
-LOAD /tmp/cchWT47j.o
+LOAD /tmp/ccuy52IM.o
 LOAD ../../libraries/libge.a
 LOAD Libraries/libstm32f3.a
 START GROUP
@@ -562,7 +562,7 @@ LOAD /home/green-electronics/ee155_tools/gcc-arm-none-eabi-4_9-2015q2/bin/../lib
 .isr_vector     0x08000000      0x188
                 0x08000000                . = ALIGN (0x4)
  *(.isr_vector)
- .isr_vector    0x08000000      0x188 /tmp/cchWT47j.o
+ .isr_vector    0x08000000      0x188 /tmp/ccuy52IM.o
                 0x08000000                g_pfnVectors
                 0x08000188                . = ALIGN (0x4)
 
@@ -1155,10 +1155,10 @@ LOAD /home/green-electronics/ee155_tools/gcc-arm-none-eabi-4_9-2015q2/bin/../lib
                 0x08006a60       0xfc objs/system_stm32f30x.o
                 0x08006a60                SystemInit
  .text.Reset_Handler
-                0x08006b5c       0x48 /tmp/cchWT47j.o
+                0x08006b5c       0x48 /tmp/ccuy52IM.o
                 0x08006b5c                Reset_Handler
  .text.Default_Handler
-                0x08006ba4        0x2 /tmp/cchWT47j.o
+                0x08006ba4        0x2 /tmp/ccuy52IM.o
                 0x08006ba4                RTC_Alarm_IRQHandler
                 0x08006ba4                TIM8_TRG_COM_IRQHandler
                 0x08006ba4                TIM8_CC_IRQHandler
@@ -1638,7 +1638,7 @@ LOAD /home/green-electronics/ee155_tools/gcc-arm-none-eabi-4_9-2015q2/bin/../lib
  .ARM.attributes
                 0x00000173       0x39 objs/system_stm32f30x.o
  .ARM.attributes
-                0x000001ac       0x21 /tmp/cchWT47j.o
+                0x000001ac       0x21 /tmp/ccuy52IM.o
  .ARM.attributes
                 0x000001cd       0x39 ../../libraries/libge.a(ge_adc.o)
  .ARM.attributes
@@ -1776,7 +1776,7 @@ OUTPUT(main.elf elf32-littlearm)
  .debug_info    0x000017e8      0x9dc objs/main.o
  .debug_info    0x000021c4      0x826 objs/newlib_stubs.o
  .debug_info    0x000029ea      0x4bc objs/system_stm32f30x.o
- .debug_info    0x00002ea6       0x73 /tmp/cchWT47j.o
+ .debug_info    0x00002ea6       0x73 /tmp/ccuy52IM.o
  .debug_info    0x00002f19     0x1542 ../../libraries/libge.a(ge_adc.o)
  .debug_info    0x0000445b      0x710 ../../libraries/libge.a(ge_gpio.o)
  .debug_info    0x00004b6b      0x1db ../../libraries/libge.a(ge_lcd.o)
@@ -1812,7 +1812,7 @@ OUTPUT(main.elf elf32-littlearm)
  .debug_abbrev  0x00000535      0x1da objs/main.o
  .debug_abbrev  0x0000070f      0x233 objs/newlib_stubs.o
  .debug_abbrev  0x00000942      0x145 objs/system_stm32f30x.o
- .debug_abbrev  0x00000a87       0x12 /tmp/cchWT47j.o
+ .debug_abbrev  0x00000a87       0x12 /tmp/ccuy52IM.o
  .debug_abbrev  0x00000a99      0x2bb ../../libraries/libge.a(ge_adc.o)
  .debug_abbrev  0x00000d54      0x1ee ../../libraries/libge.a(ge_gpio.o)
  .debug_abbrev  0x00000f42       0xd4 ../../libraries/libge.a(ge_lcd.o)
@@ -1855,7 +1855,7 @@ OUTPUT(main.elf elf32-littlearm)
  .debug_aranges
                 0x000001b0       0x28 objs/system_stm32f30x.o
  .debug_aranges
-                0x000001d8       0x28 /tmp/cchWT47j.o
+                0x000001d8       0x28 /tmp/ccuy52IM.o
  .debug_aranges
                 0x00000200       0x20 ../../libraries/libge.a(ge_adc.o)
  .debug_aranges
@@ -1918,7 +1918,7 @@ OUTPUT(main.elf elf32-littlearm)
  .debug_ranges  0x000000a8       0x28 objs/main.o
  .debug_ranges  0x000000d0       0x90 objs/newlib_stubs.o
  .debug_ranges  0x00000160       0x30 objs/system_stm32f30x.o
- .debug_ranges  0x00000190       0x20 /tmp/cchWT47j.o
+ .debug_ranges  0x00000190       0x20 /tmp/ccuy52IM.o
  .debug_ranges  0x000001b0       0x28 ../../libraries/libge.a(ge_adc.o)
  .debug_ranges  0x000001d8       0x38 ../../libraries/libge.a(ge_system.o)
  .debug_ranges  0x00000210       0x68 ../../libraries/libge.a(ge_timer.o)
@@ -1937,7 +1937,7 @@ OUTPUT(main.elf elf32-littlearm)
  .debug_line    0x0000079c      0x22a objs/main.o
  .debug_line    0x000009c6      0x347 objs/newlib_stubs.o
  .debug_line    0x00000d0d      0x1e1 objs/system_stm32f30x.o
- .debug_line    0x00000eee       0x77 /tmp/cchWT47j.o
+ .debug_line    0x00000eee       0x77 /tmp/ccuy52IM.o
  .debug_line    0x00000f65      0x38b ../../libraries/libge.a(ge_adc.o)
  .debug_line    0x000012f0      0x270 ../../libraries/libge.a(ge_gpio.o)
  .debug_line    0x00001560      0x181 ../../libraries/libge.a(ge_lcd.o)
