@@ -232,6 +232,11 @@ void my_adc_callback(uint32_t data) {
     }
     
   }
+  
+  randomizer = randomizer+1;
+  if (randomizer > 1250) {
+    randomizer = 0;
+  }
 
   pwm_set(1, df);                  
 }
