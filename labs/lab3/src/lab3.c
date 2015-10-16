@@ -28,6 +28,9 @@ float switch_period = .00001; //100 kHz switch freq for adc
 float measured_power;
 float samp_power;
 float old_power2;
+int randomizer = 0; //used so that we
+int indexer = 0;
+float pre_duty[8] = {0.65, 0.1, 0.3, 0.45, 0.25, 0.5, 0.15, 0.35};
 
 //enemies, got alotta enemies
 //got alotta people tryna drain me of this energy
@@ -219,5 +222,16 @@ void my_adc_callback(uint32_t data) {
   }
 
   df = df + ddf;
-  pwm_set(1, df);
+  if (randomizer == 1250) {
+
+    //every 2 seconds the duty factor jumps to a random point to make sure not in local max
+    df = pre_duty[indexer];
+    indexer = indexer+1;
+    if (indexer > 8) {
+      indexer = 0;
+    }
+    
+  }
+
+  pwm_set(1, df);                  
 }
