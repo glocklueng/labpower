@@ -45,15 +45,11 @@ void change_state() {
 void setup_buttons() {
   gpio_setup_pin(GE_PBTN1, GPIO_INPUT, false, false);
   gpio_setup_pin(GE_PBTN2, GPIO_INPUT, false, false);
-
-  //using this for the gate driving (hi side)
-  //gpio_setup_pin(PC12, GPIO_OUTPUT, false, false);
-
-
+  gpio_setup_pin(PC12, GPIO_OUTPUT, false, false);
 }
 
 void start_conversion() {
-  adc_set_fs(FREQ);  //adjust this //currently at 5000 hz, have another timer whos callback is max ppt
+  adc_set_fs(FREQ);  //adjust this 
   adc_enable_channel(3);
 
   adc_callback(3, &my_adc_callback);
@@ -71,24 +67,17 @@ int main() {
 
   setup_buttons();
 
-  timer_init();
-
-  timer_id_t state_tim = timer_register(50, &change_state, GE_PERIODIC);
-
-  timer_start(state_tim);
-
-  //PWM CHANNEL PA8 on the board
+ //PWM CHANNEL PA8 on the board
   pwm_init();
   pwm_enable_chan(1);
   pwm_freq(100000);
   pwm_set(1, 0.3); // initial value for duty factor
 
-  //initialize power meter
-  meter_init();
+  timer_init();
 
-  //Enable ADCs to do work
-  //Might have to move this function
-  start_conversion();
+  timer_id_t state_tim = timer_register(50, &change_state, GE_PERIODIC);
+
+  timer_start(state_tim);
 
   //timer for the max ppt tracking
 //  timer_init();
@@ -96,6 +85,14 @@ int main() {
   timer_start(maxppt_tim);
 
 
+
+
+  //initialize power meter
+  meter_init();
+
+  //Enable ADCs to do work
+  //Might have to move this function
+  start_conversion();
 
 
   //handle display

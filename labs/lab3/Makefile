@@ -13,7 +13,7 @@ EE155_LIB=../../libraries
 STD_PERIPH_LIB=Libraries
 
 # Location of the linker scripts
-SCRIPT_INC=Device/ldscripts
+LDSCRIPT_INC=$(EE155_LIB)/../misc/ldscripts
 
 # location of OpenOCD Board .cfg files (only used with 'make program')
 OPENOCD_BOARD_DIR=board

@@ -1,6 +1,6 @@
 /**
- * @file  lab3.h
- * @brief Lab 3 starter code.
+ * @file  lab2.h
+ * @brief Lab 2 starter code.
  * 
  * @author Ned Danyliw
  * @date  09.2015
@@ -46,5 +46,4 @@ void calibrate_current();
 //ADC callback function
 void my_adc_callback(uint32_t data);
 
-//Max power point tracking
 void max_ppt();
