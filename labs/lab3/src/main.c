@@ -81,7 +81,7 @@ int main() {
 
   //timer for the max ppt tracking
 //  timer_init();
-  timer_id_t maxppt_tim = timer_register(8, &max_ppt, GE_PERIODIC);
+  timer_id_t maxppt_tim = timer_register(500, &max_ppt, GE_PERIODIC); //8 ms original
   timer_start(maxppt_tim);
 
 

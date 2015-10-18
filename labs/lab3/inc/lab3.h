@@ -9,7 +9,7 @@
 #include "ge_libs.h"
 
 //Calibration Voltage in volts (Adjust to your values)
-#define CAL_VOLTS 10.0
+#define CAL_VOLTS 5.0
 #define CAL_CURR  3.0
 
 //Default values for ranges of voltage and current readings
@@ -20,10 +20,10 @@
 #define PRD 0.0002
 
 //Addresses for data - eeprom
-#define ZERO_V_ADDR 2
-#define ZERO_I_ADDR 6
-#define CAL_VOLT_ADDR 10
-#define CAL_CURR_ADDR 14
+#define ZERO_V_ADDR 20
+#define ZERO_I_ADDR 24
+#define CAL_VOLT_ADDR 28
+#define CAL_CURR_ADDR 32
 
 #define alpha .75
 #define beta 1.0

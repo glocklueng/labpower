@@ -16,18 +16,18 @@
 // calibration parameters
 float volts_per_div;
 float amps_per_div;
-float prev_volt;
-float prev_curr;
+float running_volt=0.0;
+float running_curr=0.0;
 
 //enemies, got alotta enemies
 //got alotta people tryna drain me of this energy
 float energy, measured_voltage, measured_current, measured_power;
-float samp_power;
-float old_samp_power;
+float pot_max=0;
+float running_max_power=0;
 
-float old_df;
-float df = 0.3;
-float ddf = 0.05;
+float best_df = 0;
+float df = 0.5;
+float ddf = 0.03;
 float pre_random_df;
 float switch_period = .00001; //100 kHz switch freq for adc
 int randomizer = 0; //used so that we
@@ -104,8 +104,8 @@ void meter_init() {
 
   energy = 0;
 
-  prev_volt = 0.0;
-  prev_curr = 0.0;
+  running_volt = 0.0;
+  running_curr = 0.0;
   
   eeprom_read(ZERO_V_ADDR, &zero_volts);
   eeprom_read(ZERO_I_ADDR, &zero_amps);
@@ -135,7 +135,8 @@ void meter_display() {
   sprintf(v_string, "Voltage: %.3f V ", measured_voltage);
   sprintf(c_string, "Current: %.3f A ", measured_current);
   sprintf(p_string, "Power: %.3f W ", measured_power);
-  sprintf(e_string, "Energy: %.3f J ", energy);
+  sprintf(e_string, "DF: %.2f  ", (1.0-df));
+  //sprintf(e_string, "Energy: %.3f J ", energy);
 
   lcd_goto(0,0);
   lcd_puts(v_string);
@@ -148,7 +149,6 @@ void meter_display() {
 
   lcd_goto(0,3);
   lcd_puts(e_string);
-  gpio_write_pin(PC12, GPIO_LOW);
 }
 
 
@@ -160,35 +160,38 @@ void my_adc_callback(uint32_t data) {
   voltage_reading = (uint16_t) (data & 0x0000ffff); //some number between 0 and 4095
   current_reading = (uint16_t) (data >> 16); //some # 0-4095
 
-  measured_voltage = (prev_volt*.75 + (.25*volts_per_div*(voltage_reading-zero_volts)));
-  measured_current = (prev_curr*.75 + (.25*amps_per_div*(current_reading-zero_amps)));
+   //measured_voltage = (running_volt*.75 + (.25*volts_per_div*(voltage_reading-zero_volts)));
+   //measured_current = (running_curr*.75 + (.25*amps_per_div*(current_reading-zero_amps)));
   
-  //float measured_voltage = volts_per_div*(voltage_reading-zero_volts);
-  //float measured_current = amps_per_div*(current_reading-zero_amps);
+  float temp_voltage = volts_per_div*(voltage_reading-zero_volts);
+  float temp_current = amps_per_div*(current_reading-zero_amps);
+
+  //measured_voltage = running_volt*(399.0/400) + (1.0/400)*temp_voltage;
+  //measured_current = running_curr*(399.0/400) + (1.0/400)*temp_current;
   
+  measured_voltage = temp_voltage;
+  measured_current = temp_current;
+
   measured_power = measured_current * measured_voltage;
   energy += measured_power*(PRD);
 
   //produce unity gain
-  prev_volt = measured_voltage;
-  prev_curr = measured_current;
+  running_volt = measured_voltage;
+  running_curr = measured_current;
 
 }
 
 void max_ppt() {
-  samp_power = measured_power;
+  pot_max = measured_power;
 
-  if (samp_power > old_samp_power) {
-    old_samp_power = samp_power;
-    old_df = df;
+  if (pot_max >= running_max_power) {
+    running_max_power = pot_max;
+    best_df = df;
+    df += ddf;
   } else {
-    df = old_df;
     ddf = -ddf;
-    osc_count = osc_count + 1;
+    df += ddf;
+    running_max_power = 0;
   }
-
-  df = df + ddf;
-
-  pwm_set(1,df);
-
+  pwm_set(1,(1.0-df));
 }
