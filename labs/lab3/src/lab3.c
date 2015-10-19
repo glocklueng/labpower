@@ -187,10 +187,14 @@ void max_ppt() {
   if (pot_max >= running_max_power) {
     running_max_power = pot_max;
     best_df = df;
-    df += ddf;
+    if((df+ddf) >=1.0) df = 1.0;
+    else if((df+ddf) <= 0.0) df=0.0;
+    else df += ddf;
   } else {
     ddf = -ddf;
-    df += ddf;
+    if((df+ddf) >=1.0) df = 1.0;
+    else if((df+ddf) <= 0.0) df=0.0;
+    else df = best_df;
     running_max_power = 0;
   }
   pwm_set(1,(1.0-df));
