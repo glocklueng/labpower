@@ -26,14 +26,8 @@ float pot_max=0;
 float running_max_power=0;
 
 float best_df = 0;
-float df = 0.5;
+float df = 0.3;
 float ddf = 0.03;
-float pre_random_df;
-float switch_period = .00001; //100 kHz switch freq for adc
-int randomizer = 0; //used so that we
-int indexer = 0;
-int osc_count = 0;
-float pre_duty[8] = {0.65, 0.1, 0.3, 0.45, 0.25, 0.5, 0.15, 0.35};
 
 uint16_t zero_volts;
 uint16_t zero_amps;
@@ -166,11 +160,11 @@ void my_adc_callback(uint32_t data) {
   float temp_voltage = volts_per_div*(voltage_reading-zero_volts);
   float temp_current = amps_per_div*(current_reading-zero_amps);
 
-  //measured_voltage = running_volt*(399.0/400) + (1.0/400)*temp_voltage;
-  //measured_current = running_curr*(399.0/400) + (1.0/400)*temp_current;
+  measured_voltage = running_volt*(4999.0/5000.0) + (1.0/5000.0)*temp_voltage;
+  measured_current = running_curr*(4999.0/5000.0) + (1.0/5000.0)*temp_current;
   
-  measured_voltage = temp_voltage;
-  measured_current = temp_current;
+  //measured_voltage = temp_voltage;
+  //measured_current = temp_current;
 
   measured_power = measured_current * measured_voltage;
   energy += measured_power*(PRD);
@@ -195,7 +189,7 @@ void max_ppt() {
     if((df+ddf) >=1.0) df = 1.0;
     else if((df+ddf) <= 0.0) df=0.0;
     else df = best_df;
-    running_max_power = 0;
+    //running_max_power = 0;
   }
   pwm_set(1,(1.0-df));
 }

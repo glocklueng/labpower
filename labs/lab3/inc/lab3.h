@@ -9,14 +9,14 @@
 #include "ge_libs.h"
 
 //Calibration Voltage in volts (Adjust to your values)
-#define CAL_VOLTS 5.0
+#define CAL_VOLTS 10.0
 #define CAL_CURR  3.0
 
 //Default values for ranges of voltage and current readings
-#define DEFAULT_V_RANGE 120.0
+#define DEFAULT_V_RANGE 400.0
 #define DEFAULT_I_RANGE 20.0
 #define NUM_DIV 4096.0
-#define FREQ 5000.0
+#define FREQ 5000
 #define PRD 0.0002
 
 //Addresses for data - eeprom
@@ -25,8 +25,6 @@
 #define CAL_VOLT_ADDR 28
 #define CAL_CURR_ADDR 32
 
-#define alpha .75
-#define beta 1.0
 
 //Initialize the energy meter
 void meter_init();
