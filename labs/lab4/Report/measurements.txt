@@ -1,0 +1,24 @@
+Measure:
+
+Series resistance (ohms) 2.6
+speed constant (rpm/V) 350
+torque constant (Nm/A) .0271
+
+Calculate:
+Maximum torque at 24V .25 Nm
+Maximum power at 24V 55.38 W
+
+How well are the datasheet specs met?
+
+What is the maximum current the motor can draw from the power supply?
+
+To safely bring a motor to top speed, as fast as possible, what would you do?
+
+Find the load inertia by applying a large voltage step (0-20V) and capture the current waveform from stopped to steady state. (don't hit power supply max)
+
+Measure inductance at pwm frequency 
+
+Measure inductance at several slower frequencies 
+
+Why can't you measure resistance this way?
+
