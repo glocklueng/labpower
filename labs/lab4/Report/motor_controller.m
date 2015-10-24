@@ -6,5 +6,5 @@ kp = .05;
 
 PWM = old_PWM+kp*err;
 
-end function
+end
 
