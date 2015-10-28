@@ -1,4 +1,4 @@
-# Makefile for compiling projects for the STM32F3 Discovery board with
+# Makefile for compiling projects for the STM31F3 Discovery board with
 # the EE155 libraries.
 
 # Ned Danyliw -- 09.2015

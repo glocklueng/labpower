@@ -30,6 +30,10 @@ int main(void)
   //Initialize the USER button as an input
   gpio_setup_pin(DISC_PBTN, GPIO_INPUT, false, false);
 
+  //Initialize PWM pin
+
+  //Initialize button inputs
+
 
   //initialize ic
   ic_init();
