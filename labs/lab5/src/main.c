@@ -9,7 +9,7 @@
  * @date  10.2015
  */
 #include "ge_libs.h"
-
+#include "motor_controller.h"
 
 /**
   * @brief  Main program.
