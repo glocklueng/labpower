@@ -14,7 +14,10 @@
  float K_e = .0271;
  int V_o = 24;
  float PWM_LIMIT = 255;
- float max_speed = (PWM_LIMIT*V_o - max_current*R_s)/K_e;
+
+
+ //THIS VALUE IS WRONG
+ float max_speed = (V_o - max_current*R_s)/K_e;
 
  //PID Constants
  float ku = 1;
@@ -24,15 +27,17 @@
  float kd = kp*pu/8;
  float ki = 2*kp/pu;
 
+ float saved_err_der = 0.0;
+ float saved_err_int = 0.0;
 
 
- float motor_controller(float speed, float setpoint, float old_err, float old_err_int){
+ float motor_controller(float speed, float setpoint) {
 
  	if(setpoint > max_speed) setpoint = max_speed;
 
  	float err = setpoint - speed;
- 	float err_der = err-old_err;
- 	float err_int = old_err_int+err;
+ 	float err_der = err-saved_err_der;
+ 	float err_int = saved_err_int+err;
 
  	float PWM_1 = kp*err+kd*err_der+ki*err_der;
 
@@ -52,5 +57,17 @@
  		float PWM = PWM_1;
  	}
 
+ 	saved_err_der = err_der;
+ 	saved_err_int = err_int;
+
  	return PWM;
+}
+
+
+float change_err_der(float new_err_der) {
+	saved_err_der = new_err_der;
+}
+
+float change_err_int(float new_err_int) {
+	saved_err_int = new_err_int;
 }
