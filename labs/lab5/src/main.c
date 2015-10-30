@@ -11,24 +11,33 @@
 #include "ge_libs.h"
 #include "motor_controller.h"
 
-#define MAX_SETPOINT 100.0 //CHANGE LATER
+#define MAX_SETPOINT 150.0 //CHANGE LATER
 
 
 // UI Variables
- float user_setpoint = 0.0;
-float step_setpoint = 25.0; //another button to be used to jump the setpoint immediately to this value
-float dset = 1.0; // step size for the setpoint
-float current_speed = 0;
+float setpoint;
+float step_setpoint; //another button to be used to jump the setpoint immediately to this value
+float dset; // step size for the setpoint
+float current_speed;
 
-float old_err = 0.0
-float old_err_int = 0.0
+float old_err;
+float old_err_int;
+
+
+
+
+// void print_to_screen() {
+
+// }
+
+
 
 /**
   * @brief  Main program.
   * @param  None 
   * @retval None
   */
-  int main(void) {  
+int main(void) {  
   //Initialize library
     ge_init();
 
@@ -39,16 +48,20 @@ float old_err_int = 0.0
     lcd_init();
 
   //Initialize the USER button as an input
-    gpio_setup_pin(DISC_PBTN, GPIO_INPUT, false, false);
+  gpio_setup_pin(DISC_PBTN, GPIO_INPUT, false, false);
   gpio_setup_pin(GE_PBTN1, GPIO_INPUT, false, false); // raise the setpoint button
   gpio_setup_pin(GE_PBTN2, GPIO_INPUT, false, false); // lower the setpoint button
   gpio_setup_pin(GE_PBTN3, GPIO_INPUT, false, false); // go to max
   gpio_setup_pin(GE_PBTN4, GPIO_INPUT, false, false); // down to 0 
 
   //Initialize PWM pin
+  pwm_init();
+  pwm_enable_chan(1);
+  pwm_freq(100000);
 
-  //Initialize button inputs
-
+  // timer_init();
+  // timer_id_t print_tim = timer_register(50, &print_to_screen, GE_PERIODIC);
+  // timer_start(print_tim);
 
   //initialize ic
   ic_init();
@@ -56,8 +69,16 @@ float old_err_int = 0.0
 
   // enable pin PD12 as an input capture with a minimum frequency
   // of 1 Hz
-  ic_enable_pin(PD12, 1.0);
+  ic_enable_pin(PD14, 1.0);
 
+
+  setpoint = 10.0;
+   step_setpoint = 25.0; //another button to be used to jump the setpoint immediately to this value
+   dset = 5.0; // step size for the setpoint
+   current_speed = 0.0;
+
+   old_err = 0.0;
+   old_err_int = 0.0;
 
   /* Infinite loop */
   /**
@@ -65,24 +86,48 @@ float old_err_int = 0.0
    * depressed, it will switch to pulsing the buttons with
    * PWM.
    */
-   char speed_display[20];
-   char setpoint_display[20];
-   char update[20];
+   
+    char speed_display[20];
+    char setpoint_display[20];
+    char update[20];
    while (1) {
 
     //clear update
     sprintf(update,"                    ");
-    current_speed = .5*ic_read_freq(PD12);
 
-    sprintf(speed_display, "Current speed: %.3f rad/s", current_speed);
-    sprintf(setpoint_display, "Setpoint is at: %.3f rad/s", user_setpoint);
+    float sum = 0.0;
+    int counter = 0;
+    for (int i = 0; i<10; i++){
+      
+      if(counter>20) break;
+
+      float sample = .5*ic_read_freq(PD14);
+      float curr_avg = sum/ ((float)i);
+
+      if(sample < .8*curr_avg) {
+        i--;
+      } else if (sample > 1.2*curr_avg) {
+        i--;
+      } else {
+        sum += sample;
+      }
+
+      counter++;
+      delay_ms(2);
+    }
+
+
+    current_speed = sum/10.0;
+
+    sprintf(speed_display, "w: %.3f rad/s   ", current_speed);
+    sprintf(setpoint_display, "SP: %.3f rad/s   ", setpoint);
 
     if(!gpio_read_pin(GE_PBTN1)) {
       setpoint += dset;
 
       if(setpoint > MAX_SETPOINT) {
         setpoint = MAX_SETPOINT;
-        sprintf(update, "Setpoint at maximum");
+        sprintf(update, "SP at max");
       } else {
         sprintf(update, "Upped SP by 1.0");
         change_err_der(0.0);
@@ -95,7 +140,7 @@ float old_err_int = 0.0
       setpoint -= dset;
       if(setpoint < 0.0) {
         setpoint = 0.0;
-        sprintf(update, "Setpoint at minimum");
+        sprintf(update, "Setpoint at min");
       }
       else {
         sprintf(update, "Downed SP by 1.0");
@@ -106,7 +151,7 @@ float old_err_int = 0.0
 
     if(!gpio_read_pin(GE_PBTN3)) {
       setpoint = MAX_SETPOINT;
-      sprintf(update, "Stepped to max value!");
+      sprintf(update, "Stepped to max val");
       change_err_der(0.0);
       change_err_int(0.0);
     }
@@ -117,20 +162,20 @@ float old_err_int = 0.0
       change_err_der(0.0);
       change_err_int(0.0);
     }
-
-    lcd_goto(0,0);
-    lcd_puts(speed_display);
-    lcd_goto(0,1);
-    lcd_puts(setpoint_display);
-    lcd_goto(0,3);
-    lcd_puts(update);
     
+    lcd_goto(0,2);
+    lcd_puts(speed_display);
+    lcd_goto(0,3);
+    lcd_puts(setpoint_display);
+    lcd_goto(0,0);
+    lcd_puts(update);
+
     float PWM_factor = motor_controller(current_speed, setpoint);
-    pwm_set(1,PWM_factor);
+    pwm_set(1,1.0-PWM_factor);
 
 
-    delay_ms(200);
-
+    //delay_ms(200);
+    //delay_ms(50);
   }
 }
 
