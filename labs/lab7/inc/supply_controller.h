@@ -1,0 +1,1 @@
+ float supply_controller(float current_voltage, float setpoint);
