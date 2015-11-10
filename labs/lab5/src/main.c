@@ -5,7 +5,6 @@
  * @details Measures the frequency of the signal on PD12 and prints it
  * to the LCD
  * 
- * @author Ned Danyliw
  * @date  10.2015
  */
 #include "ge_libs.h"
@@ -22,13 +21,6 @@ float current_speed;
 
 float old_err;
 float old_err_int;
-
-
-
-
-// void print_to_screen() {
-
-// }
 
 
 
@@ -72,7 +64,7 @@ int main(void) {
   ic_enable_pin(PD14, 1.0);
 
 
-  setpoint = 10.0;
+  setpoint = 30.0;
    step_setpoint = 25.0; //another button to be used to jump the setpoint immediately to this value
    dset = 5.0; // step size for the setpoint
    current_speed = 0.0;
@@ -80,44 +72,78 @@ int main(void) {
    old_err = 0.0;
    old_err_int = 0.0;
 
-  /* Infinite loop */
-  /**
-   * Flashes the ring of LEDs. If the user button is
-   * depressed, it will switch to pulsing the buttons with
-   * PWM.
-   */
-   
     char speed_display[20];
     char setpoint_display[20];
     char update[20];
+
+
    while (1) {
 
     //clear update
     sprintf(update,"                    ");
 
-    float sum = 0.0;
-    int counter = 0;
-    for (int i = 0; i<10; i++){
+
+    // float good_values[20] = {0.0};
+    // float sum = 0.0;
+    // float avg = 0.0;
+    // int counter = 0;
+    // int i;
+    // for (i=0; i<20; i++) {
+
+    //     if(counter > 50) break;
+
+    //     float sample = .5*ic_read_freq(PD14);
+    //     if(sample > 2.0*MAX_SETPOINT) {
+    //       i--;
+    //     } else {
+    //       good_values[i] = sample;
+    //       sum+=sample;
+    //       delay_ms(1);
+    //     }
+    //     counter++;
+    // }
+
+    // if(i==0) i=1;
+    // avg = sum/((float) i);
+
+    // sum = 0.0;
+    // for(int j=0; j<20; j++) {
+    //   if(good_values[j] > avg*1.15 || good_values[j] < .85*avg) good_values[j] = avg;
+
+    //   sum += good_values[j];
+    // }
+
+
+    // // for (int i = 0; i<10; i++){
       
-      if(counter>20) break;
+    // //   if(counter>100) break;
 
-      float sample = .5*ic_read_freq(PD14);
-      float curr_avg = sum/ ((float)i);
+    // //   float sample = .5*ic_read_freq(PD14);
+    // //   float curr_avg = sum/ ((float)i);
 
-      if(sample < .8*curr_avg) {
-        i--;
-      } else if (sample > 1.2*curr_avg) {
-        i--;
-      } else {
-        sum += sample;
-      }
+    // //   // if(sample < .5*curr_avg) {
+    // //   //   i--;
+    // //   // } else if (sample > 1.5*curr_avg) {
+    // //   //   i--;
+    // //   // } else {
+    // //   //   sum += sample;
+    // //   // }
 
-      counter++;
-      delay_ms(2);
-    }
+    // //   if(sample > 2.0*MAX_SETPOINT) {
+    // //     i--;
+    // //   } else {
+    // //     sum += sample;
+    // //   }
+    // //   counter++;
+    // //   delay_ms(5);
+
+    // // }
 
 
-    current_speed = sum/10.0;
+    // current_speed = sum/20.0;
+
+  current_speed = 3.14*ic_read_freq(PD14);
+
 
     sprintf(speed_display, "w: %.3f rad/s   ", current_speed);
     sprintf(setpoint_display, "SP: %.3f rad/s   ", setpoint);
@@ -150,10 +176,12 @@ int main(void) {
     }
 
     if(!gpio_read_pin(GE_PBTN3)) {
-      setpoint = MAX_SETPOINT;
-      sprintf(update, "Stepped to max val");
-      change_err_der(0.0);
-      change_err_int(0.0);
+      // setpoint = MAX_SETPOINT;
+      // sprintf(update, "Stepped to max val");
+      // change_err_der(0.0);
+      // change_err_int(0.0);
+      pwm_set(1, .3);
+      delay_ms(20);
     }
 
     if(!gpio_read_pin(GE_PBTN4)) {
@@ -162,20 +190,30 @@ int main(void) {
       change_err_der(0.0);
       change_err_int(0.0);
     }
+
+
+    float PWM_factor = motor_controller(current_speed, setpoint);
+    pwm_set(1,PWM_factor);
+    char df[20];
+    sprintf(df, "      df: %.3f", PWM_factor);
+
     
     lcd_goto(0,2);
     lcd_puts(speed_display);
     lcd_goto(0,3);
     lcd_puts(setpoint_display);
     lcd_goto(0,0);
-    lcd_puts(update);
+     lcd_puts(df);
 
-    float PWM_factor = motor_controller(current_speed, setpoint);
-    pwm_set(1,1.0-PWM_factor);
+    // for (int i=0; i < 1000; i+=5) {
+    //   float duty = ((float)i)/1000.0;
+    //   pwm_set(1, duty);
+    //   delay_ms(250);
+    // }
 
+    //pwm_set(1,.8);
 
-    //delay_ms(200);
-    //delay_ms(50);
+    delay_ms(10);
   }
 }
 
