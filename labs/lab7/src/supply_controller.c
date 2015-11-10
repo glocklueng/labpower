@@ -14,39 +14,44 @@
  #define kd .00001
  #define ki .0001
 
+ #define time_step (1.0/1000)
+
+//globals
+ float old_err = 0;
+ float old_ierr = 0;
+ float old_df = 0;
 
 // setpoint is with reference to the ADC input (with the )
  float supply_controller(float current_voltage, float setpoint, float v_supply){
 
- 	p_err = current_voltage - setpoint;
- 	d_err =  (p_err - old_err)/(update_ratio*dt);
- 	i_err = old_ierr + p_err*update_ratio*dt;
+ 	float p_err = current_voltage - setpoint;
+ 	float d_err =  (p_err - old_err)/time_step;
+ 	float i_err = old_ierr + p_err*time_step;
 
- 	ddf = p_err*kp + d_err*kd +i_err*ki;
+ 	float ddf = p_err*kp + d_err*kd +i_err*ki;
 
- 	ff_df = power_supply_model(v_supply, old_df, setpoint);
+ 	float ff_df = power_supply_model(v_supply, old_df, setpoint);
 
  	df = ff_df + ddf;
 
- 	if(df>1){
- 		df = 1;
- 	}
- 	else if (df<0){
- 		df = 0;
- 	}
+ 	if(df>1) df = 1;
+ 	else if (df<0) df = 0;
  	
+ 	old_err = p_err;
+ 	old_ierr = i_err;
+ 	old_df = df;
 
  	return df;
  }
 
 
- float power_supply_model(float v_supply, float old_df, float setpoint){
+ float power_supply_model(float v_supply, float old, float setpoint){
  	float r_load = 10;
- 	float r_parasitic = 1.6*old_df^2 - 2.79*old_df + 1.95;
+ 	float r_parasitic = 1.6*old^2 - 2.79*old + 1.95; //CARSON DID THIS
  	float r1 = 13300;
  	float r2 = 10000;
 
- 	float r_eff = (1/r_load + 1/(r1+r2))^-1;
+ 	float r_eff = (1/r_load + 1/(r1+r2))^(-1);
 
  	float df = (setpoint*(1 + r_parasitic/r_eff))/v_supply;
  	return df;

@@ -1,4 +1,4 @@
-/**
+/*
  * @file  main.c
  * @brief Power supply controller
  * 
@@ -110,6 +110,7 @@ int main(void) {
 
     float PWM_factor = supply_controller(current_voltage, setpoint);
     pwm_set(1,1.0-PWM_factor);
+    delay_ms(1);
   }
 
 
