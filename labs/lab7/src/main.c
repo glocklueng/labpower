@@ -15,8 +15,8 @@
 #define VAL(x) #x
 #define STR(x) VAL(x)
 
-#define MAX_SETPOINT 10.0
-#define FREQ 5000
+#define SETPOINT 5.0
+#define FREQ 20000
 #define CAL_VOLTS 5.0
 
 //Addresses for data - eeprom
@@ -28,16 +28,10 @@
 uint16_t zero_volts;
 uint16_t cal_volt_reading;
 float actual_div_ratio;
+float PWM_factor;
 
-float setpoint;
-float step_setpoint; //another button to be used to jump the setpoint immediately to this value
-float dset; // step size for the setpoint
 float measured_voltage;
 uint16_t voltage_reading;
-
-float old_err;
-float old_err_int;
-
 
 //Define operating states
 enum DISP_STATES {DISP_MAIN, DISP_OFF, DISP_CALV};
@@ -61,6 +55,8 @@ void change_state() {
 void calibrate_offset() {
   zero_volts = voltage_reading;
   eeprom_write(ZERO_V_ADDR, zero_volts);
+
+  actual_div_ratio = CAL_VOLTS/(cal_volt_reading - zero_volts);  
 }
 
 
@@ -100,9 +96,20 @@ void meter_init() {
  */
 void meter_display() {
   char v_string[20];
+  char adc_string[20];
+  char pwm_fac[20];
+  sprintf(pwm_fac, "       PWM: %.3f", PWM_factor);
+  sprintf(adc_string, " ADC: %d ", voltage_reading);
   sprintf(v_string, "Voltage: %.3f V ", measured_voltage); //hope this is close to 5V
+
+    lcd_goto(0,1);
+  lcd_puts(pwm_fac);
+
   lcd_goto(0,2);
   lcd_puts(v_string);
+
+  lcd_goto(0,3);
+  lcd_puts(adc_string);
 }
 
 /**
@@ -111,7 +118,11 @@ void meter_display() {
  */
 void my_adc_callback(uint32_t data) {
   voltage_reading = (uint16_t) (data & 0x0000ffff); //some number between 0 and 4095
-  measured_voltage = actual_div_ratio*voltage_reading;
+  measured_voltage = actual_div_ratio*(voltage_reading-zero_volts);
+
+  PWM_factor = supply_controller(measured_voltage, SETPOINT);
+  pwm_set(1,PWM_factor);
+  //pwm_set(1, 0.5);
 }
 
 
@@ -142,7 +153,7 @@ int main(void) {
   //Initialize PWM pin
   pwm_init();
   pwm_enable_chan(1);
-  pwm_freq(100000);
+  pwm_freq(100000); //original was 100000
 
   //Initialize ADC
   adc_init();
@@ -155,10 +166,6 @@ int main(void) {
   char voltage_display[20];
   char setpoint_display[20];
   char update[20];
-
-
-  dset = .1;
-  setpoint = 5;
 
   uint8_t last_state = 255;
   while (1) {
@@ -182,7 +189,7 @@ int main(void) {
 
         if (!gpio_read_pin(GE_PBTN2)) {
           calibrate_offset();
-          lcd_goto(0, 2);
+          lcd_goto(0, 3);
           lcd_puts("Stored");
         }
         break;
@@ -196,7 +203,7 @@ int main(void) {
 
         if (!gpio_read_pin(GE_PBTN2)) {
           calibrate_voltage();
-          lcd_goto(0, 2);
+          lcd_goto(0, 3);
           lcd_puts("Stored");
         }
         break;
@@ -205,13 +212,8 @@ int main(void) {
         state = DISP_MAIN;
         break;
     }
-
-    float PWM_factor = supply_controller(measured_voltage, setpoint);
-    pwm_set(1,PWM_factor);
-    //pwm_set(1,.5);
-    delay_ms(1);
+  delay_ms(5);  
   }
-
 
 }
 

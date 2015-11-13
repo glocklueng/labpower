@@ -10,11 +10,11 @@
 
 
  //PID Constants
- #define kp -0.1
+ #define kp -0.01
  #define kd .000001
- #define ki .000000001
+ #define ki .0001
 
- #define time_step (1.0/1000)
+ #define time_step (1.0/20000.0)
 
 //globals
  float old_err = 0;
