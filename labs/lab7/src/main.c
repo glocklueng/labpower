@@ -29,6 +29,7 @@ uint16_t zero_volts;
 uint16_t cal_volt_reading;
 float actual_div_ratio;
 float PWM_factor;
+float prev_volt;
 
 float measured_voltage;
 uint16_t voltage_reading;
@@ -82,7 +83,7 @@ void meter_init() {
   //use defaults initially
   //these bools get set true in the calibrate functions
   eeprom_init();
-  
+  prev_volt = 0.0;
   eeprom_read(ZERO_V_ADDR, &zero_volts);
   eeprom_read(CAL_VOLT_ADDR, &cal_volt_reading);
 
@@ -119,10 +120,14 @@ void meter_display() {
 void my_adc_callback(uint32_t data) {
   voltage_reading = (uint16_t) (data & 0x0000ffff); //some number between 0 and 4095
   measured_voltage = actual_div_ratio*(voltage_reading-zero_volts);
+ // measured_voltage = (prev_volt*.75 + (.25*actual_div_ratio*(voltage_reading-zero_volts)));
 
   PWM_factor = supply_controller(measured_voltage, SETPOINT);
-  pwm_set(1,PWM_factor);
-  //pwm_set(1, 0.5);
+  //pwm_set(1,PWM_factor);
+  pwm_set(1, 0.5);
+
+  prev_volt = measured_voltage;
+
 }
 
 

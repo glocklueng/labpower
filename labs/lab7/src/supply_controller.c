@@ -11,8 +11,8 @@
 
  //PID Constants
  #define kp -0.01
- #define kd .000001
- #define ki .0001
+ #define kd 0.0
+ #define ki 0.0
 
  #define time_step (1.0/20000.0)
 
