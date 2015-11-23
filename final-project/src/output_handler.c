@@ -2007,6 +2007,5 @@ int sine_lut[2000] =
 
 
  void output_PWM() {
- 	
 
  }
